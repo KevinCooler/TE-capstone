@@ -5,6 +5,8 @@
 BEGIN;
 
 -- CREATE statements go here
+DROP TABLE IF EXISTS coach_reviews;
+DROP TABLE IF EXISTS clients;
 DROP TABLE IF EXISTS availability;
 DROP TABLE IF EXISTS coaches;
 DROP TABLE IF EXISTS app_user;
@@ -19,25 +21,44 @@ CREATE TABLE app_user (
 );
 
 CREATE TABLE coaches (
-  coaches_id INT NOT NULL,
+  coach_id INT PRIMARY KEY,
   first_name varchar(45) NOT NULL,
   last_name varchar(45) NOT NULL,
-  about_me text NOT NULL,
+  city_location varchar(45),
+  state_location varchar(45),
+  about_me text,
   
-  CONSTRAINT pk_coaches_id PRIMARY KEY(coaches_id),
-  CONSTRAINT fk_coaches_id FOREIGN KEY(coaches_id) REFERENCES app_user(id)
+  CONSTRAINT fk_coach_id FOREIGN KEY(coach_id) REFERENCES app_user(id)
+);
+
+CREATE TABLE clients (
+  client_id INT PRIMARY KEY,
+  first_name varchar(45) NOT NULL,
+  last_name varchar(45) NOT NULL,
+  
+  CONSTRAINT fk_client_id FOREIGN KEY(client_id) REFERENCES app_user(id)
 );
 
 CREATE TABLE availability (
   availability_id SERIAL PRIMARY KEY,
-  coaches_id INT NOT NULL,
-  day_of_week varchar(9),
+  coach_id INT NOT NULL,
+  day_of_week INT,
   hour_of_day INT,
   
-  CONSTRAINT fk_coaches_id FOREIGN KEY(coaches_id) REFERENCES coaches(coaches_id),
-  CONSTRAINT hour_of_day_0_to_24 CHECK ((hour_of_day <= 23) AND (hour_of_day >= 0))
+  CONSTRAINT fk_coach_id FOREIGN KEY(coach_id) REFERENCES coaches(coach_id),
+  CONSTRAINT hour_of_day_0_to_24 CHECK ((hour_of_day <= 23) AND (hour_of_day >= 0)),
+  CONSTRAINT day_between_0_and_6 CHECK ((day_of_week <= 6) AND (day_of_week >= 0))
 );
 
-
+CREATE TABLE coach_reviews (
+  review_id SERIAL PRIMARY KEY,
+  coach_id INT NOT NULL,
+  client_id INT NOT NULL,
+  review_text TEXT,
+  rating INT NOT NULL,
+  
+  CONSTRAINT fk_coach_id FOREIGN KEY(coach_id) REFERENCES coaches(coach_id),
+  CONSTRAINT fk_client_id FOREIGN KEY(client_id) REFERENCES clients(client_id)
+);
 
 COMMIT;
