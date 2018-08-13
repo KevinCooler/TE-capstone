@@ -1,7 +1,7 @@
 		</div>
 		
 		<footer>
-			Copyright 2016 Critter Inc.
+			<div style="text-align: center">Copyright 2018 MHM Coaching</div>
 		</footer>
 	</body>
 </html>

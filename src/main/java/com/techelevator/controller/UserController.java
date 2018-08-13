@@ -44,5 +44,10 @@ public class UserController {
 		return "redirect:/login";
 	}
 	
+	@RequestMapping(path="/admin", method=RequestMethod.GET)
+	public String displayAdminPage() {
+		return "admin";
+	}
+	
 	
 }
