@@ -6,6 +6,7 @@ public class Client {
 	private String firstName;
 	private String lastName;
 	private boolean isLookingForCoach;
+	
 	public long getId() {
 		return id;
 	}
