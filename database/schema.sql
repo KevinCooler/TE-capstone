@@ -22,8 +22,8 @@ CREATE TABLE app_user (
 
 CREATE TABLE coaches (
   coach_id INT PRIMARY KEY,
-  first_name varchar(45) NOT NULL,
-  last_name varchar(45) NOT NULL,
+  first_name varchar(45),
+  last_name varchar(45),
   city_location varchar(45),
   state_location varchar(45),
   about_me text,
