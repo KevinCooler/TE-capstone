@@ -16,7 +16,7 @@
 <div class="row">
 	<div class="col-sm-5"></div>
 	<div class="col-sm-2">
-		<img class="img img-responsive" src="img/2-star.png" alt="star rating"/>
+		<img style="height:15px" class="img img-responsive" src="img/2-star.png" alt="star rating"/>
 		<div style="text-align: center">City, State</div>
 	</div>
 	<div class="col-sm-5"></div>

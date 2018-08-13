@@ -24,7 +24,8 @@ public class CoachController {
 	
 	@RequestMapping(path="/editCoach", method=RequestMethod.GET)
 	public String displayEditCoachForm() {
-		return "redirect:/editCoach";
+		return "editCoach";
 	}
+	
 
 }
