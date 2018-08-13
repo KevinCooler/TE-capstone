@@ -5,11 +5,13 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-sm-2"></div>
-		<div class="col-sm-8">
+		<div class="col-sm-7">
 			<h1>Manage Coaches</h1>
 		</div>
-		<div class="col-sm-2"></div>
+		<div class="col-sm-1"></div>
+		<div class="col-sm-4">
+			<h1>Add New Coach</h1>
+		</div>
 	</div>
 	<div class="row">
 		<div class="col-sm-7">
@@ -49,7 +51,7 @@
 		</div>
 		<div class="col-sm-1"></div>
 		<div class="col-sm-4">
-			<c:url var="formAction" value="/submitAddCoach" />
+			<c:url var="formAction" value="/addCoach" />
 			<form method="POST" action="${formAction}">
 			<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 				<div class="row">
@@ -60,10 +62,6 @@
 					<div class="form-group">
 						<label for="lastName">Last Name: </label>
 						<input type="text" id="lastName" name="lastName" placeHolder="Last Name" class="form-control" />
-					</div>
-					<div class="form-group">
-						<label for="userName">User Name: </label>
-						<input type="text" id="userName" name="userName" placeHolder="User Name" class="form-control" />
 					</div>
 					<div class="form-group">
 						<label for="password">Password: </label>
