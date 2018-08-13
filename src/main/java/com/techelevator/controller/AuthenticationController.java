@@ -48,7 +48,7 @@ public class AuthenticationController {
 					return "redirect:/admin";
 				}
 				if(user.getRole().equals("coach")) {
-					
+					//get coach object from database
 					return "redirect:/coach";
 				}
 				else return "redirect:/users/"+userName;

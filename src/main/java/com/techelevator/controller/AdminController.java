@@ -29,12 +29,7 @@ public class AdminController {
 		return "admin";
 	}
 	
-	@RequestMapping(path="/addCoach", method=RequestMethod.GET)
-	public String displayAddCoach() {
-		return "addCoachForm";
-	}
-	
-	@RequestMapping(path="/submitAddCoach", method=RequestMethod.POST)
+	@RequestMapping(path="/AddCoach", method=RequestMethod.POST)
 	public String submitAddCoach() {
 		return "redirect:/admin";
 	}

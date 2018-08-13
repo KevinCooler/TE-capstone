@@ -12,15 +12,7 @@
 		<div class="col-sm-2"></div>
 	</div>
 	<div class="row">
-		<div class="col-sm-2"></div>
-		<div class="col-sm-8">
-			<a class="btn btn-primary" href="${addCoachURL}">Add New Coach</a>
-		</div>
-		<div class="col-sm-2"></div>
-	</div>
-	<div class="row">
-		<div class="col-sm-2"></div>
-		<div class="col-sm-8">
+		<div class="col-sm-7">
 			<table class="table">
 				<thead>
 					<tr>
@@ -31,7 +23,7 @@
 					<tr>
 						<td>Name</td>
 						<td>
-							<a class="btn btn-info" href="${addCoachURL}">Update</a>
+							<a class="btn btn-primary" href="${addCoachURL}">Update</a>
 						</td>
 						<td>
 							<a class="btn btn-danger" href="${addCoachURL}">Delete</a>
@@ -55,9 +47,37 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="col-sm-2"></div>
+		<div class="col-sm-1"></div>
+		<div class="col-sm-4">
+			<c:url var="formAction" value="/submitAddCoach" />
+			<form method="POST" action="${formAction}">
+			<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
+				<div class="row">
+					<div class="form-group">
+						<label for="firstName">First Name: </label>
+						<input type="text" id="firstName" name="firstName" placeHolder="First Name" class="form-control" />
+					</div>
+					<div class="form-group">
+						<label for="lastName">Last Name: </label>
+						<input type="text" id="lastName" name="lastName" placeHolder="Last Name" class="form-control" />
+					</div>
+					<div class="form-group">
+						<label for="userName">User Name: </label>
+						<input type="text" id="userName" name="userName" placeHolder="User Name" class="form-control" />
+					</div>
+					<div class="form-group">
+						<label for="password">Password: </label>
+						<input type="password" id="password" name="password" placeHolder="Password" class="form-control" />
+					</div>
+					<div class="form-group">
+						<label for="confirmPassword">Confirm Password: </label>
+						<input type="password" id="confirmPassword" name="confirmPassword" placeHolder="Re-Type Password" class="form-control" />	
+					</div>
+					<button type="submit" class="btn btn-default">Create Coach</button>
+				</div>
+			</form>
+		</div>
 	</div>
 </div>
-
 
 <c:import url="/WEB-INF/jsp/footer.jsp" />
