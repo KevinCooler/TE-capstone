@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.techelevator.model.User;
 import com.techelevator.model.UserDAO;
 
 @Controller
@@ -19,6 +20,11 @@ public class AuthenticationController {
 	@Autowired
 	public AuthenticationController(UserDAO userDAO) {
 		this.userDAO = userDAO;
+	}
+	
+	@RequestMapping(path="/", method=RequestMethod.GET)
+	public String displayHomePage() {
+		return "home";
 	}
 
 	@RequestMapping(path="/login", method=RequestMethod.GET)
@@ -32,12 +38,20 @@ public class AuthenticationController {
 						@RequestParam(required=false) String destination,
 						HttpSession session) {
 		if(userDAO.searchForUsernameAndPassword(userName, password)) {
-			session.setAttribute("currentUser", userDAO.getUserByUserName(userName));
+			User user = userDAO.getUserByUserName(userName);
+			session.setAttribute("currentUser", user);
 			
 			if(destination != null && ! destination.isEmpty()) {
 				return "redirect:" + destination;
 			} else {
-				return "redirect:/users/"+userName;
+				if(user.getRole().equals("admin")) {
+					return "redirect:/admin";
+				}
+				if(user.getRole().equals("coach")) {
+					
+					return "redirect:/coach";
+				}
+				else return "redirect:/users/"+userName;
 			}
 		} else {
 			return "redirect:/login";
