@@ -3,13 +3,13 @@
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
 <c:url var="contactURL" value="/contact">
-	<c:param name="coachId" value="${coach.Id}"></c:param>
+	<c:param name="coachId" value="${coach.id}"></c:param>
 </c:url>
 
 <div class="row">
 	<div class="col-sm-2"></div>
 	<div class="col-sm-8">
-		<h1 style="text-align: center">Insert Name</h1>
+		<h1 style="text-align: center"><c:out value="${coach.firstName} ${coach.lastName}" /></h1>
 	</div>
 	<div class="col-sm-2"></div>
 </div>
@@ -17,7 +17,7 @@
 	<div class="col-sm-5"></div>
 	<div class="col-sm-2">
 		<img style="height:15px" class="img img-responsive" src="img/2-star.png" alt="star rating"/>
-		<div style="text-align: center">City, State</div>
+		<div style="text-align: center"><c:out value="${coach.city}, ${coach.state}"/></div>
 	</div>
 	<div class="col-sm-5"></div>
 </div>
@@ -25,7 +25,7 @@
 	<div class="col-sm-2"></div>
 	<div class="col-sm-8">
 		<h3 style="text-align: center">About Me:</h3>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		<p><c:out value="${coach.aboutMe}"/></p>
 	</div>
 	<div class="col-sm-2"></div>
 </div>
@@ -41,14 +41,11 @@
 	<div class="col-sm-2">
 		<h3>Availability</h3>
 		<div>
-			<div>Sunday: 8am - 9am</div>
-			<div>Sunday: 8am - 9am</div>
-			<div>Sunday: 8am - 9am</div>
-			<div>Sunday: 8am - 9am</div>
-			<div>Sunday: 8am - 9am</div>
-			<div>Sunday: 8am - 9am</div>
-			<div>Sunday: 8am - 9am</div>
-			<div>Sunday: 8am - 9am</div>
+			<c:forEach var="avail" items="${caoch.available}">
+				<div>
+					<c:out value="${avail.day}: ${avail.hourStart} - ${avail.hourEnd}"/>
+				</div>
+			</c:forEach>
 		</div>
 	</div>
 	<div class="col-sm-6">
