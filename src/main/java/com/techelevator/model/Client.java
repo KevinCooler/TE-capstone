@@ -6,6 +6,8 @@ public class Client {
 	private String firstName;
 	private String lastName;
 	private boolean isLookingForCoach;
+	private String state;
+	private String city;
 	
 	public long getId() {
 		return id;
@@ -30,5 +32,17 @@ public class Client {
 	}
 	public void setLookingForCoach(boolean isLookingForCoach) {
 		this.isLookingForCoach = isLookingForCoach;
+	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
 	}
 }
