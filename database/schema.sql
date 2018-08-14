@@ -49,7 +49,7 @@ CREATE TABLE availability (
   CONSTRAINT fk_coach_id FOREIGN KEY(coach_id) REFERENCES coaches(coach_id),
   CONSTRAINT hour_start_0_to_24 CHECK ((hour_start <= 23) AND (hour_start >= 0)),
   CONSTRAINT hour_end_0_to_24 CHECK ((hour_end <= 23) AND (hour_end >= 0)),
-  CONSTRAINT day_between_0_and_6 CHECK ((day_of_week <= 6) AND (day_of_week >= 0))
+  CONSTRAINT day_between_0_and_6 CHECK ((day_of_week <= 7) AND (day_of_week >= 1))
 );
 
 CREATE TABLE coach_reviews (
