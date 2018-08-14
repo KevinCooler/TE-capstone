@@ -14,10 +14,12 @@ import org.springframework.stereotype.Component;
 public class JDBCCoachDAO implements CoachDAO{
 	
 	private JdbcTemplate temp;
+	private JDBCAvailabilityDAO availDao;
 	
 	@Autowired
 	public JDBCCoachDAO(DataSource dataSource) {
 		this.temp = new JdbcTemplate(dataSource);
+		this.availDao = new JDBCAvailabilityDAO(dataSource);
 	}
 
 	@Override
@@ -52,6 +54,7 @@ public class JDBCCoachDAO implements CoachDAO{
 		coach.setCity(result.getString("city_location"));
 		coach.setState(result.getString("state_location"));
 		coach.setAboutMe(result.getString("about_me"));
+		coach.setAvailable(availDao.getAvailabilityList(coach.getId()));
 		
 		return coach;
 	}
@@ -91,11 +94,5 @@ public class JDBCCoachDAO implements CoachDAO{
 		String sqlStatement = "UPDATE coaches SET about_me=? WHERE coach_id=?;";
 		
 		temp.update(sqlStatement, aboutMe, id);
-	}
-
-	@Override
-	public boolean addCoachAvailability(int day, int hour) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 }

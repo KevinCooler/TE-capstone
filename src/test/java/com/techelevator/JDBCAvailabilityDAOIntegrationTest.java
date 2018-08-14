@@ -34,6 +34,26 @@ public class JDBCAvailabilityDAOIntegrationTest extends DAOIntegrationTest{
 	}
 	
 	@Test
+	public void testListWithNoAvailability() {
+		List<Availability> list = availDao.getAvailabilityList(1);
+		
+		Assert.assertEquals(0, list.size());
+	}
+	
+	@Test
+	public void testCorrectOrder() {
+		availDao.addAvailability(1, 3, 12, 14);
+		availDao.addAvailability(1, 2, 16, 17);
+		availDao.addAvailability(1, 2, 8, 10);
+		
+		List<Availability> list = availDao.getAvailabilityList(1);
+		
+		Assert.assertEquals(8, list.get(0).getHourStart());
+		Assert.assertEquals(16, list.get(1).getHourStart());
+		Assert.assertEquals(12, list.get(2).getHourStart());
+	}
+	
+	@Test
 	public void testAvailabilityContents() {
 		availDao.addAvailability(1, 4, 8, 12);
 		List<Availability> list = availDao.getAvailabilityList(1);
