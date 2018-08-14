@@ -42,7 +42,7 @@
 	<div class="col-sm-2">
 		<h3>Availability</h3>
 		<div>
-		<div class="container">
+		<table>
 			<c:forEach var="avail" items="${coach.available}">
 				
 					<c:set value="" var="day"/>
@@ -69,19 +69,19 @@
 					</c:if>
 					<fmt:parseDate var="start" value="${avail.hourStart}" pattern="HH" />
 					<fmt:parseDate var="end" value="${avail.hourEnd}" pattern="HH"/>
-					<div class="row">
-						<div class="col-xs-1">
-						<c:out value="${day}: "/>
-						</div>
-						<div class="col-xs-2">
+					<tr>
+						<td>	
+						<c:out value="${day}: "/>	
+						</td>
+						<td class="text-right">
 						<fmt:formatDate value="${start}" pattern="ha"/>
 						<c:out value=" - "/>
 						<fmt:formatDate value="${end}" pattern="ha"/>
-						</div>
-					</div>
+						</td>
+					</tr>
 				
 			</c:forEach>
-			</div>
+			</table>
 		</div>
 	</div>
 	<div class="col-sm-6">
