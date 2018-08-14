@@ -1,7 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
-<c:url var="addCoachURL" value="/addCoach"/>
+
+
 
 <div class="container">
 	<div class="row">
@@ -22,30 +23,31 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>Name</td>
-						<td>
-							<a class="btn btn-primary" href="${addCoachURL}">Update</a>
-						</td>
-						<td>
-							<a class="btn btn-danger" href="${addCoachURL}">Delete</a>
-						</td>
-					</tr>
-					<tr>
-						<td>Name</td>
-						<td>Update</td>
-						<td>Delete</td>
-					</tr>
-					<tr>
-						<td>Name</td>
-						<td>Update</td>
-						<td>Delete</td>
-					</tr>
-					<tr>
-						<td>Name</td>
-						<td>Update</td>
-						<td>Delete</td>
-					</tr>
+					<c:forEach var="coach" items="${coaches}">
+						<c:url var="editCoachURL" value="/editCoach">
+							<c:param name="coachId" value="${coach.id}"/>
+						</c:url>
+						<c:url var="deleteCoachURL" value="/deleteCoach">
+							<c:param name="coachId" value="${coach.id}"/>
+						</c:url>
+						<c:url var="coachURL" value="/coach">
+							<c:param name="coachId" value="${coach.id}"/>
+						</c:url>
+						<tr>
+							<td><c:out value="${coach.firstName} ${coach.lastName}"/></td>
+							<td>
+								<a href="${coachURL}" class="btn btn-primary">View</a>
+							</td>
+							<td>
+								<a href="${editCoachURL}" class="btn btn-success">Edit</a>
+							</td>
+							<td>
+								<form action="${deleteCoachURL}" method="post">
+								    <input class="btn btn-danger" type="submit" value="Delete"/>
+								</form>
+							</td>
+						</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 		</div>
@@ -53,7 +55,6 @@
 		<div class="col-sm-4">
 			<c:url var="formAction" value="/addCoach" />
 			<form method="POST" action="${formAction}">
-			<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 				<div class="row">
 					<div class="form-group">
 						<label for="firstName">First Name: </label>
