@@ -40,7 +40,7 @@ insert into availability (coach_id, day_of_week, hour_start, hour_end) values (5
 insert into availability (coach_id, day_of_week, hour_start, hour_end) values (6, 3, 18, 22);
 insert into availability (coach_id, day_of_week, hour_start, hour_end) values (6, 4, 8, 18);
 insert into availability (coach_id, day_of_week, hour_start, hour_end) values (6, 5, 8, 13);
-
+/*
 insert into coach_reviews (coach_id, client_id, review_text, rating) values (4, 7, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tellus orci ac auctor augue.', 5);
 insert into coach_reviews (coach_id, client_id, review_text, rating) values (4, 8, 'Proin fermentum leo vel orci.', 3);
 insert into coach_reviews (coach_id, client_id, review_text, rating) values (4, 9, 'Eget sit amet tellus cras adipiscing enim eu turpis egestas. Arcu dui vivamus arcu felis bibendum ut tristique et egestas. Porttitor massa id neque aliquam vestibulum.', 3);
@@ -51,8 +51,7 @@ insert into coach_reviews (coach_id, client_id, review_text, rating) values (6, 
 insert into coach_reviews (coach_id, client_id, review_text, rating) values (6, 7, 'Ac tincidunt vitae semper quis. Tellus elementum sagittis vitae et leo duis ut diam.', 5);
 insert into coach_reviews (coach_id, client_id, review_text, rating) values (6, 9, 'Id eu nisl nunc mi ipsum faucibus vitae aliquet nec.', 4);
 insert into coach_reviews (coach_id, client_id, review_text, rating) values (6, 8, '', 5);
-
+*/
 COMMIT;
 
-select * from coach_reviews
 

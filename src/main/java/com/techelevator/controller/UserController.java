@@ -40,7 +40,6 @@ public class UserController {
 			return "redirect:/users/new";
 		}
 		String role = "client";
-		
 		userDAO.saveUser(user.getUserName(), user.getPassword(), role);
 		return "redirect:/login";
 	}
