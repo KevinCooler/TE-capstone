@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.techelevator.model.AvailabilityDAO;
 import com.techelevator.model.Coach;
 import com.techelevator.model.CoachDAO;
 
@@ -22,11 +23,13 @@ import com.techelevator.model.CoachDAO;
 public class CoachController {
 	
 	private CoachDAO coachDAO;
+	private AvailabilityDAO availDAO;
 	
 	
 	@Autowired
-	public CoachController(CoachDAO coachDAO) {
+	public CoachController(CoachDAO coachDAO, AvailabilityDAO availDAO) {
 		this.coachDAO = coachDAO;
+		this.availDAO = availDAO;
 	}
 	
 	@RequestMapping(path="/coach", method=RequestMethod.GET)
@@ -47,16 +50,19 @@ public class CoachController {
 	}
 	
 	@RequestMapping(path="/editCoach", method=RequestMethod.GET)
-	public String displayEditCoachForm(@RequestParam long coachId, ModelMap map) {
-		Coach coach = coachDAO.getCoachById(coachId);
-		map.addAttribute("coach", coach);
-		
-		return "editCoach";
-	}
+	public String displayEditCoachForm(@RequestParam(required=false) Long coachId, ModelMap map, Model model) {
+		if(model.containsAttribute("coachId")) {
+			long id = (Long)model.asMap().get("coachId");
+			Coach coach = coachDAO.getCoachById(id);
+			map.addAttribute("coach", coach);
+		} else if(coachId == null) {
+			return "home";
+		} else {
+			Coach coach = coachDAO.getCoachById(coachId);
+			map.addAttribute("coach", coach);
+		}
 	
-	@ExceptionHandler(Exception.class)
-	void handleException(Exception e, HttpServletResponse response) throws IOException{
-		response.sendError(HttpStatus.BAD_REQUEST.value(), e.getMessage());
+		return "editCoach";
 	}
 	
 	@RequestMapping(path="/editCoach", method=RequestMethod.POST)
@@ -72,4 +78,22 @@ public class CoachController {
 		
 		return "redirect:/coach";
 	}
+	
+	@RequestMapping(path="/deleteAvailability", method=RequestMethod.GET)
+	public String doDeleteAvailability(@RequestParam Long availId, @RequestParam long coachId, RedirectAttributes attr) {
+		attr.addFlashAttribute("coachId", coachId);
+		availDAO.removeAvailability(availId);
+		return "redirect:/editCoach";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

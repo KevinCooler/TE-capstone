@@ -39,14 +39,12 @@
 			<div class="container-fluid">
 				<ul class="nav navbar-nav">
 					<c:url var="homePageHref" value="/" />
-					<li><a href="${homePageHref}">Home</a></li>
+					<li><a style="font-size: 2em" href="${homePageHref}">MHM</a></li>
 					<c:if test="${not empty currentUser}">
 						<c:url var="dashboardHref" value="/users/${currentUser}" />
-						<li><a href="${dashboardHref}">Browse Coaches</a></li>
+						<li><a href="${browseCoachesHref}">Browse Coaches</a></li>
 						<c:url var="newMessageHref" value="/users/${currentUser}/messages/new" />
-						<li><a href="${newMessageHref}">New Message</a></li>
-						<c:url var="sentMessagesHref" value="/users/${currentUser}/messages" />
-						<li><a href="${sentMessagesHref}">Sent Messages</a></li>
+						<li><a href="${messagesHref}">Messages</a></li>
 						<c:url var="changePasswordHref" value="/users/${currentUser}/changePassword" />
 						<li><a href="${changePasswordHref}">Change Password</a></li>
 					</c:if>

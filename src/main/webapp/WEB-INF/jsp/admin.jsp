@@ -6,11 +6,6 @@
 	<div class="col-sm-7">
 		<h1>Manage Coaches</h1>
 		<table class="table">
-			<thead>
-				<tr>
-					<th colspan="3">Coaches</th>
-				</tr>
-			</thead>
 			<tbody>
 				<c:forEach var="coach" items="${coaches}">
 					<c:url var="editCoachURL" value="/editCoach">

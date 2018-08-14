@@ -39,7 +39,7 @@
 </div>
 <div class="row">
 	<div class="col-sm-2"></div>
-	<div class="col-sm-2">
+	<div class="col-sm-3">
 		<h3>Availability</h3>
 		<div>
 		<table>
@@ -84,7 +84,7 @@
 			</table>
 		</div>
 	</div>
-	<div class="col-sm-6">
+	<div class="col-sm-5">
 		<h3>Reviews</h3>
 		<table class="table">
 			<tr>
