@@ -41,7 +41,7 @@ public class AdminController {
 		return "redirect:/admin";
 	}
 	
-	@RequestMapping(path="/deleteCoach", method=RequestMethod.POST)
+	@RequestMapping(path="/deleteCoach", method=RequestMethod.GET)
 	public String doDeleteCoach(@RequestParam long coachId) {
 		coachDAO.removeCoach(coachId);
 		return "redirect:/admin";

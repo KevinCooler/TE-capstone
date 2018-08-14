@@ -42,9 +42,13 @@
 								<a href="${editCoachURL}" class="btn btn-success">Edit</a>
 							</td>
 							<td>
+<<<<<<< HEAD
 								<form action="${deleteCoachURL}" method="post">
 								    <input class="btn-danger" type="submit" value="Delete"/>
 								</form>
+=======
+								<a href="${deleteCoachURL}" class="btn btn-danger">Delete</a>
+>>>>>>> 5db9d1c73456095bfb28d76f01d6da32a9218a56
 							</td>
 						</tr>
 					</c:forEach>
