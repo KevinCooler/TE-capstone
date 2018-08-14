@@ -25,7 +25,34 @@ values (5, 'Steve', 'Jones', 'Hilliard', 'Ohio', 'Ut enim ad minim veniam, quis 
 insert into coaches (coach_id, first_name, last_name, city_location, state_location, about_me) 
 values (6, 'Andrew', 'Frank', 'Dayton', 'Ohio', 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.');
 
+insert into availability (coach_id, day_of_week, hour_start, hour_end) values (4, 1, 7, 10);
+insert into availability (coach_id, day_of_week, hour_start, hour_end) values (4, 3, 14, 16);
+insert into availability (coach_id, day_of_week, hour_start, hour_end) values (4, 5, 7, 10);
+insert into availability (coach_id, day_of_week, hour_start, hour_end) values (4, 5, 11, 12);
+insert into availability (coach_id, day_of_week, hour_start, hour_end) values (4, 6, 13, 20);
+
+insert into availability (coach_id, day_of_week, hour_start, hour_end) values (5, 2, 8, 13);
+insert into availability (coach_id, day_of_week, hour_start, hour_end) values (5, 4, 8, 13);
+insert into availability (coach_id, day_of_week, hour_start, hour_end) values (5, 6, 8, 13);
+insert into availability (coach_id, day_of_week, hour_start, hour_end) values (5, 1, 7, 9);
+insert into availability (coach_id, day_of_week, hour_start, hour_end) values (5, 1, 11, 13);
+
+insert into availability (coach_id, day_of_week, hour_start, hour_end) values (6, 3, 18, 22);
+insert into availability (coach_id, day_of_week, hour_start, hour_end) values (6, 4, 8, 18);
+insert into availability (coach_id, day_of_week, hour_start, hour_end) values (6, 5, 8, 13);
+
+insert into coach_reviews (coach_id, client_id, review_text, rating) values (4, 7, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tellus orci ac auctor augue.', 5);
+insert into coach_reviews (coach_id, client_id, review_text, rating) values (4, 8, 'Proin fermentum leo vel orci.', 3);
+insert into coach_reviews (coach_id, client_id, review_text, rating) values (4, 9, 'Eget sit amet tellus cras adipiscing enim eu turpis egestas. Arcu dui vivamus arcu felis bibendum ut tristique et egestas. Porttitor massa id neque aliquam vestibulum.', 3);
+insert into coach_reviews (coach_id, client_id, review_text, rating) values (5, 9, 'Velit euismod in pellentesque massa.', 5);
+insert into coach_reviews (coach_id, client_id, review_text, rating) values (5, 9, 'Duis at tellus at urna condimentum mattis pellentesque.', 1);
+insert into coach_reviews (coach_id, client_id, review_text, rating) values (6, 8, 'Nulla posuere sollicitudin aliquam ultrices sagittis orci. Sagittis orci a scelerisque purus semper. Dui vivamus arcu felis bibendum ut tristique. Eget arcu dictum varius duis at consectetur lorem.', 2);
+insert into coach_reviews (coach_id, client_id, review_text, rating) values (6, 7, 'Tellus pellentesque eu tincidunt tortor aliquam. Viverra nibh cras pulvinar mattis nunc. Ante metus dictum at tempor commodo ullamcorper a lacus vestibulum.', 5);
+insert into coach_reviews (coach_id, client_id, review_text, rating) values (6, 7, 'Ac tincidunt vitae semper quis. Tellus elementum sagittis vitae et leo duis ut diam.', 5);
+insert into coach_reviews (coach_id, client_id, review_text, rating) values (6, 9, 'Id eu nisl nunc mi ipsum faucibus vitae aliquet nec.', 4);
+insert into coach_reviews (coach_id, client_id, review_text, rating) values (6, 8, '', 5);
+
 COMMIT;
 
-select * from clients
+select * from coach_reviews
 
