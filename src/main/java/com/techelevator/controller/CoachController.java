@@ -1,9 +1,15 @@
 package com.techelevator.controller;
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -46,6 +52,11 @@ public class CoachController {
 		map.addAttribute("coach", coach);
 		
 		return "editCoach";
+	}
+	
+	@ExceptionHandler(Exception.class)
+	void handleException(Exception e, HttpServletResponse response) throws IOException{
+		response.sendError(HttpStatus.BAD_REQUEST.value(), e.getMessage());
 	}
 	
 	@RequestMapping(path="/editCoach", method=RequestMethod.POST)

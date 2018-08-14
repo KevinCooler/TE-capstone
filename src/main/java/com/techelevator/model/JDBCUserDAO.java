@@ -24,12 +24,12 @@ public class JDBCUserDAO implements UserDAO {
 	}
 	
 	@Override
-	public void saveUser(String userName, String password, String role) {
+	public Long saveUser(String userName, String password, String role) {
 		byte[] salt = hashMaster.generateRandomSalt();
 		String hashedPassword = hashMaster.computeHash(password, salt);
 		String saltString = new String(Base64.encode(salt));
-		
-		jdbcTemplate.update("INSERT INTO app_user(user_name, password, role, salt) VALUES (?, ?, ?, ?)",
+		String sqlInsertUser = "INSERT INTO app_user(user_name, password, role, salt) VALUES (?, ?, ?, ?) returning id";
+		return jdbcTemplate.queryForObject(sqlInsertUser, Long.class,
 				userName, hashedPassword, role, saltString);
 	}
 
@@ -70,6 +70,13 @@ public class JDBCUserDAO implements UserDAO {
 		}
 
 		return thisUser;
+	}
+
+	@Override
+	public void deleteUserByUserId(Long userId) {
+		String sqlDeleteUser = "Delete from app_user where id = ?";
+		jdbcTemplate.update(sqlDeleteUser, userId);
+		
 	}
 
 }
