@@ -106,7 +106,11 @@
 	</div>
 	<div class="col-sm-4">
 		<h3>Add Time Slot</h3>
-		<form method="POST" action="${formAction}">
+		<c:url var="addAvailURL" value="/addAvailability">
+			<c:param name="coachId" value="${coach.id}"/>
+		</c:url>
+		<form method="POST" action="${addAvailURL}">
+		<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 			<div class="form-group">
 				<label for="day">Day: </label>
 				<select id="day" name="day" class="form-control">

@@ -50,7 +50,9 @@ public class CoachController {
 	}
 	
 	@RequestMapping(path="/editCoach", method=RequestMethod.GET)
-	public String displayEditCoachForm(@RequestParam(required=false) Long coachId, ModelMap map, Model model) {
+	public String displayEditCoachForm(@RequestParam(required=false) Long coachId, 
+									   ModelMap map, 
+									   Model model) {
 		if(model.containsAttribute("coachId")) {
 			long id = (Long)model.asMap().get("coachId");
 			Coach coach = coachDAO.getCoachById(id);
@@ -66,10 +68,11 @@ public class CoachController {
 	}
 	
 	@RequestMapping(path="/editCoach", method=RequestMethod.POST)
-	public String updateCoachInfo(@RequestParam long coachId, @RequestParam String firstName,
-			@RequestParam String lastName, @RequestParam String city,
-			@RequestParam String state, @RequestParam String aboutMe,
-			RedirectAttributes redirect) {
+	public String updateCoachInfo(@RequestParam long coachId, 
+								  @RequestParam String firstName,
+								  @RequestParam String lastName, @RequestParam String city,
+								  @RequestParam String state, @RequestParam String aboutMe,
+								  RedirectAttributes redirect) {
 		coachDAO.updateName(firstName, lastName, coachId);
 		coachDAO.updateLocation(city, state, coachId);
 		coachDAO.updateAboutMe(aboutMe, coachId);
@@ -80,9 +83,22 @@ public class CoachController {
 	}
 	
 	@RequestMapping(path="/deleteAvailability", method=RequestMethod.GET)
-	public String doDeleteAvailability(@RequestParam Long availId, @RequestParam long coachId, RedirectAttributes attr) {
+	public String doDeleteAvailability(@RequestParam Long availId, 
+									   @RequestParam long coachId, 
+									   RedirectAttributes attr) {
 		attr.addFlashAttribute("coachId", coachId);
 		availDAO.removeAvailability(availId);
+		return "redirect:/editCoach";
+	}
+	
+	@RequestMapping(path="/addAvailability", method=RequestMethod.POST)
+	public String doAddAvailability(@RequestParam int day,
+									@RequestParam int startTime,
+									@RequestParam int endTime,
+									@RequestParam long coachId,
+									RedirectAttributes attr) {
+		attr.addFlashAttribute("coachId", coachId);
+		availDAO.addAvailability(coachId, day, startTime, endTime);
 		return "redirect:/editCoach";
 	}
 	
@@ -90,7 +106,7 @@ public class CoachController {
 	
 	
 	
-	
+
 	
 	
 	
