@@ -43,7 +43,7 @@
 							</td>
 							<td>
 								<form action="${deleteCoachURL}" method="post">
-								    <input class="btn btn-danger" type="submit" value="Delete"/>
+								    <input class="btn-danger" type="submit" value="Delete"/>
 								</form>
 							</td>
 						</tr>
