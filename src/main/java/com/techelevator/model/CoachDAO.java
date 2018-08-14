@@ -1,8 +1,12 @@
 package com.techelevator.model;
 
+import java.util.List;
+
 public interface CoachDAO {
 
 	Coach getCoachById(long id);
+	
+	List<Coach> getCoachList();
 	
 	void addCoach(String firstName, String lastName, long id);
 	

@@ -1,5 +1,8 @@
 package com.techelevator.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +22,25 @@ public class JDBCCoachDAO implements CoachDAO{
 
 	@Override
 	public Coach getCoachById(long id) {
-		String sqlQuery = "SELECT * FROM coaches WHERE coach_id=?;";
-		SqlRowSet result = temp.queryForRowSet(sqlQuery, id);
+		String sqlStatement = "SELECT * FROM coaches WHERE coach_id=?;";
+		SqlRowSet result = temp.queryForRowSet(sqlStatement, id);
 		
 		if(result.next())
 			return mapRowToCoach(result);
 		
 		return null;
+	}
+	
+	@Override
+	public List<Coach> getCoachList() {
+		List<Coach> list = new ArrayList<Coach>();
+		String sqlStatement = "SELECT * FROM coaches;";
+		SqlRowSet results = temp.queryForRowSet(sqlStatement);
+		
+		while(results.next())
+			list.add(mapRowToCoach(results));
+		
+		return list;
 	}
 
 	private Coach mapRowToCoach(SqlRowSet result) {
