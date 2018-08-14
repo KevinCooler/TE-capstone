@@ -27,5 +27,12 @@ public class CoachController {
 		return "editCoach";
 	}
 	
-
+	@RequestMapping(path="/editCoach", method=RequestMethod.POST)
+	public String updateCoachInfo() {
+		
+		
+		return "redirect/: coach";
+	}
+	
+	
 }

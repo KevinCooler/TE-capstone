@@ -16,7 +16,7 @@
 			<div class="row">
 				<div class="form-group">
 					<label for="firstName">First Name: </label>
-					<input type="text" id="firstName" name="firstName" placeHolder="Kevin" class="form-control" />
+					<input type="text" id="firstName" name="firstName" value="Kevin" class="form-control" />
 				</div>
 				<div class="form-group">
 					<label for="lastName">Last Name: </label>
