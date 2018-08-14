@@ -96,7 +96,7 @@
 						<fmt:formatDate value="${end}" pattern="ha"/>
 					</td>
 					<td>
-						<a href="${deleteAvailURL}" class="btn btn-danger">Delete</a>
+						<a id="availability-delete" href="${deleteAvailURL}" class="btn btn-danger">Delete</a>
 					</td>
 				</tr>
 				
