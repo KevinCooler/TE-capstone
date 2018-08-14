@@ -43,10 +43,12 @@ CREATE TABLE availability (
   availability_id SERIAL PRIMARY KEY,
   coach_id INT NOT NULL,
   day_of_week INT,
-  hour_of_day INT,
+  hour_start INT,
+  hour_end INT,
   
   CONSTRAINT fk_coach_id FOREIGN KEY(coach_id) REFERENCES coaches(coach_id),
-  CONSTRAINT hour_of_day_0_to_24 CHECK ((hour_of_day <= 23) AND (hour_of_day >= 0)),
+  CONSTRAINT hour_start_0_to_24 CHECK ((hour_start <= 23) AND (hour_start >= 0)),
+  CONSTRAINT hour_end_0_to_24 CHECK ((hour_end <= 23) AND (hour_end >= 0)),
   CONSTRAINT day_between_0_and_6 CHECK ((day_of_week <= 6) AND (day_of_week >= 0))
 );
 
