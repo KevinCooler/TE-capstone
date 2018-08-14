@@ -61,4 +61,11 @@ public class JDBCAvailabilityDAO implements AvailabilityDAO{
 		
 		temp.update(sqlStatement, id);
 	}
+	
+	@Override
+	public void removeAvailabilityByCoachId(long coachId) {
+		String sqlStatement = "DELETE FROM availability WHERE coach_id=?;";
+		
+		temp.update(sqlStatement, coachId);
+	}
 }

@@ -9,4 +9,6 @@ public interface AvailabilityDAO {
 	void addAvailability(long coachId, int day, int hourStart, int hourEnd);
 	
 	void removeAvailability(long id);
+	
+	void removeAvailabilityByCoachId(long coachId);
 }

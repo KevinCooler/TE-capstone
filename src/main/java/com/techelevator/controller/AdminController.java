@@ -20,10 +20,12 @@ import com.techelevator.model.UserDAO;
 public class AdminController {
 
 	private CoachDAO coachDAO;
+	private UserDAO userDAO;
 
 	@Autowired
-	public AdminController(CoachDAO coachDAO) {
+	public AdminController(CoachDAO coachDAO, UserDAO userDAO) {
 		this.coachDAO = coachDAO;
+		this.userDAO = userDAO;
 	}
 	
 	@RequestMapping(path="/admin", method=RequestMethod.GET)
@@ -34,10 +36,12 @@ public class AdminController {
 	
 	@RequestMapping(path="/addCoach", method=RequestMethod.POST)
 	public String submitAddCoach(@RequestParam long coachId) {
+		User user = new User();
+		
 		return "redirect:/admin";
 	}
 	
-	@RequestMapping(path="/deleteCoach", method=RequestMethod.POST)
+	@RequestMapping(path="/deleteCoach", method=RequestMethod.GET)
 	public String doDeleteCoach(@RequestParam long coachId) {
 		coachDAO.removeCoach(coachId);
 		return "redirect:/admin";
