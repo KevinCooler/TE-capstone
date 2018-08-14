@@ -3,36 +3,43 @@
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
 <c:url var="contactURL" value="/contact">
-	<c:param name="coachId" value="${coach.Id}"></c:param>
+	<c:param name="coachId" value="${coach.id}"></c:param>
 </c:url>
 
 <div class="row">
 	<div class="col-sm-2"></div>
 	<div class="col-sm-8">
-		<c:url var="formAction" value="/updateCoach" />
+		<c:url var="formAction" value="/editCoach" />
 		<h2>Edit Coaching Profile</h2>
 		<form method="POST" action="${formAction}">
+		<input type="hidden" name="coachId" value=<c:out value="${coach.id}"/>>
 		<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 			<div class="row">
 				<div class="form-group">
 					<label for="firstName">First Name: </label>
-					<input type="text" id="firstName" name="firstName" value="Kevin" class="form-control" />
+					<input type="text" id="firstName" name="firstName" 
+						value=<c:out value="${coach.firstName}"/> class="form-control" />
 				</div>
 				<div class="form-group">
 					<label for="lastName">Last Name: </label>
-					<input type="text" id="lastName" name="lastName" placeHolder="Cooler" class="form-control" />
+					<input type="text" id="lastName" name="lastName" 
+						value=<c:out value="${coach.lastName}"/> class="form-control" />
 				</div>
 				<div class="form-group">
 					<label for="city">City: </label>
-					<input type="text" id="city" name="city" placeHolder="Columbus" class="form-control" />
+					<input type="text" id="city" name="city" 
+						value=<c:out value="${coach.city}"/> class="form-control" />
 				</div>
 				<div class="form-group">
 					<label for="state">State: </label>
-					<input type="text" id="state" name="state" placeHolder="Ohio" class="form-control" />	
+					<input type="text" id="state" name="state" 
+						value=<c:out value="${coach.state}"/> class="form-control" />	
 				</div>
 				<div class="form-group">
-					<label for="confirmPassword">About Me: </label>
-					<textarea class="form-control" id="aboutMe" name="aboutMe" rows="5" placeHolder="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."></textarea>
+					<label for="aboutMe">About Me: </label>
+					<textarea class="form-control" id="aboutMe" name="aboutMe" rows="5">
+						<c:out value="${coach.aboutMe}"/>
+					</textarea>
 				</div>
 				<button type="submit" class="btn btn-primary btn-block">Submit Changes</button>
 			</div>
