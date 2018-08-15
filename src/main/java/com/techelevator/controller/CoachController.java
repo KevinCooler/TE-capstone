@@ -12,18 +12,20 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.techelevator.model.AvailabilityDAO;
 import com.techelevator.model.Coach;
 import com.techelevator.model.CoachDAO;
+import com.techelevator.model.ReviewDAO;
 
 @Controller
 public class CoachController {
 	
 	private CoachDAO coachDAO;
 	private AvailabilityDAO availDAO;
-	
+	private ReviewDAO reviewDao;
 	
 	@Autowired
-	public CoachController(CoachDAO coachDAO, AvailabilityDAO availDAO) {
+	public CoachController(CoachDAO coachDAO, AvailabilityDAO availDAO, ReviewDAO reviewDao) {
 		this.coachDAO = coachDAO;
 		this.availDAO = availDAO;
+		this.reviewDao = reviewDao;
 	}
 	
 	@RequestMapping(path="/coach", method=RequestMethod.GET)
@@ -98,5 +100,16 @@ public class CoachController {
 		attr.addFlashAttribute("coachId", coachId);
 		availDAO.addAvailability(coachId, day, startTime, endTime);
 		return "redirect:/editCoach";
+	}
+	
+	@RequestMapping(path="/addReview", method=RequestMethod.POST)
+	public String addCoachReview(@RequestParam long clientId,
+			@RequestParam long coachId, @RequestParam int rating,
+			@RequestParam String reviewText, RedirectAttributes redirect) {
+		reviewDao.addReview(coachId, clientId, rating, reviewText);
+		
+		redirect.addFlashAttribute("coachId", coachId);
+		
+		return "redirect:/coach";
 	}
 }

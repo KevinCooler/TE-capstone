@@ -45,33 +45,10 @@
 		<div>
 		<table>
 			<c:forEach var="avail" items="${coach.available}">
-					<%-- <c:set value="" var="day"/>
-					<c:if test="${avail.day == 1}">
-						<c:set var="day" value="Sunday"/>
-					</c:if>
-					<c:if test="${avail.day == 2}">
-						<c:set var="day" value="Monday"/>
-					</c:if>
-					<c:if test="${avail.day == 3}">
-						<c:set var="day" value="Tuesday"/>
-					</c:if>
-					<c:if test="${avail.day == 4}">
-						<c:set var="day" value="Wednesday"/>
-					</c:if>
-					<c:if test="${avail.day == 5}">
-						<c:set var="day" value="Thusday"/>
-					</c:if>
-					<c:if test="${avail.day == 6}">
-						<c:set var="day" value="Friday"/>
-					</c:if>
-					<c:if test="${avail.day == 7}">
-						<c:set var="day" value="Saturday"/>
-					</c:if> --%>
 					<fmt:parseDate var="start" value="${avail.hourStart}" pattern="HH" />
 					<fmt:parseDate var="end" value="${avail.hourEnd}" pattern="HH"/>
 					<tr>
-						<td>	
-						<%-- <c:out value="${day}: "/> --%>	
+						<td>
 						<c:out value="${avail.dayName}"/>
 						</td>
 						<td class="text-right">
@@ -87,6 +64,14 @@
 	</div>
 	<div class="col-sm-5">
 		<h3>Reviews</h3>
+		<span id="new-review"><u>New Review</u></span>
+		<c:url var="reviewLink" value="/addReview"/>
+		<form id="review-form" method="POST" action="${reviewLink}">
+			<input type="hidden" name="clientId" value="1">
+			<input type="hidden" name="coachId" value="${coach.id}">
+			<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}">
+		</form>
+		<br>
 		<table class="table">
 			<c:forEach var="review" items="${coach.reviews}">
 				<tr>
