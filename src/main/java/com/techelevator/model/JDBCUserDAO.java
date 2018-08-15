@@ -52,7 +52,13 @@ public class JDBCUserDAO implements UserDAO {
 
 	@Override
 	public void updatePassword(String userName, String password) {
-		jdbcTemplate.update("UPDATE app_user SET password = ? WHERE user_name = ?", password, userName);
+		int rows = jdbcTemplate.update("UPDATE app_user SET password = ? WHERE user_name = ?", password, userName);
+		int y= rows;
+//		byte[] salt = hashMaster.generateRandomSalt();
+//		String hashedPassword = hashMaster.computeHash(password, salt);
+//		String saltString = new String(Base64.encode(salt));
+//		jdbcTemplate.update("UPDATE app_user SET password = ? WHERE user_name = ?", hashedPassword, userName);
+//		jdbcTemplate.update("UPDATE app_user SET salt = ? WHERE user_name = ?", saltString, userName);
 	}
 
 	@Override
@@ -67,6 +73,8 @@ public class JDBCUserDAO implements UserDAO {
 			thisUser = new User();
 			thisUser.setUserName(user.getString("user_name"));
 			thisUser.setPassword(user.getString("password"));
+			thisUser.setRole(user.getString("role"));
+			thisUser.setId(user.getLong("id"));
 		}
 
 		return thisUser;
