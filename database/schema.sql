@@ -38,6 +38,7 @@ CREATE TABLE clients (
   is_looking_for_coach boolean,
   city_location varchar(45),
   state_location varchar(45),
+  about_me text,
   
   CONSTRAINT fk_client_id FOREIGN KEY(client_id) REFERENCES app_user(id)
 );
