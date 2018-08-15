@@ -3,23 +3,19 @@ package com.techelevator.controller;
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.techelevator.model.AvailabilityDAO;
 import com.techelevator.model.CoachDAO;
-import com.techelevator.model.User;
+import com.techelevator.model.ReviewDAO;
 import com.techelevator.model.UserDAO;
 
 @Controller
@@ -27,13 +23,11 @@ public class AdminController {
 
 	private CoachDAO coachDAO;
 	private UserDAO userDAO;
-	private AvailabilityDAO availDAO;
 
 	@Autowired
-	public AdminController(CoachDAO coachDAO, UserDAO userDAO, AvailabilityDAO availDAO) {
+	public AdminController(CoachDAO coachDAO, UserDAO userDAO, AvailabilityDAO availDAO, ReviewDAO reviewDAO) {
 		this.coachDAO = coachDAO;
 		this.userDAO = userDAO;
-		this.availDAO = availDAO;
 	}
 	
 	@RequestMapping(path="/admin", method=RequestMethod.GET)
@@ -60,12 +54,8 @@ public class AdminController {
 	
 	@RequestMapping(path="/deleteCoach", method=RequestMethod.GET)
 	public String doDeleteCoach(@RequestParam long coachId) {
-		availDAO.removeAvailabilityByCoachId(coachId);
 		coachDAO.removeCoach(coachId);
 		userDAO.deleteUserByUserId(coachId);
 		return "redirect:/admin";
 	}
-	
-	
-	
 }

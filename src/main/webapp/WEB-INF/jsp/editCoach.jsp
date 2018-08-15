@@ -62,7 +62,7 @@
 					<c:param name="coachId" value="${coach.id}"/>
 				</c:url>
 				
-				<c:set value="" var="day"/>
+				<%-- <c:set value="" var="day"/>
 				<c:if test="${avail.day == 1}">
 					<c:set var="day" value="Sunday"/>
 				</c:if>
@@ -83,12 +83,13 @@
 				</c:if>
 				<c:if test="${avail.day == 7}">
 					<c:set var="day" value="Saturday"/>
-				</c:if>
+				</c:if> --%>
 				<fmt:parseDate var="start" value="${avail.hourStart}" pattern="HH" />
 				<fmt:parseDate var="end" value="${avail.hourEnd}" pattern="HH"/>
 				<tr>
 					<td>	
-						<c:out value="${day}: "/>	
+						<%-- <c:out value="${day}: "/> --%>
+						<c:out value="${avail.dayName}"/>
 					</td>
 					<td class="text-right">
 						<fmt:formatDate value="${start}" pattern="ha"/>
@@ -170,16 +171,3 @@
 </div>
 
 <c:import url="/WEB-INF/jsp/footer.jsp" />
-
-
-
-
-
-
-
-
-
-
-
-
-

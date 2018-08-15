@@ -15,11 +15,13 @@ public class JDBCCoachDAO implements CoachDAO{
 	
 	private JdbcTemplate temp;
 	private JDBCAvailabilityDAO availDao;
+	private JDBCReviewDAO reviewDao;
 	
 	@Autowired
 	public JDBCCoachDAO(DataSource dataSource) {
 		this.temp = new JdbcTemplate(dataSource);
 		this.availDao = new JDBCAvailabilityDAO(dataSource);
+		this.reviewDao = new JDBCReviewDAO(dataSource);
 	}
 
 	@Override
@@ -55,6 +57,7 @@ public class JDBCCoachDAO implements CoachDAO{
 		coach.setState(result.getString("state_location"));
 		coach.setAboutMe(result.getString("about_me"));
 		coach.setAvailable(availDao.getAvailabilityList(coach.getId()));
+		coach.setReviews(reviewDao.getReviewList(coach.getId()));
 		
 		return coach;
 	}
@@ -70,6 +73,9 @@ public class JDBCCoachDAO implements CoachDAO{
 
 	@Override
 	public void removeCoach(long id) {
+		availDao.removeAvailabilityByCoachId(id);
+		reviewDao.removeReviewsByCoachId(id);
+		
 		String SqlStatement = "DELETE FROM coaches WHERE coach_id=?;";
 		
 		temp.update(SqlStatement, id);

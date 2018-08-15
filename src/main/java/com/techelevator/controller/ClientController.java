@@ -14,14 +14,14 @@ import com.techelevator.model.UserDAO;
 public class ClientController {
 	
 	private CoachDAO coachDAO;
-	private UserDAO userDAO;
-	private AvailabilityDAO availDAO;
+//	private UserDAO userDAO;
+//	private AvailabilityDAO availDAO;
 	
 	@Autowired
 	public ClientController(CoachDAO coachDAO, UserDAO userDAO, AvailabilityDAO availDAO) {
 		this.coachDAO = coachDAO;
-		this.userDAO = userDAO;
-		this.availDAO = availDAO;
+//		this.userDAO = userDAO;
+//		this.availDAO = availDAO;
 	}
 	
 	@RequestMapping(path="/browseCoaches", method=RequestMethod.GET)
