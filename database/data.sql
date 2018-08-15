@@ -14,9 +14,9 @@ insert into app_user (user_name, password, salt, role) values ('Trey', 1, 2, 'cl
 insert into app_user (user_name, password, salt, role) values ('Tim', 1, 2, 'client');
 insert into app_user (user_name, password, salt, role) values ('Nick', 1, 2, 'client');
 
-insert into clients (client_id, first_name, last_name) values (7, 'Trey', 'Tomlin');
-insert into clients (client_id, first_name, last_name) values (8, 'Tim', 'Hart');
-insert into clients (client_id, first_name, last_name) values (9, 'Nick', 'Miller');
+insert into clients (client_id, first_name, last_name, is_looking_for_coach, city_location, state_location) values (7, 'Trey', 'Tomlin', 'true', 'Columbus', 'Ohio');
+insert into clients (client_id, first_name, last_name, is_looking_for_coach, city_location, state_location) values (8, 'Tim', 'Hart', 'false', 'Dayton', 'Ohio');
+insert into clients (client_id, first_name, last_name, is_looking_for_coach, city_location, state_location) values (9, 'Nick', 'Miller', 'true', 'Columbus', 'Ohio');
 
 insert into coaches (coach_id, first_name, last_name, city_location, state_location, about_me) 
 values (4, 'John', 'Doe', 'Columbus', 'Ohio', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.');

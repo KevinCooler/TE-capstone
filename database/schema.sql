@@ -35,6 +35,9 @@ CREATE TABLE clients (
   client_id INT PRIMARY KEY,
   first_name varchar(45) NOT NULL,
   last_name varchar(45) NOT NULL,
+  is_looking_for_coach boolean,
+  city_location varchar(45),
+  state_location varchar(45),
   
   CONSTRAINT fk_client_id FOREIGN KEY(client_id) REFERENCES app_user(id)
 );
