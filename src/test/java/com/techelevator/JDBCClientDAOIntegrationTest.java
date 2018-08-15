@@ -25,7 +25,7 @@ public class JDBCClientDAOIntegrationTest extends DAOIntegrationTest{
 		hashMaster = new PasswordHasher();
 		userDAO = new JDBCUserDAO(super.getDataSource(), hashMaster);
 		userId = userDAO.saveUser("DAO", "IntegrationTest", "client");
-		clientDAO.addClient("DAO", "IntegrationTest", userId);
+		clientDAO.addClient(firstName, lastName, id);;
 	}
 	
 	@Test
