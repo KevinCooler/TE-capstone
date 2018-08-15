@@ -6,8 +6,8 @@ import org.junit.Test;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
-import com.techelevator.model.JDBCUserDAO;
-import com.techelevator.model.User;
+import com.techelevator.model.JDBCDAOs.JDBCUserDAO;
+import com.techelevator.model.Objects.User;
 import com.techelevator.security.PasswordHasher;
 
 
@@ -32,20 +32,27 @@ public class JDBCUserDAOIntegrationTest extends DAOIntegrationTest{
 	@Test
 	public void saves_user_and_verifies_that_username_matches_with_password() {
 		userDAO.saveUser("testUserName",  "testPassword", "testRole");
-		Assert.assertTrue(userDAO.searchForUsernameAndPassword("testUsername",  "testPassword"));
+		Assert.assertTrue(userDAO.searchForUsernameAndPassword("testUserName",  "testPassword"));
 	}
 	
 	@Test
 	public void returns_false_with_incorrect_password_search() {
 		userDAO.saveUser("testUserName",  "testPassword", "testRole");
-		Assert.assertFalse(userDAO.searchForUsernameAndPassword("testUsername",  "wrongPassword"));
+		Assert.assertFalse(userDAO.searchForUsernameAndPassword("testUserName",  "wrongPassword"));
 	}
 	
 	@Test
 	public void old_password_fails_after_updated() {
 		userDAO.saveUser("testUserName",  "originalPassword", "testRole");
-		userDAO.updatePassword("testUsername",  "updatedPassword");
-		Assert.assertFalse(userDAO.searchForUsernameAndPassword("testUsername",  "originalPassword"));
+		userDAO.updatePassword("testUserName",  "updatedPassword");
+		Assert.assertFalse(userDAO.searchForUsernameAndPassword("testUserName",  "originalPassword"));
+	}
+	
+	@Test
+	public void updated_password_succeeds_after_updated() {
+		userDAO.saveUser("testUserName",  "originalPassword", "testRole");
+		userDAO.updatePassword("testUserName",  "updatedPassword");
+		Assert.assertTrue(userDAO.searchForUsernameAndPassword("testUserName",  "updatedPassword"));
 	}
 	
 	@Test
