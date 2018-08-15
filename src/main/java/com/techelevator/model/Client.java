@@ -8,6 +8,7 @@ public class Client {
 	private boolean isLookingForCoach;
 	private String state;
 	private String city;
+	private String aboutMe;
 	
 	public long getId() {
 		return id;
@@ -44,5 +45,11 @@ public class Client {
 	}
 	public void setCity(String city) {
 		this.city = city;
+	}
+	public String getAboutMe() {
+		return aboutMe;
+	}
+	public void setAboutMe(String aboutMe) {
+		this.aboutMe = aboutMe;
 	}
 }

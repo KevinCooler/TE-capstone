@@ -87,8 +87,9 @@ public class JDBCClientDAO implements ClientDAO {
 		client.setState(result.getString("state_location"));
 		client.setCity(result.getString("city_location"));
 		client.setLookingForCoach(result.getBoolean("is_looking_for_coach"));
+		client.setAboutMe(result.getString("about_me"));
 		
-		return null;
+		return client;
 	}
 
 }
