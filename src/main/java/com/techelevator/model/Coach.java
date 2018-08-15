@@ -11,6 +11,8 @@ public class Coach {
 	private String state;
 	private String aboutMe;
 	private List<Availability> available;
+	private List<Review> reviews;
+	
 	public long getId() {
 		return id;
 	}
@@ -52,5 +54,27 @@ public class Coach {
 	}
 	public void setAvailable(List<Availability> available) {
 		this.available = available;
+	}
+	public List<Review> getReviews() {
+		return reviews;
+	}
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+	}
+	
+	public long getAverageReview() {
+		if(this.reviews != null && this.reviews.size() > 0) {
+			double average = 0;
+			double count = 0;
+			
+			for(Review review : this.reviews) {
+				average += review.getRating();
+				count++;
+			}
+			
+			return Math.round(average / count);
+		}
+		
+		return 1;
 	}
 }

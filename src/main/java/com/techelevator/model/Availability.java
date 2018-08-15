@@ -7,6 +7,9 @@ public class Availability {
 	private int hourStart;
 	private int hourEnd;
 	
+	private final String[] days = new String[] {"Sunday", "Monday", "Tuesday", "Wednesday",
+			"Thursday", "Friday", "Saturday"};
+	
 	public int getHourStart() {
 		return hourStart;
 	}
@@ -36,5 +39,9 @@ public class Availability {
 	}
 	public void setDay(int day) {
 		this.day = day;
+	}
+	
+	public String getDayName() {
+		return this.days[this.day - 1];
 	}
 }

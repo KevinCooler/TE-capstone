@@ -24,7 +24,7 @@ public class JDBCAvailabilityDAO implements AvailabilityDAO{
 	public List<Availability> getAvailabilityList(long coachId) {
 		List<Availability> list = new ArrayList<Availability>();
 		String sqlStatement = "SELECT * FROM availability WHERE coach_id=? "
-				+ "ORDER BY day_of_week, hour_start;";
+				+ "ORDER BY day_of_week, hour_start, hour_end;";
 		
 		SqlRowSet results = temp.queryForRowSet(sqlStatement, coachId);
 		

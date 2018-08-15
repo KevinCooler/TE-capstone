@@ -35,18 +35,22 @@ public class CoachController {
 	@RequestMapping(path="/coach", method=RequestMethod.GET)
 	public String displayCoach(@RequestParam(required=false) Long coachId, 
 			ModelMap map, Model model) {
+		Coach coach;
+		
 		if(model.containsAttribute("coachId")) {
 			long id = (Long)model.asMap().get("coachId");
-			Coach coach = coachDAO.getCoachById(id);
+			coach = coachDAO.getCoachById(id);
 			map.addAttribute("coach", coach);
 		} else if(coachId == null) {
-			return "home";
+			return "redirect:/";
 		} else {
-			Coach coach = coachDAO.getCoachById(coachId);
+			coach = coachDAO.getCoachById(coachId);
 			map.addAttribute("coach", coach);
 		}
 		
-		return "coach";
+		if(coach != null)
+			return "coach";
+		return "redirect:/";
 	}
 	
 	@RequestMapping(path="/editCoach", method=RequestMethod.GET)
@@ -58,7 +62,7 @@ public class CoachController {
 			Coach coach = coachDAO.getCoachById(id);
 			map.addAttribute("coach", coach);
 		} else if(coachId == null) {
-			return "home";
+			return "redirect:/";
 		} else {
 			Coach coach = coachDAO.getCoachById(coachId);
 			map.addAttribute("coach", coach);
@@ -101,15 +105,4 @@ public class CoachController {
 		availDAO.addAvailability(coachId, day, startTime, endTime);
 		return "redirect:/editCoach";
 	}
-	
-	
-	
-	
-	
-
-	
-	
-	
-	
-	
 }
