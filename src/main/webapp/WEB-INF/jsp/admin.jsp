@@ -19,13 +19,13 @@
                     <tr>
                         <td><c:out value="${coach.firstName} ${coach.lastName}"/></td>
                         <td>
-                            <a href="${coachURL}" class="btn btn-primary">View</a>
+                            <a href="${coachURL}" class="admin-button btn btn-primary">View</a>
                         </td>
                         <td>
-                            <a href="${editCoachURL}" class="btn btn-success">Edit</a>
+                            <a href="${editCoachURL}" class="admin-button btn btn-success">Edit</a>
                         </td>
                         <td>
-                            <a href="${deleteCoachURL}" class="btn btn-danger">Delete</a>
+                            <a href="${deleteCoachURL}" class="admin-button btn btn-danger">Delete</a>
                         </td>
                     </tr>
                 </c:forEach>

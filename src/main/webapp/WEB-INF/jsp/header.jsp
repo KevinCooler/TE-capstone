@@ -24,14 +24,14 @@
 				$("nav a[href='"+pathname+"']").parent().addClass("active");
 				
 			});
-			
-			
 		</script>
 		
 	</head>
 	<body>
 		<header>
 			<c:url var="homePageHref" value="/" />
+			<c:url var="adminURL" value="/admin" />
+			<c:url var="browseCoachesURL" value="/browseCoaches" />
 			<c:url var="imgSrc" value="/img/logo.png" />
 			<a href="${homePageHref}"><img src="${imgSrc}" class="img-responsive" /></a>
 		</header>
@@ -40,6 +40,11 @@
 				<ul class="nav navbar-nav">
 					<c:url var="homePageHref" value="/" />
 					<li><a style="font-size: 2em" href="${homePageHref}">MHM</a></li>
+					
+					<li><a href="${adminURL}">Admin</a></li>
+					<li><a href="${browseCoachesURL}">Coaches</a></li>
+					
+					
 					<c:if test="${not empty currentUser}">
 						<c:url var="dashboardHref" value="/users/${currentUser}" />
 						<li><a href="${browseCoachesHref}">Browse Coaches</a></li>

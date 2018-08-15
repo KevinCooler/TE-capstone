@@ -2,3 +2,19 @@
 	margin-bottom: 5px;
 	margin-left: 10px;
 }
+
+.browse-name {
+	width: 150px;
+}
+
+.browse-button {
+	padding: 2px !important;
+	margin-top: 10px;
+	width: 100px;
+}
+
+.admin-button {
+	padding: 2px !important;
+	width: 100px;
+}
+
