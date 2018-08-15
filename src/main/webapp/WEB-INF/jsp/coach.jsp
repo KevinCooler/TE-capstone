@@ -44,7 +44,7 @@
 	<div class="col-sm-3">
 		<h3>Availability</h3>
 		<div>
-		<table>
+		<table class="coach-avail">
 			<c:forEach var="avail" items="${coach.available}">
 					<fmt:parseDate var="start" value="${avail.hourStart}" pattern="HH" />
 					<fmt:parseDate var="end" value="${avail.hourEnd}" pattern="HH"/>
