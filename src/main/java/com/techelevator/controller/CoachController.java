@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.techelevator.model.DAOs.AvailabilityDAO;
+import com.techelevator.model.DAOs.ClientDAO;
 import com.techelevator.model.DAOs.CoachDAO;
 import com.techelevator.model.DAOs.ReviewDAO;
 import com.techelevator.model.Objects.Coach;
@@ -20,12 +21,14 @@ public class CoachController {
 	private CoachDAO coachDAO;
 	private AvailabilityDAO availDAO;
 	private ReviewDAO reviewDao;
+	private ClientDAO clientDAO;
 	
 	@Autowired
-	public CoachController(CoachDAO coachDAO, AvailabilityDAO availDAO, ReviewDAO reviewDao) {
+	public CoachController(CoachDAO coachDAO, AvailabilityDAO availDAO, ReviewDAO reviewDao, ClientDAO clientDAO) {
 		this.coachDAO = coachDAO;
 		this.availDAO = availDAO;
 		this.reviewDao = reviewDao;
+		this.clientDAO = clientDAO;
 	}
 	
 	@RequestMapping(path="/coach", method=RequestMethod.GET)
@@ -111,5 +114,10 @@ public class CoachController {
 		redirect.addFlashAttribute("coachId", coachId);
 		
 		return "redirect:/coach";
+	}
+	@RequestMapping(path="/browseClients", method=RequestMethod.GET)
+	public String displayBrowseClients(ModelMap map) {
+		map.addAttribute("clients", clientDAO.getClientList());
+		return "browseClients";
 	}
 }

@@ -8,10 +8,11 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
 import com.techelevator.model.DAOs.ClientDAO;
 import com.techelevator.model.Objects.Client;
-
+@Component
 public class JDBCClientDAO implements ClientDAO {
 	
 	private JdbcTemplate temp;
@@ -35,7 +36,7 @@ public class JDBCClientDAO implements ClientDAO {
 	@Override
 	public List<Client> getClientList() {
 		List<Client> clients = new ArrayList<Client>();
-		String sqlStatement = "SELECT * FROM clients;";
+		String sqlStatement = "SELECT * FROM clients where is_looking_for_coach = 'true';";
 		SqlRowSet result = temp.queryForRowSet(sqlStatement);
 		
 		while(result.next())

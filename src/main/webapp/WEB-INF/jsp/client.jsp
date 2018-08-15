@@ -9,7 +9,7 @@
 <div class="row">
 	<div class="col-sm-2"></div>
 	<div class="col-sm-8">
-		<h1 style="text-align: center"><c:out value="${coach.firstName} ${coach.lastName}" /></h1>
+		<h1 style="text-align: center"><c:out value="${client.firstName} ${client.lastName}" /></h1>
 	</div>
 	<div class="col-sm-2"></div>
 </div>
@@ -21,7 +21,7 @@
 	<div class="col-sm-2"></div>
 	<div class="col-sm-8">
 		<h3 style="text-align: center">About Me:</h3>
-		<p><c:out value="${coach.aboutMe}"/></p>
+		<p><c:out value="${client.aboutMe}"/></p>
 	</div>
 	<div class="col-sm-2"></div>
 </div>
