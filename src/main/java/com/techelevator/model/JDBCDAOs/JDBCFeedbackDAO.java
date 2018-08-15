@@ -26,7 +26,7 @@ public class JDBCFeedbackDAO implements FeedbackDAO{
 	@Override
 	public List<Feedback> getFeedbackByClientId(long clientId) {
 		List<Feedback> feedbacks = new ArrayList<Feedback>();
-		String sqlSelectFeedbackByClient = "SELECT * FROM feedback WHERE client_id = ? ORDER BY module";
+		String sqlSelectFeedbackByClient = "SELECT * FROM feedback WHERE client_id = ? ORDER BY module DESC";
 		SqlRowSet result = template.queryForRowSet(sqlSelectFeedbackByClient, clientId);
 		while(result.next()) {
 			feedbacks.add(mapRowToFeedback(result));
