@@ -3,7 +3,7 @@
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
-<c:url var="contactURL" value="/contact">
+<c:url var="newMessageURL" value="/newMessage">
 	<c:param name="coachId" value="${coach.id}"></c:param>
 </c:url>
 
@@ -34,7 +34,7 @@
 <div class="row">
 	<div class="col-sm-2"></div>
 	<div class="col-sm-8">
-		<a class="btn btn-primary btn-block" href="${contactURL}">Contact</a>
+		<a class="btn btn-primary btn-block" href="${newMessageURL}">Contact</a>
 	</div>
 	<div class="col-sm-2"></div>
 </div>
