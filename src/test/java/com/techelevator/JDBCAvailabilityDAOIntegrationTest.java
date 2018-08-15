@@ -6,9 +6,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.techelevator.model.Availability;
-import com.techelevator.model.JDBCAvailabilityDAO;
-import com.techelevator.model.JDBCCoachDAO;
+import com.techelevator.model.JDBCDAOs.JDBCAvailabilityDAO;
+import com.techelevator.model.JDBCDAOs.JDBCCoachDAO;
+import com.techelevator.model.Objects.Availability;
 
 
 public class JDBCAvailabilityDAOIntegrationTest extends DAOIntegrationTest{

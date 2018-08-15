@@ -4,9 +4,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.techelevator.model.Client;
-import com.techelevator.model.JDBCClientDAO;
-import com.techelevator.model.JDBCUserDAO;
+import com.techelevator.model.JDBCDAOs.JDBCClientDAO;
+import com.techelevator.model.JDBCDAOs.JDBCUserDAO;
+import com.techelevator.model.Objects.Client;
 import com.techelevator.security.PasswordHasher;
 
 
@@ -24,15 +24,15 @@ public class JDBCClientDAOIntegrationTest extends DAOIntegrationTest{
 		clientDAO = new JDBCClientDAO(super.getDataSource());
 		hashMaster = new PasswordHasher();
 		userDAO = new JDBCUserDAO(super.getDataSource(), hashMaster);
-		userId = userDAO.saveUser("DAO", "IntegrationTest", "client");
+		//userId = userDAO.saveUser("DAO", "IntegrationTest", "client");
 		//clientDAO.addClient(firstName, lastName, id);
 	}
 	
 	@Test
-	public void test_client_addition() {
-		Client client = clientDAO.getClientById(userId);
-		Assert.assertEquals(userId, client.getId());
-		Assert.assertEquals("DAO", client.getFirstName());
-		Assert.assertEquals("IntegrationTest", client.getLastName());
+	public void test_client() {
+		Client client = clientDAO.getClientById(7);
+		Assert.assertEquals(7, client.getId());
+		Assert.assertEquals("Trey", client.getFirstName());
+		Assert.assertEquals("Tomlin", client.getLastName());
 	}
 }

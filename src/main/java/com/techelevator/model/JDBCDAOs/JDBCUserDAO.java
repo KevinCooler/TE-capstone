@@ -1,4 +1,4 @@
-package com.techelevator.model;
+package com.techelevator.model.JDBCDAOs;
 
 import javax.sql.DataSource;
 
@@ -8,7 +8,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
-import com.techelevator.model.User;
+import com.techelevator.model.DAOs.UserDAO;
+import com.techelevator.model.Objects.User;
 import com.techelevator.security.PasswordHasher;
 
 @Component

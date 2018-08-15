@@ -13,6 +13,7 @@
 				</c:url>
 				<c:url var="newMessageURL" value="/newMessage">
 					<c:param name="coachId" value="${coach.id}"/>
+					<c:param name="clientId" value="7"/>
 				</c:url>
 				
 				<tr>
