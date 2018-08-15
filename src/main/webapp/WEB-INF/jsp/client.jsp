@@ -11,7 +11,7 @@
 	<div class="col-sm-8">
 		<h1 style="text-align: center"><c:out value="${client.firstName} ${client.lastName}" /></h1>
       	<c:if test = "${client.isLookingForCoach}">
-        	<p>Looking for Coach</p>
+        	<p class="looking-for-coach">Looking for Coach</p>
       	</c:if>
 	</div>
 	<div class="col-sm-2"></div>

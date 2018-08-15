@@ -34,6 +34,7 @@
 			<c:url var="homePageHref" value="/" />
 			<c:url var="adminURL" value="/admin" />
 			<c:url var="browseCoachesURL" value="/browseCoaches" />
+			<c:url var="browseClientsURL" value="/browseClients" />
 			<c:url var="imgSrc" value="/img/logo.png" />
 			<a href="${homePageHref}"><img src="${imgSrc}" class="img-responsive" /></a>
 		</header>
@@ -45,7 +46,7 @@
 					
 					<li><a href="${adminURL}">Admin</a></li>
 					<li><a href="${browseCoachesURL}">Coaches</a></li>
-					
+					<li><a href="${browseClientsURL}">Clients</a></li>
 					
 					<c:if test="${not empty currentUser}">
 						<c:url var="dashboardHref" value="/users/${currentUser}" />
