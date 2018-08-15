@@ -5,6 +5,7 @@
 BEGIN;
 
 -- CREATE statements go here
+DROP TABLE IF EXISTS feedback;
 DROP TABLE IF EXISTS coach_reviews;
 DROP TABLE IF EXISTS clients;
 DROP TABLE IF EXISTS availability;
@@ -43,6 +44,8 @@ CREATE TABLE clients (
   CONSTRAINT fk_client_id FOREIGN KEY(client_id) REFERENCES app_user(id)
 );
 
+
+
 CREATE TABLE availability (
   availability_id SERIAL PRIMARY KEY,
   coach_id INT NOT NULL,
@@ -66,6 +69,15 @@ CREATE TABLE coach_reviews (
   
   CONSTRAINT fk_coach_id FOREIGN KEY(coach_id) REFERENCES coaches(coach_id)
   --CONSTRAINT fk_client_id FOREIGN KEY(client_id) REFERENCES clients(client_id)
+);
+
+CREATE TABLE feedback (
+  id SERIAL PRIMARY KEY,
+  client_id INT NOT NULL,
+  module INT,
+  detail text,
+  
+  CONSTRAINT fk_client_id FOREIGN KEY(client_id) REFERENCES clients(client_id)
 );
 
 COMMIT;
