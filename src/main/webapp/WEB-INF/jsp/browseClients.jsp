@@ -25,7 +25,7 @@
 						</div>
 						<div>
 							<c:if test= "${client.isLookingForCoach}">
-							<p>TEST</p>
+							<p class="looking-for-coach">Looking for Coach</p>
 							</c:if>
 						</div>
 					</td>
