@@ -1,4 +1,4 @@
-package com.techelevator.model;
+package com.techelevator.model.JDBCDAOs;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
+
+import com.techelevator.model.DAOs.CoachDAO;
+import com.techelevator.model.Objects.Coach;
 
 @Component
 public class JDBCCoachDAO implements CoachDAO{

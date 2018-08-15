@@ -1,4 +1,4 @@
-package com.techelevator.model;
+package com.techelevator.model.JDBCDAOs;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +8,9 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+
+import com.techelevator.model.DAOs.ClientDAO;
+import com.techelevator.model.Objects.Client;
 
 public class JDBCClientDAO implements ClientDAO {
 	
