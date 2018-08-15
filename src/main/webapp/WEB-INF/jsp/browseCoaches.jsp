@@ -17,13 +17,18 @@
 				
 				<tr>
 					<td>
-						<c:out value="${coach.firstName} ${coach.lastName}"/>
-						<img style="height:15px" class="img img-responsive" src="img/3-star.png" alt="star rating"/>
-						<c:out value="${coach.city}, ${coach.state}"/>
+						<div class="browse-name">
+							<h4><c:out value="${coach.firstName} ${coach.lastName}"/></h4>
+						</div>
+						<img style="height:15px" class="img img-responsive" 
+							src="img/<c:out value="${coach.averageReview}"/>-star.png" alt="star rating"/>
+						<div>
+							<c:out value="${coach.city}, ${coach.state}"/>
+						</div>
 					</td>
 					<td>
-						<a href="${coachURL}" class="btn btn-success">Details</a>
-						<a href="${newMessageURL}" class="btn btn-primary">Contact</a>
+						<a href="${coachURL}" class="browse-button btn btn-success">Details</a>
+						<a href="${newMessageURL}" class="browse-button btn btn-primary">Contact</a>
 					</td>
 					<td>
 						<p><c:out value="${coach.aboutMe}"/></p>
