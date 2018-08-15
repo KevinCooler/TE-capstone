@@ -23,6 +23,11 @@
 						<div>
 							<c:out value="${client.city}, ${client.state}"/>
 						</div>
+						<div>
+							<c:if test= "${client.isLookingForCoach}">
+							<p>TEST</p>
+							</c:if>
+						</div>
 					</td>
 					<td>
 						<a href="${clientURL}" class="browse-button btn btn-success">Details</a>

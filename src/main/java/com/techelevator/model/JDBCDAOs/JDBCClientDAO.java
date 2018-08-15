@@ -36,7 +36,7 @@ public class JDBCClientDAO implements ClientDAO {
 	@Override
 	public List<Client> getClientList() {
 		List<Client> clients = new ArrayList<Client>();
-		String sqlStatement = "SELECT * FROM clients where is_looking_for_coach = 'true';";
+		String sqlStatement = "SELECT * FROM clients ORDER BY is_looking_for_coach DESC";
 		SqlRowSet result = temp.queryForRowSet(sqlStatement);
 		
 		while(result.next())
