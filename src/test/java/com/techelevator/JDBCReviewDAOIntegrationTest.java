@@ -6,8 +6,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.techelevator.model.JDBCReviewDAO;
-import com.techelevator.model.Review;
+import com.techelevator.model.JDBCDAOs.JDBCReviewDAO;
+import com.techelevator.model.Objects.Review;
 
 public class JDBCReviewDAOIntegrationTest extends DAOIntegrationTest {
 	

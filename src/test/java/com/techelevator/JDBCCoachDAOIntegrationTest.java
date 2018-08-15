@@ -6,8 +6,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.techelevator.model.Coach;
-import com.techelevator.model.JDBCCoachDAO;
+import com.techelevator.model.JDBCDAOs.JDBCCoachDAO;
+import com.techelevator.model.Objects.Coach;
 
 //import com.techelevator.model.JDBCUserDAO;
 

@@ -1,4 +1,4 @@
-package com.techelevator.model;
+package com.techelevator.model.JDBCDAOs;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
+
+import com.techelevator.model.DAOs.ReviewDAO;
+import com.techelevator.model.Objects.Review;
 
 @Component
 public class JDBCReviewDAO implements ReviewDAO{

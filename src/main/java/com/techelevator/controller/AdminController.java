@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.techelevator.model.AvailabilityDAO;
-import com.techelevator.model.CoachDAO;
-import com.techelevator.model.ReviewDAO;
-import com.techelevator.model.UserDAO;
+import com.techelevator.model.DAOs.AvailabilityDAO;
+import com.techelevator.model.DAOs.CoachDAO;
+import com.techelevator.model.DAOs.ReviewDAO;
+import com.techelevator.model.DAOs.UserDAO;
 
 @Controller
 public class AdminController {

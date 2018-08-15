@@ -1,4 +1,4 @@
-package com.techelevator.model;
+package com.techelevator.model.Objects;
 
 public class Availability {
 	private long id;

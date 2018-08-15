@@ -4,7 +4,8 @@
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
 <c:url var="newMessageURL" value="/newMessage">
-	<c:param name="coachId" value="${coach.id}"></c:param>
+	<c:param name="coachId" value="${coach.id}"/>
+	<c:param name="clientId" value="7"/>
 </c:url>
 
 <div class="row">
