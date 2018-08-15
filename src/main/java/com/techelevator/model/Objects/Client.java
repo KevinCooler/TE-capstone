@@ -28,7 +28,7 @@ public class Client {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public boolean isLookingForCoach() {
+	public boolean getIsLookingForCoach() {
 		return isLookingForCoach;
 	}
 	public void setLookingForCoach(boolean isLookingForCoach) {
