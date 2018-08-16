@@ -64,7 +64,4 @@ public class JDBCFeedbackDAOIntegrationTest extends DAOIntegrationTest {
 		Assert.assertEquals("updatedDetail",  feedback.getDetail());
 		
 	}
-	
-	
-
 }

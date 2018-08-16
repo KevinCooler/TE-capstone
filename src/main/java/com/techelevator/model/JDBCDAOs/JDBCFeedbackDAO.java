@@ -73,8 +73,4 @@ public class JDBCFeedbackDAO implements FeedbackDAO{
 		
 		return feedback;
 	}
-
-
-
-
 }
