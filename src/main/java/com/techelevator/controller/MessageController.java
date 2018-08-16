@@ -73,7 +73,8 @@ public class MessageController {
 		} else if(user.getRole().equals("client")) {
 			Client client = clientDAO.getClientById(user.getId());
 			return client.getFirstName() + " " + client.getLastName();
-		}
+		} else if(user.getRole().equals("admin"))
+			return "Administrator";
 		
 		return null;
 	}
