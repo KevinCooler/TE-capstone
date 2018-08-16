@@ -50,11 +50,28 @@
 					<li><a href="${messagesHref}">Messages</a></li>
 					
 					<c:if test="${not empty currentUser}">
-						<c:url var="dashboardHref" value="/users/${currentUser}" />
-						<li><a href="${browseCoachesHref}"></a></li>
-						<c:url var="newMessageHref" value="/users/${currentUser}/messages/new" />
+						<%-- <c:set var = "role" scope = "session" value = "${2000*2}"/>
+						<c:choose>
+							<c:when test="${currentUser.role == coach}">
+								<c:url var="profileHref" value="/coach">
+									<c:param name="coachId" value="${currentUser.id}"></c:param>
+								</c:url>
+							</c:when>
+							<c:when test="${currentUser.role == client}">
+								<c:url var="profileHref" value="/client">
+									<c:param name="clientId" value="${currentUser.id}"></c:param>
+								</c:url>
+							</c:when>
+							<c:otherwise>
+								<c:url var="profileHref" value="/"/>
+							</c:otherwise>
+							<li><a href="${profileHref}">Profile</a></li>
+						</c:choose> --%>
 						
-						
+						<c:url var="profileHref" value="/${currentUser.role}">
+							<c:param name="${currentUser.role}Id" value="${currentUser.id}"></c:param>
+						</c:url>
+						<li><a href="${profileHref}">Profile</a></li>
 					</c:if>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
