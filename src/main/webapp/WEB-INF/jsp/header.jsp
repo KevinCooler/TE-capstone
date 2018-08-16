@@ -35,43 +35,28 @@
 			<c:url var="adminURL" value="/admin" />
 			<c:url var="browseCoachesURL" value="/browseCoaches" />
 			<c:url var="browseClientsURL" value="/browseClients" />
-			<c:url var="imgSrc" value="/img/logo.png" />
-			<a href="${homePageHref}"><img src="${imgSrc}" class="img-responsive" /></a>
+			<c:url var="profileHref" value="/${currentUser.role}">
+				<c:param name="${currentUser.role}Id" value="${currentUser.id}"></c:param>
+			</c:url>
 		</header>
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
 				<ul class="nav navbar-nav">
 					<c:url var="homePageHref" value="/" />
-					<li><a style="font-size: 2em" href="${homePageHref}">MHM</a></li>
-					
-					<li><a href="${adminURL}">Admin</a></li>
-					<li><a href="${browseCoachesURL}">Coaches</a></li>
-					<li><a href="${browseClientsURL}">Clients</a></li>
-					<li><a href="${messagesHref}">Messages</a></li>
-					
+					<li><a style="font-size: 2em" href="${homePageHref}">MHM</a></li>							
 					<c:if test="${not empty currentUser}">
-						<%-- <c:set var = "role" scope = "session" value = "${2000*2}"/>
-						<c:choose>
-							<c:when test="${currentUser.role == coach}">
-								<c:url var="profileHref" value="/coach">
-									<c:param name="coachId" value="${currentUser.id}"></c:param>
-								</c:url>
-							</c:when>
-							<c:when test="${currentUser.role == client}">
-								<c:url var="profileHref" value="/client">
-									<c:param name="clientId" value="${currentUser.id}"></c:param>
-								</c:url>
-							</c:when>
-							<c:otherwise>
-								<c:url var="profileHref" value="/"/>
-							</c:otherwise>
-							<li><a href="${profileHref}">Profile</a></li>
-						</c:choose> --%>
-						
-						<c:url var="profileHref" value="/${currentUser.role}">
-							<c:param name="${currentUser.role}Id" value="${currentUser.id}"></c:param>
-						</c:url>
 						<li><a href="${profileHref}">Profile</a></li>
+						<li><a href="${messagesHref}">Messages</a></li>
+						<c:if test="${currentUser.role == 'client'}">
+							<li><a href="${browseCoachesURL}">Coaches</a></li>
+						</c:if>
+						<c:if test="${currentUser.role == 'coach'}">
+							<li><a href="${browseClientsURL}">Clients</a></li>
+						</c:if>
+						<c:if test="${currentUser.role == 'admin'}">
+							<li><a href="${browseCoachesURL}">Coaches</a></li>
+							<li><a href="${browseClientsURL}">Clients</a></li>
+						</c:if>
 					</c:if>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
