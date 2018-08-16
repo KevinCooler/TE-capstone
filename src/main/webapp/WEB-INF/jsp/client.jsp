@@ -2,8 +2,8 @@
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
-<c:url var="contactURL" value="/contact">
-	<c:param name="coachId" value="${client.id}"></c:param>
+<c:url var="newMessageURL" value="/messageClient">
+	<c:param name="clientId" value="${client.id}"/>
 </c:url>
 
 <div class="row">
@@ -34,7 +34,7 @@
 	<div class="col-sm-2"></div>
 	<div class="col-sm-8">
 		
-		<a class="btn btn-primary btn-block" href="${contactURL}">Contact</a>
+		<a class="btn btn-primary btn-block" href="${newMessageURL}">Contact</a>
 	</div>
 	<div class="col-sm-2"></div>
 </div>

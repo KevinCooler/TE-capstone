@@ -13,6 +13,7 @@ import com.techelevator.model.DAOs.AvailabilityDAO;
 import com.techelevator.model.DAOs.ClientDAO;
 import com.techelevator.model.DAOs.CoachDAO;
 import com.techelevator.model.DAOs.ReviewDAO;
+import com.techelevator.model.Objects.Client;
 import com.techelevator.model.Objects.Coach;
 
 @Controller
@@ -115,9 +116,20 @@ public class CoachController {
 		
 		return "redirect:/coach";
 	}
+	
 	@RequestMapping(path="/browseClients", method=RequestMethod.GET)
 	public String displayBrowseClients(ModelMap map) {
 		map.addAttribute("clients", clientDAO.getClientList());
 		return "browseClients";
+	}
+	
+	@RequestMapping(path="/messageClient", method=RequestMethod.GET)
+	public String sendMessageToClient(@RequestParam long clientId, ModelMap map) {
+		Client client = clientDAO.getClientById(clientId);
+		
+		map.addAttribute("recipient", client);
+		map.addAttribute("isCoach", false);
+		
+		return "newMessage";
 	}
 }

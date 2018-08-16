@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.techelevator.model.DAOs.MessageDAO;
 import com.techelevator.model.DAOs.UserDAO;
 import com.techelevator.model.Objects.User;
 
@@ -16,10 +17,12 @@ import com.techelevator.model.Objects.User;
 public class AuthenticationController {
 
 	private UserDAO userDAO;
+	private MessageDAO messageDAO;
 
 	@Autowired
-	public AuthenticationController(UserDAO userDAO) {
+	public AuthenticationController(UserDAO userDAO, MessageDAO messageDAO) {
 		this.userDAO = userDAO;
+		this.messageDAO = messageDAO;
 	}
 	
 	@RequestMapping(path="/", method=RequestMethod.GET)
@@ -62,6 +65,24 @@ public class AuthenticationController {
 	public String logout(ModelMap model, HttpSession session) {
 		model.remove("currentUser");
 		session.invalidate();
+		return "redirect:/";
+	}
+	
+	@RequestMapping(path="/addMessage", method=RequestMethod.POST)
+	public String addMessage(@RequestParam(required=false) Long clientId,
+			@RequestParam(required=false) Long coachId,
+			@RequestParam String messageText,
+			HttpSession session) {
+		//User user = (User)session.getAttribute("currentUser");
+		User user = userDAO.getUserByUserName("John");
+		
+		if(clientId != null)
+			messageDAO.addMessage(clientId, user.getId(), messageText);
+		else if(coachId != null)
+			messageDAO.addMessage(user.getId(), coachId, messageText);
+		else
+			return "redirect:/";
+		
 		return "redirect:/";
 	}
 }

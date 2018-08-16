@@ -11,9 +11,8 @@
 				<c:url var="clientURL" value="/client">
 					<c:param name="clientId" value="${client.id}"/>
 				</c:url>
-				<c:url var="newMessageURL" value="/newMessage">
+				<c:url var="newMessageURL" value="/messageClient">
 					<c:param name="clientId" value="${client.id}"/>
-					<c:param name="coachId" value="5"/>
 				</c:url>
 				<tr>
 					<td>

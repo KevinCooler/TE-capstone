@@ -11,9 +11,8 @@
 				<c:url var="coachURL" value="/coach">
 					<c:param name="coachId" value="${coach.id}"/>
 				</c:url>
-				<c:url var="newMessageURL" value="/newMessage">
+				<c:url var="newMessageURL" value="/messageCoach">
 					<c:param name="coachId" value="${coach.id}"/>
-					<c:param name="clientId" value="7"/>
 				</c:url>
 				
 				<tr>
@@ -41,14 +40,6 @@
 	</div>
 	<div class="col-sm-1"></div>
 </div>
-
-
-
-
-
-
-
-
 
 <c:import url="/WEB-INF/jsp/footer.jsp" />
 

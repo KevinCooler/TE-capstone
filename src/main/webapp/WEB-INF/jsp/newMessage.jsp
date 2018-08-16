@@ -5,11 +5,17 @@
 <div class="row">
 	<div class="col-sm-2"></div>
 	<div class="col-sm-8" style="text-align: center">
-		<h1>Message ${coach.firstName} ${coach.lastName}</h1>
-		<c:url var="messageLink" value="/newMessage"/>
-		<form id="message-form" method="POST" action="${messageLink}">
-			<input type="hidden" name="clientId" value="${clientId}">
-			<input type="hidden" name="coachId" value="${coach.id}">
+		<h1>Message ${recipient.firstName} ${recipient.lastName}</h1>
+		<c:url var="addMessage" value="/addMessage"/>
+		<form id="message-form" method="POST" action="${addMessage}">
+		<c:choose>
+			<c:when test="${isCoach}">
+				<input type="hidden" name="coachId" value="${recipient.id}">
+			</c:when>
+			<c:otherwise>
+				<input type="hidden" name="clientId" value="${recipient.id}">
+			</c:otherwise>
+		</c:choose>
 			<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}">
 			<textarea name="messageText" rows="10" cols="80"></textarea>
 			<div><input type="submit" value="Submit"></div>
