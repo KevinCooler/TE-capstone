@@ -11,6 +11,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.techelevator.model.DAOs.AvailabilityDAO;
 import com.techelevator.model.DAOs.ClientDAO;
@@ -75,5 +76,40 @@ public class ClientController {
 		map.addAttribute("isCoach", true);
 		
 		return "newMessage";
+	}
+	
+	@RequestMapping(path="/editClient", method=RequestMethod.GET)
+	public String displayEditClientForm(@RequestParam(required=false) Long clientId, 
+									   ModelMap map, 
+									   Model model) {
+		if(model.containsAttribute("clientId")) {
+			long id = (Long)model.asMap().get("clientId");
+			Client client = clientDAO.getClientById(id);
+			map.addAttribute("client", client);
+		} else if(clientId == null) {
+			return "redirect:/";
+		} else {
+			Client client = clientDAO.getClientById(clientId);
+			map.addAttribute("client", client);
+		}
+	
+		return "editClient";
+	}
+	
+	@RequestMapping(path="/editClient", method=RequestMethod.POST)
+	public String updateClientInfo(@RequestParam long clientId, 
+								  @RequestParam String firstName,
+								  @RequestParam String lastName, @RequestParam String city,
+								  @RequestParam String state, @RequestParam String aboutMe,
+								  @RequestParam boolean isLookingForCoach,
+								  RedirectAttributes redirect) {
+		clientDAO.updateName(firstName, lastName, clientId);
+		clientDAO.updateLocation(city, state, clientId);
+		clientDAO.updateAboutMe(aboutMe, clientId);
+		clientDAO.updateIsLookingForCoach(isLookingForCoach, clientId);
+		
+		redirect.addFlashAttribute("clientId", clientId);
+		
+		return "redirect:/client";
 	}
 }

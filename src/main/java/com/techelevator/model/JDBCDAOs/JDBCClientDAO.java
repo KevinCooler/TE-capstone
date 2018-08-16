@@ -96,4 +96,9 @@ public class JDBCClientDAO implements ClientDAO {
 		return client;
 	}
 
+	@Override
+	public void updateIsLookingForCoach(boolean isLookingForCoach, long id) {
+		String sqlStatement = "UPDATE clients SET is_looking_for_coach = ? WHERE client_id = ?;";
+		temp.update(sqlStatement, isLookingForCoach, id);
+	}
 }

@@ -53,14 +53,13 @@
 						<li><a href="${browseCoachesHref}">Browse Coaches</a></li>
 						<c:url var="newMessageHref" value="/users/${currentUser}/messages/new" />
 						<li><a href="${messagesHref}">Messages</a></li>
-						<c:url var="changePasswordHref" value="/users/${currentUser}/changePassword" />
-						<li><a href="${changePasswordHref}">Change Password</a></li>
+						
 					</c:if>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<c:choose>
 						<c:when test="${empty currentUser}">
-							<c:url var="newUserHref" value="/users/new" />
+							<c:url var="newUserHref" value="/signUp" />
 							<li><a href="${newUserHref}">Sign Up</a></li>
 							<c:url var="loginHref" value="/login" />
 							<li><a href="${loginHref}">Log In</a></li>
@@ -70,6 +69,8 @@
 							<form id="logoutForm" action="${logoutAction}" method="POST">
 							<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 							</form>
+							<c:url var="changePasswordHref" value="/users/${currentUser}/changePassword" />
+							<li><a href="${changePasswordHref}">Change Password</a></li>
 							<li><a id="logoutLink" href="#">Log Out</a></li>
 						</c:otherwise>
 					</c:choose>

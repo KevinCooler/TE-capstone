@@ -8,20 +8,28 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.techelevator.model.DAOs.MessageDAO;
+import com.techelevator.model.DAOs.ClientDAO;
+import com.techelevator.model.DAOs.CoachDAO;
 import com.techelevator.model.DAOs.UserDAO;
 import com.techelevator.model.Objects.User;
 
 @Controller
+@SessionAttributes("currentUser")
 public class AuthenticationController {
 
 	private UserDAO userDAO;
+	private CoachDAO coachDAO;
+	private ClientDAO clientDAO;
 	private MessageDAO messageDAO;
 
 	@Autowired
-	public AuthenticationController(UserDAO userDAO, MessageDAO messageDAO) {
+	public AuthenticationController(UserDAO userDAO, CoachDAO coachDAO, ClientDAO clientDAO, MessageDAO messageDAO) {
 		this.userDAO = userDAO;
+		this.clientDAO = clientDAO;
+		this.coachDAO = coachDAO;
 		this.messageDAO = messageDAO;
 	}
 	
@@ -39,7 +47,8 @@ public class AuthenticationController {
 	public String login(@RequestParam String userName, 
 						@RequestParam String password, 
 						@RequestParam(required=false) String destination,
-						HttpSession session) {
+						HttpSession session,
+						ModelMap map) {
 		if(userDAO.searchForUsernameAndPassword(userName, password)) {
 			User user = userDAO.getUserByUserName(userName);
 			session.setAttribute("currentUser", user);
@@ -51,14 +60,35 @@ public class AuthenticationController {
 					return "redirect:/admin";
 				}
 				if(user.getRole().equals("coach")) {
-					//get coach object from database
+					map.addAttribute("coachId",  coachDAO.getCoachById(user.getId()).getId());
 					return "redirect:/coach";
 				}
-				else return "redirect:/users/"+userName;
+				else {
+					map.addAttribute("client", clientDAO.getClientById(user.getId()).getId());
+					return "redirect:/client";
+				}
 			}
 		} else {
 			return "redirect:/login";
 		}
+	}
+	
+	@RequestMapping(path="/signUp", method=RequestMethod.GET)
+	public String displaySignUpForm() {
+		return "newUser";
+	}
+	
+	@RequestMapping(path="/signUp", method=RequestMethod.POST)
+	public String doSignUp(@RequestParam String userName, 
+						   @RequestParam String password,
+						   @RequestParam String firstName,
+						   @RequestParam String lastName) {
+		if(userDAO.getUserByUserName(userName) != null) {
+			return "redirect:/signUp";
+		}
+		long clientId = userDAO.saveUser(userName, password, "client");
+		clientDAO.addClient(firstName, lastName, clientId);
+		return "redirect:/login";
 	}
 
 	@RequestMapping(path="/logout", method=RequestMethod.POST)
