@@ -6,11 +6,12 @@ import com.techelevator.model.Objects.Message;
 
 public interface MessageDAO {
 
-	List<Message> getMessages(long userId, boolean isCoach);
+	List<Message> getMessages(long userId);
 	
-	Message viewMessage(long messageId);
+	Message viewMessage(long messageId, long userId);
 	
-	void addMessage(long clientId, long coachId, String messageText);
+	void addMessage(long senderId, String senderName, 
+			long receiverId, String receiverName, String messageText);
 	
 	void removeMessage(long messageId);
 }

@@ -43,7 +43,7 @@ public class Review {
 		this.reviewText = reviewText;
 	}
 	public String getCreateDate() {
-		DateTimeFormatter format = DateTimeFormatter.ofPattern("M/d/yyyy H:m");
+		DateTimeFormatter format = DateTimeFormatter.ofPattern("M/d/yyyy H:mm");
 		return this.createDate.format(format);
 	}
 	public void setCreateDate(LocalDateTime createDate) {

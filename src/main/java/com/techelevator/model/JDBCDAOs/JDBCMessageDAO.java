@@ -25,54 +25,56 @@ public class JDBCMessageDAO implements MessageDAO{
 	}
 
 	@Override
-	public List<Message> getMessages(long userId, boolean isCoach) {
+	public List<Message> getMessages(long userId) {
 		List<Message> list = new ArrayList<Message>();
-		String sqlStatement;
+		String sqlStatement = "SELECT * FROM messages "
+				+ "WHERE sender_id=? OR receiver_id=? "
+				+ "ORDER BY create_date DESC;";
 		
-		if(isCoach)
-			sqlStatement = "SELECT * FROM messages WHERE coach_id=? ORDER BY create_date;";
-		else
-			sqlStatement = "SELECT * FROM messages WHERE client_id=? ORDER BY create_date;";
-		
-		SqlRowSet results = temp.queryForRowSet(sqlStatement, userId);
+		SqlRowSet results = temp.queryForRowSet(sqlStatement, userId, userId);
 		
 		while(results.next())
-			list.add(mapRowToMessage(results));
+			list.add(mapRowToMessage(results, userId));
 			
 		return list;
 	}
 
-	private Message mapRowToMessage(SqlRowSet results) {
+	private Message mapRowToMessage(SqlRowSet results, long userId) {
 		Message message = new Message();
 		
 		message.setId(results.getLong("id"));
-		message.setClientId(results.getLong("client_id"));
-		message.setCoachId(results.getLong("coach_id"));
-		message.setMessageText(results.getString("message_test"));
+		message.setSenderId(results.getLong("sender_id"));
+		message.setSenderName(results.getString("sender_name"));
+		message.setReceiverId(results.getLong("receiver_id"));
+		message.setReceiverName(results.getString("receiver_name"));
+		message.setMessageText(results.getString("message_text"));
 		LocalDateTime time = results.getTimestamp("create_date").toLocalDateTime();
 		message.setCreateDate(time);
+		message.setDidUserSend(results.getLong("sender_id") == userId);
 		
 		return message;
 	}
 
 	@Override
-	public Message viewMessage(long messageId) {
+	public Message viewMessage(long messageId, long userId) {
 		String sqlStatement = "SELECT * FROM messages WHERE id=?;";
 		SqlRowSet result = temp.queryForRowSet(sqlStatement, messageId);
 		
 		if(result.next())
-			return mapRowToMessage(result);
+			return mapRowToMessage(result, userId);
 		
 		return null;
 	}
 
 	@Override
-	public void addMessage(long clientId, long coachId, String messageText) {
+	public void addMessage(long senderId, String senderName,
+			long receiverId, String receiverName, String messageText) {
 		String sqlStatement = "INSERT INTO messages "
-				+ "(client_id, coach_id, message_test, create_date) "
-				+ "VALUES(?, ?, ?, NOW());";
+				+ "(sender_id, sender_name, receiver_id, "
+				+ "receiver_name, message_text, create_date) "
+				+ "VALUES(?, ?, ?, ?, ?, NOW());";
 		
-		temp.update(sqlStatement, clientId, coachId, messageText);
+		temp.update(sqlStatement, senderId, senderName, receiverId, receiverName, messageText);
 	}
 
 	@Override

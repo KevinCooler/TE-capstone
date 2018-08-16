@@ -7,6 +7,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.techelevator.model.DAOs.AvailabilityDAO;
@@ -17,6 +18,7 @@ import com.techelevator.model.Objects.Client;
 import com.techelevator.model.Objects.Coach;
 
 @Controller
+@SessionAttributes("currentUser")
 public class CoachController {
 	
 	private CoachDAO coachDAO;
@@ -127,8 +129,9 @@ public class CoachController {
 	public String sendMessageToClient(@RequestParam long clientId, ModelMap map) {
 		Client client = clientDAO.getClientById(clientId);
 		
-		map.addAttribute("recipient", client);
-		map.addAttribute("isCoach", false);
+		map.addAttribute("recipientName", client.getFirstName()
+				+ " " + client.getLastName());
+		map.addAttribute("recipientId", client.getId());
 		
 		return "newMessage";
 	}
