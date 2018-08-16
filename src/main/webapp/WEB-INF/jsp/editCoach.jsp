@@ -38,9 +38,7 @@
 				</div>
 				<div class="form-group">
 					<label for="aboutMe">About Me: </label>
-					<textarea class="form-control" id="aboutMe" name="aboutMe" rows="5">
-						<c:out value="${coach.aboutMe}"/>
-					</textarea>
+					<textarea class="form-control" id="aboutMe" name="aboutMe" rows="5"><c:out value="${coach.aboutMe}"/></textarea>
 				</div>
 				<button type="submit" class="btn btn-primary btn-block">Submit Changes</button>
 			</div>

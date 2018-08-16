@@ -6,10 +6,16 @@
 <c:url var="newMessageURL" value="/messageCoach">
 	<c:param name="coachId" value="${coach.id}"/>
 </c:url>
+<c:url var="editCoachURL" value="/editCoach">
+	<c:param name="coachId" value="${coach.id}"/>
+</c:url>
 
 <div class="row">
 	<div class="col-sm-2"></div>
 	<div class="col-sm-8">
+		<c:if test="${currentUser.id == coach.id}">
+			<a style="text-align: right" href="${editCoachURL}">Edit Profile</a>
+		</c:if>
 		<h1 style="text-align: center"><c:out value="${coach.firstName} ${coach.lastName}" /></h1>
 	</div>
 	<div class="col-sm-2"></div>

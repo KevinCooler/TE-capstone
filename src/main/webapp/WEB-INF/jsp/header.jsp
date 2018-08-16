@@ -47,12 +47,13 @@
 					<li><a href="${adminURL}">Admin</a></li>
 					<li><a href="${browseCoachesURL}">Coaches</a></li>
 					<li><a href="${browseClientsURL}">Clients</a></li>
+					<li><a href="${messagesHref}">Messages</a></li>
 					
 					<c:if test="${not empty currentUser}">
 						<c:url var="dashboardHref" value="/users/${currentUser}" />
-						<li><a href="${browseCoachesHref}">Browse Coaches</a></li>
+						<li><a href="${browseCoachesHref}"></a></li>
 						<c:url var="newMessageHref" value="/users/${currentUser}/messages/new" />
-						<li><a href="${messagesHref}">Messages</a></li>
+						
 						
 					</c:if>
 				</ul>
@@ -78,6 +79,6 @@
 			</div>
 		</nav>
 		<c:if test="${not empty currentUser}">
-			<p id="currentUser">Current User: ${currentUser}</p>
+			<p id="currentUser">Current User: ${currentUser.userName}</p>
 		</c:if>		
 		<div class="container">

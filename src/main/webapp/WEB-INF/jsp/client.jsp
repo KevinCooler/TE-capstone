@@ -5,10 +5,16 @@
 <c:url var="newMessageURL" value="/messageClient">
 	<c:param name="clientId" value="${client.id}"/>
 </c:url>
+<c:url var="editClientURL" value="/editClient">
+	<c:param name="clientId" value="${client.id}"/>
+</c:url>
 
 <div class="row">
 	<div class="col-sm-2"></div>
 	<div class="col-sm-8">
+		<c:if test="${currentUser.id == client.id}">
+			<a style="text-align: right" href="${editClientURL}">Edit Profile</a>
+		</c:if>
 		<h1 style="text-align: center"><c:out value="${client.firstName} ${client.lastName}" /></h1>
       	<c:if test = "${client.isLookingForCoach}">
         	<p class="looking-for-coach">Looking for Coach</p>
