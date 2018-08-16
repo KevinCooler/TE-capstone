@@ -75,6 +75,7 @@
 							<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 							</form>
 							<c:url var="changePasswordHref" value="/changePassword" />
+							<li><a style="font-weight: bold" href="${profileHref}"><c:out value="${currentUser.userName}"/></a></li>
 							<li><a href="${changePasswordHref}">Change Password</a></li>
 							<li><a id="logoutLink" href="#">Log Out</a></li>
 						</c:otherwise>
@@ -82,7 +83,4 @@
 				</ul>
 			</div>
 		</nav>
-		<c:if test="${not empty currentUser}">
-			<p id="currentUser">Current User: ${currentUser.userName}</p>
-		</c:if>		
 		<div class="container">
