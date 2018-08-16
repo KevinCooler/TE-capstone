@@ -81,13 +81,12 @@ CREATE TABLE feedback (
 
 CREATE TABLE messages (
   id SERIAL PRIMARY KEY,
-  client_id INT NOT NULL,
-  coach_id INT NOT NULL,
-  message_test TEXT,
-  create_date TIMESTAMP NOT NULL,
-
-  CONSTRAINT fk_coach_id FOREIGN KEY(coach_id) REFERENCES coaches(coach_id),
-  CONSTRAINT fk_client_id FOREIGN KEY(client_id) REFERENCES clients(client_id)
+  sender_id INT NOT NULL,
+  sender_name VARCHAR(50),
+  receiver_id INT NOT NULL,
+  receiver_name VARCHAR(50),
+  message_text TEXT,
+  create_date TIMESTAMP NOT NULL
 );
 
 COMMIT;

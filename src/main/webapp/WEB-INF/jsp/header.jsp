@@ -51,7 +51,7 @@
 					<c:if test="${not empty currentUser}">
 						<c:url var="dashboardHref" value="/users/${currentUser}" />
 						<li><a href="${browseCoachesHref}">Browse Coaches</a></li>
-						<c:url var="newMessageHref" value="/users/${currentUser}/messages/new" />
+						<c:url var="messagesHref" value="/messages" />
 						<li><a href="${messagesHref}">Messages</a></li>
 						
 					</c:if>
@@ -78,6 +78,6 @@
 			</div>
 		</nav>
 		<c:if test="${not empty currentUser}">
-			<p id="currentUser">Current User: ${currentUser}</p>
+			<p id="currentUser">Current User: ${currentUser.userName}</p>
 		</c:if>		
 		<div class="container">

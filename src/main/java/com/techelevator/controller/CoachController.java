@@ -127,8 +127,9 @@ public class CoachController {
 	public String sendMessageToClient(@RequestParam long clientId, ModelMap map) {
 		Client client = clientDAO.getClientById(clientId);
 		
-		map.addAttribute("recipient", client);
-		map.addAttribute("isCoach", false);
+		map.addAttribute("recipientName", client.getFirstName()
+				+ " " + client.getLastName());
+		map.addAttribute("recipientId", client.getId());
 		
 		return "newMessage";
 	}

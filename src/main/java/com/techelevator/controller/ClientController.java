@@ -2,8 +2,6 @@ package com.techelevator.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +19,6 @@ import com.techelevator.model.DAOs.UserDAO;
 import com.techelevator.model.Objects.Client;
 import com.techelevator.model.Objects.Coach;
 import com.techelevator.model.Objects.Feedback;
-import com.techelevator.model.Objects.User;
 
 @Controller
 public class ClientController {
@@ -72,8 +69,9 @@ public class ClientController {
 	public String sendMessageToCoach(@RequestParam long coachId, ModelMap map) {
 		Coach coach = coachDAO.getCoachById(coachId);
 		
-		map.addAttribute("recipient", coach);
-		map.addAttribute("isCoach", true);
+		map.addAttribute("recipientName", coach.getFirstName()
+				+ " " + coach.getLastName());
+		map.addAttribute("recipientId", coach.getId());
 		
 		return "newMessage";
 	}

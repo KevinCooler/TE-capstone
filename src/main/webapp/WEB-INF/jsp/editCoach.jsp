@@ -61,29 +61,6 @@
 					<c:param name="availId" value="${avail.id}"/>
 					<c:param name="coachId" value="${coach.id}"/>
 				</c:url>
-				
-				<%-- <c:set value="" var="day"/>
-				<c:if test="${avail.day == 1}">
-					<c:set var="day" value="Sunday"/>
-				</c:if>
-				<c:if test="${avail.day == 2}">
-					<c:set var="day" value="Monday"/>
-				</c:if>
-				<c:if test="${avail.day == 3}">
-					<c:set var="day" value="Tuesday"/>
-				</c:if>
-				<c:if test="${avail.day == 4}">
-					<c:set var="day" value="Wednesday"/>
-				</c:if>
-				<c:if test="${avail.day == 5}">
-					<c:set var="day" value="Thusday"/>
-				</c:if>
-				<c:if test="${avail.day == 6}">
-					<c:set var="day" value="Friday"/>
-				</c:if>
-				<c:if test="${avail.day == 7}">
-					<c:set var="day" value="Saturday"/>
-				</c:if> --%>
 				<fmt:parseDate var="start" value="${avail.hourStart}" pattern="HH" />
 				<fmt:parseDate var="end" value="${avail.hourEnd}" pattern="HH"/>
 				<tr>

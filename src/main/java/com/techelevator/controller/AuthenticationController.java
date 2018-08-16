@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.techelevator.model.DAOs.MessageDAO;
 import com.techelevator.model.DAOs.ClientDAO;
 import com.techelevator.model.DAOs.CoachDAO;
 import com.techelevator.model.DAOs.UserDAO;
@@ -23,14 +22,12 @@ public class AuthenticationController {
 	private UserDAO userDAO;
 	private CoachDAO coachDAO;
 	private ClientDAO clientDAO;
-	private MessageDAO messageDAO;
 
 	@Autowired
-	public AuthenticationController(UserDAO userDAO, CoachDAO coachDAO, ClientDAO clientDAO, MessageDAO messageDAO) {
+	public AuthenticationController(UserDAO userDAO, CoachDAO coachDAO, ClientDAO clientDAO) {
 		this.userDAO = userDAO;
 		this.clientDAO = clientDAO;
 		this.coachDAO = coachDAO;
-		this.messageDAO = messageDAO;
 	}
 	
 	@RequestMapping(path="/", method=RequestMethod.GET)
@@ -95,24 +92,6 @@ public class AuthenticationController {
 	public String logout(ModelMap model, HttpSession session) {
 		model.remove("currentUser");
 		session.invalidate();
-		return "redirect:/";
-	}
-	
-	@RequestMapping(path="/addMessage", method=RequestMethod.POST)
-	public String addMessage(@RequestParam(required=false) Long clientId,
-			@RequestParam(required=false) Long coachId,
-			@RequestParam String messageText,
-			HttpSession session) {
-		//User user = (User)session.getAttribute("currentUser");
-		User user = userDAO.getUserByUserName("John");
-		
-		if(clientId != null)
-			messageDAO.addMessage(clientId, user.getId(), messageText);
-		else if(coachId != null)
-			messageDAO.addMessage(user.getId(), coachId, messageText);
-		else
-			return "redirect:/";
-		
 		return "redirect:/";
 	}
 }
