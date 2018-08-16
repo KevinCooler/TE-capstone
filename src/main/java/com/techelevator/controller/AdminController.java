@@ -3,6 +3,7 @@ package com.techelevator.controller;
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,17 +13,22 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.techelevator.model.DAOs.AvailabilityDAO;
 import com.techelevator.model.DAOs.CoachDAO;
 import com.techelevator.model.DAOs.ReviewDAO;
 import com.techelevator.model.DAOs.UserDAO;
+import com.techelevator.model.Objects.User;
+import com.techelevator.security.PageAuthorizer;
 
+@SessionAttributes("currentUser")
 @Controller
 public class AdminController {
 
 	private CoachDAO coachDAO;
 	private UserDAO userDAO;
+	private PageAuthorizer authorizer = new PageAuthorizer();
 
 	@Autowired
 	public AdminController(CoachDAO coachDAO, UserDAO userDAO, AvailabilityDAO availDAO, ReviewDAO reviewDAO) {
@@ -31,7 +37,8 @@ public class AdminController {
 	}
 	
 	@RequestMapping(path="/admin", method=RequestMethod.GET)
-	public String displayAdminPage(ModelMap map) {
+	public String displayAdminPage(ModelMap map, HttpSession session) {
+		if(authorizer.isNotAdmin((User) session.getAttribute("currentUser"))) return "redirect:/";
 		map.addAttribute("coaches", coachDAO.getCoachList());
 		return "admin";
 	}
@@ -47,13 +54,9 @@ public class AdminController {
 		return "redirect:/admin";
 	}
 	
-	@ExceptionHandler(Exception.class)
-	void handleException(Exception e, HttpServletResponse response) throws IOException{
-		response.sendError(HttpStatus.BAD_REQUEST.value(), e.getMessage());
-	}
-	
 	@RequestMapping(path="/deleteCoach", method=RequestMethod.GET)
-	public String doDeleteCoach(@RequestParam long coachId) {
+	public String doDeleteCoach(@RequestParam long coachId, HttpSession session) {
+		if(authorizer.isNotAdmin((User) session.getAttribute("currentUser"))) return "redirect:/";
 		coachDAO.removeCoach(coachId);
 		userDAO.deleteUserByUserId(coachId);
 		return "redirect:/admin";

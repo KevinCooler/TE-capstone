@@ -35,25 +35,29 @@
 			<c:url var="adminURL" value="/admin" />
 			<c:url var="browseCoachesURL" value="/browseCoaches" />
 			<c:url var="browseClientsURL" value="/browseClients" />
-			<c:url var="imgSrc" value="/img/logo.png" />
-			<a href="${homePageHref}"><img src="${imgSrc}" class="img-responsive" /></a>
+			<c:url var="profileHref" value="/${currentUser.role}">
+			<c:url var="messagesHref" value="/messages"/>
+				<c:param name="${currentUser.role}Id" value="${currentUser.id}"></c:param>
+			</c:url>
 		</header>
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
 				<ul class="nav navbar-nav">
 					<c:url var="homePageHref" value="/" />
-					<li><a style="font-size: 2em" href="${homePageHref}">MHM</a></li>
-					
-					<li><a href="${adminURL}">Admin</a></li>
-					<li><a href="${browseCoachesURL}">Coaches</a></li>
-					<li><a href="${browseClientsURL}">Clients</a></li>
-					
+					<li><a style="font-size: 2em" href="${homePageHref}">MHM</a></li>							
 					<c:if test="${not empty currentUser}">
-						<c:url var="dashboardHref" value="/users/${currentUser}" />
-						<li><a href="${browseCoachesHref}">Browse Coaches</a></li>
-						<c:url var="messagesHref" value="/messages" />
+						<li><a href="${profileHref}">Profile</a></li>
 						<li><a href="${messagesHref}">Messages</a></li>
-						
+						<c:if test="${currentUser.role == 'client'}">
+							<li><a href="${browseCoachesURL}">Coaches</a></li>
+						</c:if>
+						<c:if test="${currentUser.role == 'coach'}">
+							<li><a href="${browseClientsURL}">Clients</a></li>
+						</c:if>
+						<c:if test="${currentUser.role == 'admin'}">
+							<li><a href="${browseCoachesURL}">Coaches</a></li>
+							<li><a href="${browseClientsURL}">Clients</a></li>
+						</c:if>
 					</c:if>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
@@ -69,7 +73,7 @@
 							<form id="logoutForm" action="${logoutAction}" method="POST">
 							<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 							</form>
-							<c:url var="changePasswordHref" value="/users/${currentUser}/changePassword" />
+							<c:url var="changePasswordHref" value="/changePassword" />
 							<li><a href="${changePasswordHref}">Change Password</a></li>
 							<li><a id="logoutLink" href="#">Log Out</a></li>
 						</c:otherwise>
