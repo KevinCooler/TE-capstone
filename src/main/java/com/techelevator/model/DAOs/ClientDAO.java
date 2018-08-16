@@ -14,6 +14,4 @@ public interface ClientDAO {
 	void updateLocation(String city, String state, long id);
 	void updateAboutMe(String aboutMe, long id);
 	void updateIsLookingForCoach(boolean isLookingForCoach, long id);
-	
-
 }

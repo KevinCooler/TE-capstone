@@ -61,7 +61,7 @@ public class AuthenticationController {
 					return "redirect:/coach";
 				}
 				else {
-					map.addAttribute("client", clientDAO.getClientById(user.getId()).getId());
+					map.addAttribute("clientId", clientDAO.getClientById(user.getId()).getId());
 					return "redirect:/client";
 				}
 			}
