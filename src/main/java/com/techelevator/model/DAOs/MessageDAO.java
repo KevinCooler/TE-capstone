@@ -6,7 +6,7 @@ import com.techelevator.model.Objects.Message;
 
 public interface MessageDAO {
 
-	List<Message> getMessages(long coachId);
+	List<Message> getMessages(long userId, boolean isCoach);
 	
 	Message viewMessage(long messageId);
 	

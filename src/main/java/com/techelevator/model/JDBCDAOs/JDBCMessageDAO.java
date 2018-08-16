@@ -9,10 +9,12 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
 import com.techelevator.model.DAOs.MessageDAO;
 import com.techelevator.model.Objects.Message;
 
+@Component
 public class JDBCMessageDAO implements MessageDAO{
 	
 	private JdbcTemplate temp;
@@ -23,10 +25,16 @@ public class JDBCMessageDAO implements MessageDAO{
 	}
 
 	@Override
-	public List<Message> getMessages(long coachId) {
+	public List<Message> getMessages(long userId, boolean isCoach) {
 		List<Message> list = new ArrayList<Message>();
-		String sqlStatement = "SELECT * FROM messages WHERE coach_id=?;";
-		SqlRowSet results = temp.queryForRowSet(sqlStatement, coachId);
+		String sqlStatement;
+		
+		if(isCoach)
+			sqlStatement = "SELECT * FROM messages WHERE coach_id=? ORDER BY create_date;";
+		else
+			sqlStatement = "SELECT * FROM messages WHERE client_id=? ORDER BY create_date;";
+		
+		SqlRowSet results = temp.queryForRowSet(sqlStatement, userId);
 		
 		while(results.next())
 			list.add(mapRowToMessage(results));

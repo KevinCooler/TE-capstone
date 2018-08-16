@@ -2,6 +2,8 @@ package com.techelevator.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +21,7 @@ import com.techelevator.model.DAOs.UserDAO;
 import com.techelevator.model.Objects.Client;
 import com.techelevator.model.Objects.Coach;
 import com.techelevator.model.Objects.Feedback;
+import com.techelevator.model.Objects.User;
 
 @Controller
 public class ClientController {
@@ -26,16 +29,12 @@ public class ClientController {
 	private CoachDAO coachDAO;
 	private ClientDAO clientDAO;
 	private FeedbackDAO feedbackDAO;
-//	private UserDAO userDAO;
-//	private AvailabilityDAO availDAO;
 	
 	@Autowired
 	public ClientController(CoachDAO coachDAO, ClientDAO clientDAO, FeedbackDAO feedbackDAO, UserDAO userDAO, AvailabilityDAO availDAO) {
 		this.clientDAO = clientDAO;
 		this.coachDAO = coachDAO;
 		this.feedbackDAO = feedbackDAO;
-//		this.userDAO = userDAO;
-//		this.availDAO = availDAO;
 	}
 	
 	@RequestMapping(path="/browseCoaches", method=RequestMethod.GET)
@@ -69,15 +68,14 @@ public class ClientController {
 		return "redirect:/";
 	}
 
-	@RequestMapping(path="/newMessage", method=RequestMethod.GET)
-	public String displayMessageForm(@RequestParam long clientId,
-			@RequestParam long coachId, ModelMap map) {
+	@RequestMapping(path="/messageCoach", method=RequestMethod.GET)
+	public String sendMessageToCoach(@RequestParam long coachId, ModelMap map) {
 		Coach coach = coachDAO.getCoachById(coachId);
 		
-		map.addAttribute("coach", coach);
-		map.addAttribute("clientId", clientId);
+		map.addAttribute("recipient", coach);
+		map.addAttribute("isCoach", true);
 		
-		return "message";
+		return "newMessage";
 	}
 	
 	@RequestMapping(path="/editClient", method=RequestMethod.GET)
