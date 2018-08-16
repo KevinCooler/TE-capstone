@@ -69,7 +69,7 @@
 							<form id="logoutForm" action="${logoutAction}" method="POST">
 							<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 							</form>
-							<c:url var="changePasswordHref" value="/users/${currentUser}/changePassword" />
+							<c:url var="changePasswordHref" value="/changePassword" />
 							<li><a href="${changePasswordHref}">Change Password</a></li>
 							<li><a id="logoutLink" href="#">Log Out</a></li>
 						</c:otherwise>

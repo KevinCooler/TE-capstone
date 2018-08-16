@@ -98,6 +98,28 @@ public class AuthenticationController {
 		return "redirect:/";
 	}
 	
+	@RequestMapping(path="/changePassword", method=RequestMethod.GET)
+	public String displayChangePasswordForm() {
+		return "changePassword";
+	}
+	
+	@RequestMapping(path="/changePassword", method=RequestMethod.POST)
+	public String doChangePassword(@RequestParam String userName, 
+						   @RequestParam String oldPassword,
+						   @RequestParam String newPassword,
+						   @RequestParam String confirmNewPassword) {
+		if(userDAO.searchForUsernameAndPassword(userName, oldPassword) && newPassword.equals(confirmNewPassword)) {
+			userDAO.updatePassword(userName, newPassword);
+			return "redirect:/successChangePassword";
+		}
+		return "redirect:/changePassword";
+	}
+	
+	@RequestMapping(path="/successChangePassword", method=RequestMethod.GET)
+	public String displaySuccessChangePassword() {
+		return "successChangePassword";
+	}
+	
 	@RequestMapping(path="/addMessage", method=RequestMethod.POST)
 	public String addMessage(@RequestParam(required=false) Long clientId,
 			@RequestParam(required=false) Long coachId,
