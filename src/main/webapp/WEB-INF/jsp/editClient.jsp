@@ -13,9 +13,9 @@
 			<div class="row">
 				<label for="isLookingForCoach">Looking For a Coach: </label>
   					<label class="radio-inline">
-    					<input type="radio" name="isLookingForCoach" id="Radios1" value="TRUE">Yes</label>
+    					<input type="radio" name="isLookingForCoach" id="Radios1" value="TRUE" <c:if test="${client.isLookingForCoach}">checked</c:if>>Yes</label>
  					<label class="radio-inline">
- 						<input type="radio" name="isLookingForCoach" id="Radios2" value="FALSE">No</label>
+ 						<input type="radio" name="isLookingForCoach" id="Radios2" value="FALSE" <c:if test="${!client.isLookingForCoach}">checked</c:if>>No</label>
 				<div class="form-group">
 					<label for="firstName">First Name:</label>
 					<input type="text" id="fisrtName" name="firstName" value=<c:out value="${client.firstName}"/> class="form-control"/>
