@@ -13,6 +13,7 @@ public interface ClientDAO {
 	void updateName(String firstName, String lastName, long id);
 	void updateLocation(String city, String state, long id);
 	void updateAboutMe(String aboutMe, long id);
+	void updateIsLookingForCoach(boolean isLookingForCoach, long id);
 	
 
 }
