@@ -12,6 +12,7 @@
 	    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	    <c:url value="/js" var="jsHref" />
     	<script src="${jsHref}/review.js"></script>
+    	<script src="${jsHref}/feedback.js"></script>
 		<link rel="stylesheet"  href="css/site.css"></link>
 		
 		<script type="text/javascript">

@@ -2,6 +2,8 @@
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
+
+
 <div class="row">
 	<div class="col-sm-2"></div>
 	<div class="col-sm-8">
@@ -39,8 +41,32 @@
 				<button type="submit" class="btn btn-primary btn-block">Submit Changes</button>
 			</div>
 		</form>
-
-	
+		<h2>Module Feedback</h2>
+		<div class="row">
+			<c:url var="moduleFormAction" value="/submitModuleFeedback" />
+			<button type="button" id="moduleOneButton" class="btn btn-primary">Module 1</button>
+			<form method="POST" action="${moduleFormAction}" id="moduleOne" style="display:none">
+			<input type="hidden" name="module" value="1">
+			<input type="hidden" name="clientId" value=<c:out value="${client.id}"/>>
+				<div class="form-group">
+					<label for="moduleOneFeedback">Module One Feedback:</label>
+					<textarea id="moduleOneFeedback" name="moduleOneFeedback" class="form-control"></textarea>
+				</div>
+				<button type="submit" class="btn btn-primary btn-block">Submit Changes</button>
+			</form>
+		</div>
+		<div class="row">
+			<button type="button" id="moduleTwoButton" class="btn btn-primary">Module 2</button>
+			<form method="POST" action="${moduleFormAction}" id="moduleTwo" style="display:none">
+			<input type="hidden" name="module" value="2">
+			<input type="hidden" name="clientId" value=<c:out value="${client.id}"/>>
+				<div class="form-group">
+					<label for="moduleTwoFeedback">Module Two Feedback:</label>
+					<textarea id="moduleTwoFeedback" name="detail" class="form-control"></textarea>
+				</div>
+				<button type="submit" class="btn btn-primary btn-block">Submit Changes</button>
+			</form>
+		</div>
 	
 	
 	</div>

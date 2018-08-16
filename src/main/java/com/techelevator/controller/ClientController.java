@@ -112,4 +112,16 @@ public class ClientController {
 		
 		return "redirect:/client";
 	}
+	@RequestMapping(path="/submitModuleFeedback", method=RequestMethod.POST)
+	public String addFeedbackForModule(@RequestParam long clientId,
+									   @RequestParam int module,
+									   @RequestParam String detail,
+									   RedirectAttributes redirect) {
+		feedbackDAO.addFeedback(clientId, module, detail);
+		
+		redirect.addFlashAttribute("clientId", clientId);
+		
+		return "redirect:/client";
+		
+	}
 }
