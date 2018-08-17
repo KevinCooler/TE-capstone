@@ -63,14 +63,18 @@ public class CoachController {
 	@RequestMapping(path="/editCoach", method=RequestMethod.GET)
 	public String displayEditCoachForm(@RequestParam(required=false) Long coachId, 
 									   ModelMap map, 
-									   Model model) {
+									   Model model,
+									   HttpSession session) {
+		User user = (User) session.getAttribute("currentUser");
 		if(model.containsAttribute("coachId")) {
 			long id = (Long)model.asMap().get("coachId");
+			if(authorizer.isNotAdmin(user) && authorizer.isNotThisUser(user,  id)) return "redirect:/";
 			Coach coach = coachDAO.getCoachById(id);
 			map.addAttribute("coach", coach);
 		} else if(coachId == null) {
 			return "redirect:/";
 		} else {
+			if(authorizer.isNotAdmin(user) && authorizer.isNotThisUser(user,  coachId)) return "redirect:/";
 			Coach coach = coachDAO.getCoachById(coachId);
 			map.addAttribute("coach", coach);
 		}
