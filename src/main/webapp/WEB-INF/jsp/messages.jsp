@@ -11,12 +11,20 @@
 		<c:forEach var="message" items="${messages}" varStatus="count">
 				<c:choose>
 					<c:when test="${message.didUserSend}">
+					<c:url var="profileLink" value="/viewProfile">
+						<c:param name="userId" value="${message.receiverId}"/>
+					</c:url>
 						<tr>
 							<td>
 								To:
 							</td>
 							<td class="response" data-count="${count.index}">
-								<b><u><c:out value="${message.receiverName}"/></u></b>
+								<c:out value="${message.receiverName}"/>
+							</td>
+							<td>
+								<a href="${profileLink}">
+									<button type="button" class="btn btn-primary">View Profile</button>
+								</a>
 							</td>
 							<td>
 								<c:out value="${message.messageText}"/>
@@ -26,7 +34,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td colspan="4">
+							<td colspan="5">
 								<form id="response-${count.index}" 
 									method="POST" action="${addMessage}">
 									<input type="hidden" name="receiverId" 
@@ -40,12 +48,20 @@
 						</tr>
 					</c:when>
 					<c:otherwise>
+						<c:url var="profileLink" value="/viewProfile">
+							<c:param name="userId" value="${message.senderId}"/>
+						</c:url>
 						<tr>
 							<td>
 								From:
 							</td>
 							<td class="response" data-count="${count.index}">
-								<b><u><c:out value="${message.senderName}"/></u></b>
+								<c:out value="${message.senderName}"/>
+							</td>
+							<td>
+								<a href="${profileLink}">
+									<button type="button" class="btn btn-primary">View Profile</button>
+								</a>
 							</td>
 							<td>
 								<c:out value="${message.messageText}"/>
@@ -55,7 +71,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td colspan="4">
+							<td colspan="5">
 								<form id="response-${count.index}" 
 									method="POST" action="${addMessage}">
 									<input type="hidden" name="receiverId" 

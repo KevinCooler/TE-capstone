@@ -28,3 +28,7 @@
 	font-style: italic;
 }
 
+.response {
+	font-weight: bold;
+	text-decoration: underline;
+}

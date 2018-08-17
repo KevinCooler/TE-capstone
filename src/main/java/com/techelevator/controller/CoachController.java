@@ -1,5 +1,7 @@
 package com.techelevator.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,7 @@ import com.techelevator.model.DAOs.CoachDAO;
 import com.techelevator.model.DAOs.ReviewDAO;
 import com.techelevator.model.Objects.Client;
 import com.techelevator.model.Objects.Coach;
+import com.techelevator.model.Objects.User;
 
 @Controller
 @SessionAttributes("currentUser")
@@ -109,10 +112,11 @@ public class CoachController {
 	}
 	
 	@RequestMapping(path="/addReview", method=RequestMethod.POST)
-	public String addCoachReview(@RequestParam long clientId,
-			@RequestParam long coachId, @RequestParam int rating,
-			@RequestParam String reviewText, RedirectAttributes redirect) {
-		reviewDao.addReview(coachId, clientId, rating, reviewText);
+	public String addCoachReview(@RequestParam long coachId,
+			@RequestParam int rating, @RequestParam String reviewText,
+			RedirectAttributes redirect, HttpSession session) {
+		User user = (User)session.getAttribute("currentUser");
+		reviewDao.addReview(coachId, user.getId(), rating, reviewText);
 		
 		redirect.addFlashAttribute("coachId", coachId);
 		
