@@ -12,7 +12,7 @@ public interface FeedbackDAO {
 	
 	public void removeFeedback(long feedbackId);
 	
-	public void updateFeedback(long feedbackId, String detail);
+	public void updateFeedback(String detail, long clientId, int module);
 	
 	public Feedback getFeedbackById(long feedbackId);
 	

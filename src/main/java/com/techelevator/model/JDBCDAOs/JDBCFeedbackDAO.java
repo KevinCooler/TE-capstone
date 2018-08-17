@@ -26,7 +26,7 @@ public class JDBCFeedbackDAO implements FeedbackDAO{
 	@Override
 	public List<Feedback> getFeedbackByClientId(long clientId) {
 		List<Feedback> feedbacks = new ArrayList<Feedback>();
-		String sqlSelectFeedbackByClient = "SELECT * FROM feedback WHERE client_id = ? ORDER BY module DESC";
+		String sqlSelectFeedbackByClient = "SELECT * FROM feedback WHERE client_id = ? ORDER BY module ASC";
 		SqlRowSet result = template.queryForRowSet(sqlSelectFeedbackByClient, clientId);
 		while(result.next()) {
 			feedbacks.add(mapRowToFeedback(result));
@@ -47,9 +47,9 @@ public class JDBCFeedbackDAO implements FeedbackDAO{
 	}
 
 	@Override
-	public void updateFeedback(long feedbackId, String detail) {
-		String sqlUpdateFeedback = "update feedback set detail = ? where id = ?;";
-		template.update(sqlUpdateFeedback, detail, feedbackId);
+	public void updateFeedback(String detail, long clientId, int module) {
+		String sqlUpdateFeedback = "update feedback set detail = ? where client_id = ? and module = ?;";
+		template.update(sqlUpdateFeedback, detail, clientId, module);
 	}
 	
 	@Override
@@ -78,7 +78,7 @@ public class JDBCFeedbackDAO implements FeedbackDAO{
 	public void createClientFeedback(long clientId) {
 		String sqlStatement = "INSERT INTO feedback (client_id, module, detail) VALUES (?, ?, ?);";
 		for(int i = 1; i < 13; i++) {
-		template.update(sqlStatement, clientId, i, "");
+		template.update(sqlStatement, clientId, i, "Insert module " + i + " feedback here!");
 		}
 	}
 }

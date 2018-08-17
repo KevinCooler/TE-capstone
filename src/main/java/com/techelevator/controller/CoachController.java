@@ -19,6 +19,7 @@ import com.techelevator.model.DAOs.ReviewDAO;
 import com.techelevator.model.Objects.Client;
 import com.techelevator.model.Objects.Coach;
 import com.techelevator.model.Objects.User;
+import com.techelevator.security.PageAuthorizer;
 
 @Controller
 @SessionAttributes("currentUser")
@@ -28,6 +29,7 @@ public class CoachController {
 	private AvailabilityDAO availDAO;
 	private ReviewDAO reviewDao;
 	private ClientDAO clientDAO;
+	private PageAuthorizer authorizer = new PageAuthorizer();
 	
 	@Autowired
 	public CoachController(CoachDAO coachDAO, AvailabilityDAO availDAO, ReviewDAO reviewDao, ClientDAO clientDAO) {
@@ -61,14 +63,20 @@ public class CoachController {
 	@RequestMapping(path="/editCoach", method=RequestMethod.GET)
 	public String displayEditCoachForm(@RequestParam(required=false) Long coachId, 
 									   ModelMap map, 
-									   Model model) {
+									   Model model,
+									   HttpSession session) {
+		User user = (User) session.getAttribute("currentUser");
 		if(model.containsAttribute("coachId")) {
 			long id = (Long)model.asMap().get("coachId");
+			if((authorizer.isNotAdmin(user) && authorizer.isNotThisUser(user,  id)) || 
+					(authorizer.isNotAdmin(user) && authorizer.isNotCoach(user))) return "redirect:/";
 			Coach coach = coachDAO.getCoachById(id);
 			map.addAttribute("coach", coach);
 		} else if(coachId == null) {
 			return "redirect:/";
 		} else {
+			if((authorizer.isNotAdmin(user) && authorizer.isNotThisUser(user,  coachId)) || 
+					(authorizer.isNotAdmin(user) && authorizer.isNotCoach(user))) return "redirect:/";
 			Coach coach = coachDAO.getCoachById(coachId);
 			map.addAttribute("coach", coach);
 		}
@@ -124,7 +132,9 @@ public class CoachController {
 	}
 	
 	@RequestMapping(path="/browseClients", method=RequestMethod.GET)
-	public String displayBrowseClients(ModelMap map) {
+	public String displayBrowseClients(ModelMap map, HttpSession session) {
+		User user = (User) session.getAttribute("currentUser");
+		if(authorizer.isNotAdmin(user) && authorizer.isNotCoach(user)) return "redirect:/";
 		map.addAttribute("clients", clientDAO.getClientList());
 		return "browseClients";
 	}

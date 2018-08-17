@@ -53,6 +53,14 @@ public class PageAuthorizerTest {
 	}
 	
 	@Test
+	public void returns_true_when_user_not_client() {
+		Assert.assertTrue(authorizer.isNotClient(nullUser));
+		Assert.assertFalse(authorizer.isNotClient(client));
+		Assert.assertTrue(authorizer.isNotClient(coach));
+		Assert.assertTrue(authorizer.isNotClient(admin));
+	}
+	
+	@Test
 	public void returns_true_when_not_the_page_use_id() {
 		Assert.assertTrue(authorizer.isNotThisUser(nullUser, pageUserId));
 		Assert.assertTrue(authorizer.isNotThisUser(client, pageUserId));
@@ -61,6 +69,12 @@ public class PageAuthorizerTest {
 		Assert.assertFalse(authorizer.isNotThisUser(pageUser, pageUserId));
 	}
 	
-	
+	@Test
+	public void returns_true_when_user_not_coach_or_admin() {
+		Assert.assertTrue(authorizer.isNotAdmin(nullUser) && authorizer.isNotCoach(nullUser));
+		Assert.assertTrue(authorizer.isNotAdmin(client) && authorizer.isNotCoach(client));
+		Assert.assertFalse(authorizer.isNotAdmin(coach) && authorizer.isNotCoach(coach));
+		Assert.assertFalse(authorizer.isNotAdmin(admin) && authorizer.isNotCoach(admin));
+	}
 	
 }
