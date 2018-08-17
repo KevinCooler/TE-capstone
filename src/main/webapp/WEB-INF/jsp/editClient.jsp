@@ -45,7 +45,7 @@
 		<c:forEach var = "i" begin = "1" end = "12">
 			<div class="row feedbackButton">
 				<c:url var="moduleFormAction" value="/submitModuleFeedback" />
-				<button type="button" id="module${i}Button" class="btn btn-primary"><c:out value="module ${i}"/></button>
+				<button type="button" id="module${i}Button" class="btn btn-primary browse-button"><c:out value="module ${i}"/></button>
 				<form method="POST" action="${moduleFormAction}" id="module${i}" style="display:none">
 					<input type="hidden" id="module" name="module" value="${i}">
 					<input type="hidden" id="clientId" name="clientId" value=<c:out value="${client.id}"/>>
