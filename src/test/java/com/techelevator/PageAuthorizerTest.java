@@ -15,7 +15,8 @@ public class PageAuthorizerTest {
 	private User client;
 	private User coach;
 	private User admin;
-	
+	private User pageUser;
+	long pageUserId;
 
 	@Before
 	public void setup() {
@@ -23,10 +24,16 @@ public class PageAuthorizerTest {
 		nullUser = null;
 		client = new User();
 		client.setRole("client");
+		client.setId(222);
 		coach = new User();
+		coach.setId(333);
 		coach.setRole("coach");
 		admin = new User();
+		admin.setId(444);
 		admin.setRole("admin");
+		pageUserId = 111;
+		pageUser = new User();
+		pageUser.setId(pageUserId);
 	}
 	
 	@Test
@@ -36,5 +43,24 @@ public class PageAuthorizerTest {
 		Assert.assertTrue(authorizer.isNotAdmin(coach));
 		Assert.assertFalse(authorizer.isNotAdmin(admin));
 	}
+	
+	@Test
+	public void returns_true_when_user_not_coach() {
+		Assert.assertTrue(authorizer.isNotCoach(nullUser));
+		Assert.assertTrue(authorizer.isNotCoach(client));
+		Assert.assertFalse(authorizer.isNotCoach(coach));
+		Assert.assertTrue(authorizer.isNotCoach(admin));
+	}
+	
+	@Test
+	public void returns_true_when_not_the_page_use_id() {
+		Assert.assertTrue(authorizer.isNotThisUser(nullUser, pageUserId));
+		Assert.assertTrue(authorizer.isNotThisUser(client, pageUserId));
+		Assert.assertTrue(authorizer.isNotThisUser(coach, pageUserId));
+		Assert.assertTrue(authorizer.isNotThisUser(admin, pageUserId));
+		Assert.assertFalse(authorizer.isNotThisUser(pageUser, pageUserId));
+	}
+	
+	
 	
 }
