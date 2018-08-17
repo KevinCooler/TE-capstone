@@ -12,4 +12,16 @@ public class PageAuthorizer {
 		else if(currentUser.getRole().equals("admin")) return false;
 		else return true;
 	}
+	
+	public boolean isNotCoach(User currentUser) {
+		if(currentUser == null) return true;
+		else if(currentUser.getRole().equals("coach")) return false;
+		else return true;
+	}
+	
+	public boolean isNotThisUser(User currentUser, long pageUserId) {
+		if(currentUser == null) return true;
+		else if(currentUser.getId() == pageUserId) return false;
+		else return true;
+	}
 }

@@ -42,33 +42,35 @@
 			</div>
 		</form>
 		<h2>Module Feedback</h2>
-		<div class="row">
-			<c:url var="moduleFormAction" value="/submitModuleFeedback" />
-			<button type="button" id="moduleOneButton" class="btn btn-primary">Module 1</button>
-			<form method="POST" action="${moduleFormAction}" id="moduleOne" style="display:none">
-			<input type="hidden" name="module" value="1">
-			<input type="hidden" name="clientId" value=<c:out value="${client.id}"/>>
-				<div class="form-group">
-					<label for="moduleOneFeedback">Module One Feedback:</label>
-					<textarea id="moduleOneFeedback" name="moduleOneFeedback" class="form-control"></textarea>
-				</div>
-				<button type="submit" class="btn btn-primary btn-block">Submit Changes</button>
-			</form>
-		</div>
-		<div class="row">
+		<c:forEach var = "i" begin = "1" end = "12">
+			<div class="row">
+				<c:url var="moduleFormAction" value="/submitModuleFeedback" />
+				<button type="button" id="module${i}Button" class="btn btn-primary"><c:out value="module ${i}"/></button>
+				<form method="POST" action="${moduleFormAction}" id="module${i}" style="display:none">
+					<input type="hidden" id="module" name="module" value="${i}">
+					<input type="hidden" id="clientId" name="clientId" value=<c:out value="${client.id}"/>>
+					<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
+					<div class="form-group">
+						<label for="detail"><c:out value="Module ${i} Feedback:"/></label>
+						<textarea id="detail" name="detail" class="form-control"></textarea>
+					</div>
+					<button type="submit" class="btn btn-primary btn-block">Submit</button>
+				</form>
+			</div>
+		</c:forEach>
+		<%-- <div class="row">
 			<button type="button" id="moduleTwoButton" class="btn btn-primary">Module 2</button>
 			<form method="POST" action="${moduleFormAction}" id="moduleTwo" style="display:none">
-			<input type="hidden" name="module" value="2">
-			<input type="hidden" name="clientId" value=<c:out value="${client.id}"/>>
+				<input type="hidden" id="module" name="module" value="2">
+				<input type="hidden" id="clientId" name="clientId" value=<c:out value="${client.id}"/>>
+				<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 				<div class="form-group">
-					<label for="moduleTwoFeedback">Module Two Feedback:</label>
-					<textarea id="moduleTwoFeedback" name="detail" class="form-control"></textarea>
+					<label for="detail">Module Two Feedback:</label>
+					<textarea id="detail" name="detail" class="form-control"></textarea>
 				</div>
-				<button type="submit" class="btn btn-primary btn-block">Submit Changes</button>
+				<button type="submit" class="btn btn-primary btn-block">Submit</button>
 			</form>
-		</div>
-	
-	
+		</div> --%>
 	</div>
 </div>
 	

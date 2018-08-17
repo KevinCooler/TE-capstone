@@ -1,9 +1,39 @@
 $(document).ready(function () {
 
-	$("#moduleOneButton").click(function(){
-        $("#moduleOne").toggle();
+	$("#module1Button").click(function(){
+        $("#module1").toggle();
     });
-	$("#moduleTwoButton").click(function(){
-        $("#moduleTwo").toggle();
+	$("#module2Button").click(function(){
+        $("#module2").toggle();
+    });
+	$("#module3Button").click(function(){
+        $("#module3").toggle();
+    });
+	$("#module4Button").click(function(){
+        $("#module4").toggle();
+    });
+	$("#module5Button").click(function(){
+        $("#module5").toggle();
+    });
+	$("#module6Button").click(function(){
+        $("#module6").toggle();
+    });
+	$("#module7Button").click(function(){
+        $("#module7").toggle();
+    });
+	$("#module8Button").click(function(){
+        $("#module8").toggle();
+    });
+	$("#module9Button").click(function(){
+        $("#module9").toggle();
+    });
+	$("#module10Button").click(function(){
+        $("#module10").toggle();
+    });
+	$("#module11Button").click(function(){
+        $("#module11").toggle();
+    });
+	$("#module12Button").click(function(){
+        $("#module12").toggle();
     });
 });
