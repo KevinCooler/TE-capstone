@@ -27,7 +27,8 @@ public class JDBCReviewDAO implements ReviewDAO{
 	@Override
 	public List<Review> getReviewList(long coachId) {
 		List<Review> reviews = new ArrayList<Review>();
-		String sqlStatement = "SELECT * FROM coach_reviews WHERE coach_id=?;";
+		String sqlStatement = "SELECT * FROM coach_reviews WHERE coach_id=? "
+				+ "ORDER BY create_date DESC;";
 		
 		SqlRowSet results = temp.queryForRowSet(sqlStatement, coachId);
 		

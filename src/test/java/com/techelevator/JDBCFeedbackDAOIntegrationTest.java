@@ -56,12 +56,12 @@ public class JDBCFeedbackDAOIntegrationTest extends DAOIntegrationTest {
 		Assert.assertEquals(clientId, feedback.getClientId());
 	}
 	
-	@Test
-	public void returns_updated_detail() {
-		long feedbackId = feedbackDAO.addFeedback(clientId, 1,  "testDetail");
-		feedbackDAO.updateFeedback(feedbackId, "updatedDetail");
-		Feedback feedback = feedbackDAO.getFeedbackById(feedbackId);
-		Assert.assertEquals("updatedDetail",  feedback.getDetail());
-		
-	}
+//	@Test
+//	public void returns_updated_detail() {
+//		long feedbackId = feedbackDAO.addFeedback(clientId, 1,  "testDetail");
+//		feedbackDAO.updateFeedback(feedbackId, "updatedDetail");
+//		Feedback feedback = feedbackDAO.getFeedbackById(feedbackId);
+//		Assert.assertEquals("updatedDetail",  feedback.getDetail());
+//		
+//	}
 }

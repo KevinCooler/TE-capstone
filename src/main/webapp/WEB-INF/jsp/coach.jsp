@@ -73,7 +73,6 @@
 		<span id="new-review"><u>New Review</u></span>
 		<c:url var="reviewLink" value="/addReview"/>
 		<form id="review-form" method="POST" action="${reviewLink}">
-			<input type="hidden" name="clientId" value="1">
 			<input type="hidden" name="coachId" value="${coach.id}">
 			<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}">
 		</form>
