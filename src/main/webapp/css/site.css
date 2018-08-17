@@ -28,3 +28,7 @@
 	font-style: italic;
 }
 
+.feedbackButton{
+	border-collapse: separate;
+	border-spacing: 0px 2px;
+}
