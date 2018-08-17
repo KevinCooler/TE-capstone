@@ -13,6 +13,7 @@
 	    <c:url value="/js" var="jsHref" />
     	<script src="${jsHref}/review.js"></script>
     	<script src="${jsHref}/feedback.js"></script>
+    	<script src="${jsHref}/messages.js"></script>
 		<link rel="stylesheet"  href="css/site.css"></link>
 		
 		<script type="text/javascript">
@@ -45,18 +46,15 @@
 			<div class="container-fluid">
 				<ul class="nav navbar-nav">
 					<c:url var="homePageHref" value="/" />
-					<li><a style="font-size: 2em" href="${homePageHref}">MHM</a></li>							
+					<li><a style="font-size: 2em" href="${homePageHref}">MHM</a></li>	
+					<li><a href="${browseCoachesURL}">Coaches</a></li>						
 					<c:if test="${not empty currentUser}">
 						<li><a href="${profileHref}">Profile</a></li>
 						<li><a href="${messagesHref}">Messages</a></li>
-						<c:if test="${currentUser.role == 'client'}">
-							<li><a href="${browseCoachesURL}">Coaches</a></li>
-						</c:if>
 						<c:if test="${currentUser.role == 'coach'}">
 							<li><a href="${browseClientsURL}">Clients</a></li>
 						</c:if>
 						<c:if test="${currentUser.role == 'admin'}">
-							<li><a href="${browseCoachesURL}">Coaches</a></li>
 							<li><a href="${browseClientsURL}">Clients</a></li>
 						</c:if>
 					</c:if>
