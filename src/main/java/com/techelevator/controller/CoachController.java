@@ -1,5 +1,7 @@
 package com.techelevator.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,8 @@ import com.techelevator.model.DAOs.CoachDAO;
 import com.techelevator.model.DAOs.ReviewDAO;
 import com.techelevator.model.Objects.Client;
 import com.techelevator.model.Objects.Coach;
+import com.techelevator.model.Objects.User;
+import com.techelevator.security.PageAuthorizer;
 
 @Controller
 @SessionAttributes("currentUser")
@@ -25,6 +29,7 @@ public class CoachController {
 	private AvailabilityDAO availDAO;
 	private ReviewDAO reviewDao;
 	private ClientDAO clientDAO;
+	private PageAuthorizer authorizer = new PageAuthorizer();
 	
 	@Autowired
 	public CoachController(CoachDAO coachDAO, AvailabilityDAO availDAO, ReviewDAO reviewDao, ClientDAO clientDAO) {
@@ -120,7 +125,9 @@ public class CoachController {
 	}
 	
 	@RequestMapping(path="/browseClients", method=RequestMethod.GET)
-	public String displayBrowseClients(ModelMap map) {
+	public String displayBrowseClients(ModelMap map, HttpSession session) {
+		User user = (User) session.getAttribute("currentUser");
+		if(authorizer.isNotAdmin(user) && authorizer.isNotCoach(user)) return "redirect:/";
 		map.addAttribute("clients", clientDAO.getClientList());
 		return "browseClients";
 	}
