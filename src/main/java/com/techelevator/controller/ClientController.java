@@ -84,11 +84,15 @@ public class ClientController {
 			long id = (Long)model.asMap().get("clientId");
 			Client client = clientDAO.getClientById(id);
 			map.addAttribute("client", client);
+			List<Feedback> feedbackList = feedbackDAO.getFeedbackByClientId(clientId);
+			map.addAttribute("feedbackList", feedbackList);
 		} else if(clientId == null) {
 			return "redirect:/";
 		} else {
 			Client client = clientDAO.getClientById(clientId);
 			map.addAttribute("client", client);
+			List<Feedback> feedbackList = feedbackDAO.getFeedbackByClientId(clientId);
+			map.addAttribute("feedbackList", feedbackList);
 		}
 	
 		return "editClient";
@@ -119,7 +123,7 @@ public class ClientController {
 		
 		redirect.addFlashAttribute("clientId", clientId);
 		
-		return "redirect:/client";
+		return "redirect:/editClient";
 		
 	}
 }

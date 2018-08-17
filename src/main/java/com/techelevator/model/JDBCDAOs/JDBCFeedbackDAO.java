@@ -73,4 +73,12 @@ public class JDBCFeedbackDAO implements FeedbackDAO{
 		
 		return feedback;
 	}
+
+	@Override
+	public void createClientFeedback(long clientId) {
+		String sqlStatement = "INSERT INTO feedback (client_id, module, detail) VALUES (?, ?, ?);";
+		for(int i = 1; i < 13; i++) {
+		template.update(sqlStatement, clientId, i, "");
+		}
+	}
 }
