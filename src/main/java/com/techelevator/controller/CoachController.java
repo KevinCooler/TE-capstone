@@ -124,7 +124,8 @@ public class CoachController {
 			@RequestParam int rating, @RequestParam String reviewText,
 			RedirectAttributes redirect, HttpSession session) {
 		User user = (User)session.getAttribute("currentUser");
-		reviewDao.addReview(coachId, user.getId(), rating, reviewText);
+		if(authorizer.isNotCoach(user))
+			reviewDao.addReview(coachId, user.getId(), rating, reviewText);
 		
 		redirect.addFlashAttribute("coachId", coachId);
 		
