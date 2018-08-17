@@ -133,7 +133,7 @@ public class ClientController {
 		
 		redirect.addFlashAttribute("clientId", clientId);
 		
-		return "redirect:/editClient";
+		return "redirect:/client";
 	}
 	@RequestMapping(path="/submitModuleFeedback", method=RequestMethod.POST)
 	public String addFeedbackForModule(@RequestParam long clientId,
