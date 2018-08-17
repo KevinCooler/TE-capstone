@@ -15,5 +15,7 @@ public interface FeedbackDAO {
 	public void updateFeedback(long feedbackId, String detail);
 	
 	public Feedback getFeedbackById(long feedbackId);
+	
+	public void createClientFeedback(long clientId);
 
 }

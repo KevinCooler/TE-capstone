@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.techelevator.model.DAOs.ClientDAO;
 import com.techelevator.model.DAOs.CoachDAO;
+import com.techelevator.model.DAOs.FeedbackDAO;
 import com.techelevator.model.DAOs.UserDAO;
 import com.techelevator.model.Objects.User;
 
@@ -22,12 +23,14 @@ public class AuthenticationController {
 	private UserDAO userDAO;
 	private CoachDAO coachDAO;
 	private ClientDAO clientDAO;
+	private FeedbackDAO feedbackDAO;
 
 	@Autowired
-	public AuthenticationController(UserDAO userDAO, CoachDAO coachDAO, ClientDAO clientDAO) {
+	public AuthenticationController(UserDAO userDAO, CoachDAO coachDAO, ClientDAO clientDAO, FeedbackDAO feedbackDAO) {
 		this.userDAO = userDAO;
 		this.clientDAO = clientDAO;
 		this.coachDAO = coachDAO;
+		this.feedbackDAO = feedbackDAO;
 	}
 	
 	@RequestMapping(path="/", method=RequestMethod.GET)
@@ -85,6 +88,7 @@ public class AuthenticationController {
 		}
 		long clientId = userDAO.saveUser(userName, password, "client");
 		clientDAO.addClient(firstName, lastName, clientId);
+		feedbackDAO.createClientFeedback(clientId);
 		return "redirect:/login";
 	}
 
