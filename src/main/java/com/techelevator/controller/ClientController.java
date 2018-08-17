@@ -119,7 +119,7 @@ public class ClientController {
 		
 		redirect.addFlashAttribute("clientId", clientId);
 		
-		return "redirect:/client";
+		return "redirect:/editClient";
 		
 	}
 }
