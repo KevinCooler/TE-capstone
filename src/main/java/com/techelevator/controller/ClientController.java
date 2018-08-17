@@ -11,6 +11,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.techelevator.model.DAOs.AvailabilityDAO;
@@ -25,6 +26,7 @@ import com.techelevator.model.Objects.User;
 import com.techelevator.security.PageAuthorizer;
 
 @Controller
+@SessionAttributes("currentUser")
 public class ClientController {
 	
 	private CoachDAO coachDAO;
@@ -96,7 +98,7 @@ public class ClientController {
 					(authorizer.isNotAdmin(user) && authorizer.isNotClient(user))) return "redirect:/";
 			Client client = clientDAO.getClientById(id);
 			map.addAttribute("client", client);
-			List<Feedback> feedbackList = feedbackDAO.getFeedbackByClientId(clientId);
+			List<Feedback> feedbackList = feedbackDAO.getFeedbackByClientId(id);
 			map.addAttribute("feedbackList", feedbackList);
 		} else if(clientId == null) {
 			return "redirect:/";
@@ -126,14 +128,14 @@ public class ClientController {
 		
 		redirect.addFlashAttribute("clientId", clientId);
 		
-		return "redirect:/client";
+		return "redirect:/editClient";
 	}
 	@RequestMapping(path="/submitModuleFeedback", method=RequestMethod.POST)
 	public String addFeedbackForModule(@RequestParam long clientId,
 									   @RequestParam int module,
 									   @RequestParam String detail,
 									   RedirectAttributes redirect) {
-		feedbackDAO.addFeedback(clientId, module, detail);
+		feedbackDAO.updateFeedback(detail, clientId, module);
 		
 		redirect.addFlashAttribute("clientId", clientId);
 		
