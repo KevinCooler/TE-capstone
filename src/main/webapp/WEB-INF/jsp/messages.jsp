@@ -7,53 +7,68 @@
 	<div class="col-sm-10">
 		<h1>Messages</h1>
 		<table class="table">
-		<c:forEach var="message" items="${messages}">
-			<c:choose>
-				<c:when test="${message.didUserSend}">
-					<c:url var="responseUrl" value="/newResponse">
-						<c:param name="recipientName" value="${message.receiverName}"/>
-						<c:param name="recipientId" value="${message.receiverId}"/>
-					</c:url>
-					<tr>
-						<td>
-							To:
-						</td>
-						<td>
-							<a href="${responseUrl}">
-								<b><c:out value="${message.receiverName}"/></b>
-							</a>
-						</td>
-						<td>
-							<c:out value="${message.messageText}"/>
-						</td>
-						<td>
-							<c:out value="${message.createDate}"/>
-						</td>
-					</tr>
-				</c:when>
-				<c:otherwise>
-					<c:url var="responseUrl" value="/newResponse">
-						<c:param name="recipientName" value="${message.senderName}"/>
-						<c:param name="recipientId" value="${message.senderId}"/>
-					</c:url>
-					<tr>
-						<td>
-							From:
-						</td>
-						<td>
-							<a href="${responseUrl}">
-								<b><c:out value="${message.senderName}"/></b>
-							</a>
-						</td>
-						<td>
-							<c:out value="${message.messageText}"/>
-						</td>
-						<td>
-							<c:out value="${message.createDate}"/>
-						</td>
-					</tr>
-				</c:otherwise>
-			</c:choose>
+		<c:url var="addMessage" value="/addMessage"/>
+		<c:forEach var="message" items="${messages}" varStatus="count">
+				<c:choose>
+					<c:when test="${message.didUserSend}">
+						<tr>
+							<td>
+								To:
+							</td>
+							<td class="response" data-count="${count.index}">
+								<b><u><c:out value="${message.receiverName}"/></u></b>
+							</td>
+							<td>
+								<c:out value="${message.messageText}"/>
+							</td>
+							<td>
+								<c:out value="${message.createDate}"/>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="4">
+								<form id="response-${count.index}" 
+									method="POST" action="${addMessage}">
+									<input type="hidden" name="receiverId" 
+										value="${message.receiverId}">
+									<input type="hidden" name="receiverName" 
+										value="${message.receiverName}">
+									<input type="hidden" name="CSRF_TOKEN" 
+										value="${CSRF_TOKEN}">
+								</form>
+							</td>
+						</tr>
+					</c:when>
+					<c:otherwise>
+						<tr>
+							<td>
+								From:
+							</td>
+							<td class="response" data-count="${count.index}">
+								<b><u><c:out value="${message.senderName}"/></u></b>
+							</td>
+							<td>
+								<c:out value="${message.messageText}"/>
+							</td>
+							<td>
+								<c:out value="${message.createDate}"/>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="4">
+								<form id="response-${count.index}" 
+									method="POST" action="${addMessage}">
+									<input type="hidden" name="receiverId" 
+										value="${message.senderId}">
+									<input type="hidden" name="receiverName" 
+										value="${message.senderName}">
+									<input type="hidden" name="CSRF_TOKEN" 
+										value="${CSRF_TOKEN}">
+								</form>
+							</td>
+						</tr>
+					</c:otherwise>
+				</c:choose>
 		</c:forEach>
 		</table>
 	</div>

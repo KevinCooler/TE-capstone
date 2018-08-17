@@ -13,6 +13,7 @@
 	    <c:url value="/js" var="jsHref" />
     	<script src="${jsHref}/review.js"></script>
     	<script src="${jsHref}/feedback.js"></script>
+    	<script src="${jsHref}/messages.js"></script>
 		<link rel="stylesheet"  href="css/site.css"></link>
 		
 		<script type="text/javascript">
