@@ -19,6 +19,12 @@ public class PageAuthorizer {
 		else return true;
 	}
 	
+	public boolean isNotClient(User currentUser) {
+		if(currentUser == null) return true;
+		else if(currentUser.getRole().equals("client")) return false;
+		else return true;
+	}
+	
 	public boolean isNotThisUser(User currentUser, long pageUserId) {
 		if(currentUser == null) return true;
 		else if(currentUser.getId() == pageUserId) return false;

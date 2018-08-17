@@ -53,6 +53,14 @@ public class PageAuthorizerTest {
 	}
 	
 	@Test
+	public void returns_true_when_user_not_client() {
+		Assert.assertTrue(authorizer.isNotClient(nullUser));
+		Assert.assertFalse(authorizer.isNotClient(client));
+		Assert.assertTrue(authorizer.isNotClient(coach));
+		Assert.assertTrue(authorizer.isNotClient(admin));
+	}
+	
+	@Test
 	public void returns_true_when_not_the_page_use_id() {
 		Assert.assertTrue(authorizer.isNotThisUser(nullUser, pageUserId));
 		Assert.assertTrue(authorizer.isNotThisUser(client, pageUserId));

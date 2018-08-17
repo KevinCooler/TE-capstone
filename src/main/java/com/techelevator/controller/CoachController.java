@@ -68,13 +68,15 @@ public class CoachController {
 		User user = (User) session.getAttribute("currentUser");
 		if(model.containsAttribute("coachId")) {
 			long id = (Long)model.asMap().get("coachId");
-			if(authorizer.isNotAdmin(user) && authorizer.isNotThisUser(user,  id)) return "redirect:/";
+			if((authorizer.isNotAdmin(user) && authorizer.isNotThisUser(user,  id)) || 
+					(authorizer.isNotAdmin(user) && authorizer.isNotCoach(user))) return "redirect:/";
 			Coach coach = coachDAO.getCoachById(id);
 			map.addAttribute("coach", coach);
 		} else if(coachId == null) {
 			return "redirect:/";
 		} else {
-			if(authorizer.isNotAdmin(user) && authorizer.isNotThisUser(user,  coachId)) return "redirect:/";
+			if((authorizer.isNotAdmin(user) && authorizer.isNotThisUser(user,  coachId)) || 
+					(authorizer.isNotAdmin(user) && authorizer.isNotCoach(user))) return "redirect:/";
 			Coach coach = coachDAO.getCoachById(coachId);
 			map.addAttribute("coach", coach);
 		}

@@ -87,9 +87,13 @@ public class ClientController {
 	@RequestMapping(path="/editClient", method=RequestMethod.GET)
 	public String displayEditClientForm(@RequestParam(required=false) Long clientId, 
 									   ModelMap map, 
-									   Model model) {
+									   Model model,
+									   HttpSession session) {
+		User user = (User) session.getAttribute("currentUser");
 		if(model.containsAttribute("clientId")) {
 			long id = (Long)model.asMap().get("clientId");
+			if((authorizer.isNotAdmin(user) && authorizer.isNotThisUser(user,  id)) ||
+					(authorizer.isNotAdmin(user) && authorizer.isNotClient(user))) return "redirect:/";
 			Client client = clientDAO.getClientById(id);
 			map.addAttribute("client", client);
 			List<Feedback> feedbackList = feedbackDAO.getFeedbackByClientId(clientId);
@@ -97,6 +101,8 @@ public class ClientController {
 		} else if(clientId == null) {
 			return "redirect:/";
 		} else {
+			if((authorizer.isNotAdmin(user) && authorizer.isNotThisUser(user,  clientId)) ||
+					(authorizer.isNotAdmin(user) && authorizer.isNotClient(user))) return "redirect:/";
 			Client client = clientDAO.getClientById(clientId);
 			map.addAttribute("client", client);
 			List<Feedback> feedbackList = feedbackDAO.getFeedbackByClientId(clientId);
