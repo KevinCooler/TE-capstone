@@ -76,14 +76,19 @@ public class ClientController {
 	}
 
 	@RequestMapping(path="/messageCoach", method=RequestMethod.GET)
-	public String sendMessageToCoach(@RequestParam long coachId, ModelMap map) {
-		Coach coach = coachDAO.getCoachById(coachId);
+	public String sendMessageToCoach(@RequestParam long coachId, 
+			ModelMap map, HttpSession session) {
+		if(session.getAttribute("currentUser") != null) {
+			Coach coach = coachDAO.getCoachById(coachId);
+			
+			map.addAttribute("recipientName", coach.getFirstName()
+					+ " " + coach.getLastName());
+			map.addAttribute("recipientId", coach.getId());
+			
+			return "newMessage";
+		}
 		
-		map.addAttribute("recipientName", coach.getFirstName()
-				+ " " + coach.getLastName());
-		map.addAttribute("recipientId", coach.getId());
-		
-		return "newMessage";
+		return "redirect:/browseCoaches";
 	}
 	
 	@RequestMapping(path="/editClient", method=RequestMethod.GET)

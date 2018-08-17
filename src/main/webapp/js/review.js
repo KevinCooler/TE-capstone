@@ -12,7 +12,7 @@ $(document).ready(function () {
 			formInput += '<option value="5">5</option>';
 			formInput += '</select>';
 			formInput += '<textarea name="reviewText" rows="4" cols="60"></textarea>';
-			formInput += '<input type="submit" value="Submit">';
+			formInput += '<input type="submit" class="btn btn-primary" value="Submit">';
 			
 			$("#review-form").append(formInput);
 			

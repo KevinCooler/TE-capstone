@@ -120,10 +120,11 @@ public class CoachController {
 	}
 	
 	@RequestMapping(path="/addReview", method=RequestMethod.POST)
-	public String addCoachReview(@RequestParam long clientId,
-			@RequestParam long coachId, @RequestParam int rating,
-			@RequestParam String reviewText, RedirectAttributes redirect) {
-		reviewDao.addReview(coachId, clientId, rating, reviewText);
+	public String addCoachReview(@RequestParam long coachId,
+			@RequestParam int rating, @RequestParam String reviewText,
+			RedirectAttributes redirect, HttpSession session) {
+		User user = (User)session.getAttribute("currentUser");
+		reviewDao.addReview(coachId, user.getId(), rating, reviewText);
 		
 		redirect.addFlashAttribute("coachId", coachId);
 		
