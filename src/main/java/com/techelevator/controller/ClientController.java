@@ -57,18 +57,26 @@ public class ClientController {
 			long id = (long) model.asMap().get("clientId");
 			if(authorizer.isNotAdmin(user) && authorizer.isNotCoach(user) && authorizer.isNotThisUser(user,  id)) return "redirect:/";
 			client = clientDAO.getClientById(id);
-			feedbacks = feedbackDAO.getFeedbackByClientId(id);
-			map.addAttribute("feedbacks", feedbacks);
 			map.addAttribute("client", client);
+			if(authorizer.isNotCoach(user)) {
+				feedbacks = feedbackDAO.getFeedbackByClientId(id);
+				map.addAttribute("feedbacks", feedbacks);
+			}
 		} else if(clientId == null) {
 			return "redirect:/";
 		} else {
-			if(authorizer.isNotAdmin(user) && authorizer.isNotCoach(user) && authorizer.isNotThisUser(user,  clientId)) return "redirect:/";
+			if(authorizer.isNotAdmin(user) && authorizer.isNotCoach(user) && authorizer.isNotThisUser(user,  clientId))
+				return "redirect:/";
+			
 			client = clientDAO.getClientById(clientId);
-			feedbacks = feedbackDAO.getFeedbackByClientId(clientId);
-			map.addAttribute("feedbacks", feedbacks);
 			map.addAttribute("client", client);
+			feedbacks = feedbackDAO.getFeedbackByClientId(clientId);
+			if(authorizer.isNotCoach(user)) {
+				map.addAttribute("feedbacks", feedbacks);
+				map.addAttribute("client", client);
+			}
 		} 
+		
 		if(client != null) {
 			return "client";
 		}

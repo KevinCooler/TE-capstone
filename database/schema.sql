@@ -41,9 +41,11 @@ CREATE TABLE clients (
   city_location varchar(45),
   state_location varchar(45),
   about_me text,
-  completed BIT,
+  completed boolean,
+  paired_with int,
   
-  CONSTRAINT fk_client_id FOREIGN KEY(client_id) REFERENCES app_user(id)
+  CONSTRAINT fk_client_id FOREIGN KEY(client_id) REFERENCES app_user(id),
+  CONSTRAINT fk_paired_with FOREIGN KEY(paired_with) REFERENCES coaches(coach_id)
 );
 
 CREATE TABLE availability (

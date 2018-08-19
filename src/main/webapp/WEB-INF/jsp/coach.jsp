@@ -70,8 +70,9 @@
 	</div>
 	<div class="col-sm-5">
 		<h3>Reviews</h3>
-		<c:if test="${currentUser.role == 'client'}">
-			<span id="new-review"><u>New Review</u></span>
+		<c:if test="${currentUser.role == 'client' && client.completed == 'true' 
+			&& client.pairedWith == coach.id}">
+			<span id="new-review" class="response">New Review</span>
 			<c:url var="reviewLink" value="/addReview"/>
 			<form id="review-form" method="POST" action="${reviewLink}">
 				<input type="hidden" name="coachId" value="${coach.id}">
@@ -94,5 +95,44 @@
 	</div>
 	<div class="col-sm-2"></div>
 </div>
+
+<c:if test="${currentUser.role == 'coach' || currentUser.role == admin}">
+	<div class="row">
+		<div class="col-sm-2"></div>
+		
+		<div class="col-sm-8">
+			<h3>Current Clients:</h3>
+			<table class="table">
+				<c:forEach var="currClient" items="${clients}">
+					<c:url var="profileLink" value="/client">
+						<c:param name="clientId" value="${currClient.id}"/>
+					</c:url>
+					<tr>
+						<td>
+							${currClient.firstName} ${currClient.lastName}
+						</td>
+						<td>
+							<c:choose>
+								<c:when test="${currClient.completed}">
+									<span class="looking-for-coach">Completed</span>
+								</c:when>
+								<c:otherwise>
+									In Progress
+								</c:otherwise>
+							</c:choose>
+						</td>
+						<td>
+							<a href="${profileLink}">
+								<button class="btn btn-primary">View Profile</button>
+							</a>
+						</td>
+					</tr>
+				</c:forEach>
+			</table>
+		</div>
+		
+		<div class="col-sm-2"></div>
+	</div>
+</c:if>
 
 <c:import url="/WEB-INF/jsp/footer.jsp" />

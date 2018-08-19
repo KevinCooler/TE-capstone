@@ -1,5 +1,7 @@
 package com.techelevator.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,9 +43,19 @@ public class CoachController {
 	
 	@RequestMapping(path="/coach", method=RequestMethod.GET)
 	public String displayCoach(@RequestParam(required=false) Long coachId, 
-			ModelMap map, Model model) {
+			ModelMap map, Model model, HttpSession session) {
 		Coach coach;
+		User user = (User) session.getAttribute("currentUser");
 		
+		if(user != null) {
+			if(user.getRole().equals("client")) {
+				Client client = clientDAO.getClientById(user.getId());
+				map.addAttribute("client", client);
+			} else {
+				List<Client> clients = clientDAO.getClientsByCoach(coachId);
+				map.addAttribute("clients", clients);
+			}
+		}
 		
 		if(model.containsAttribute("coachId")) {
 			long id = (Long)model.asMap().get("coachId");
@@ -150,5 +162,46 @@ public class CoachController {
 		map.addAttribute("recipientId", client.getId());
 		
 		return "newMessage";
+	}
+	
+	@RequestMapping(path="/coachClient", method=RequestMethod.POST)
+	public String coachClient(@RequestParam long clientId,
+			HttpSession session, RedirectAttributes redirect) {
+		User user = (User)session.getAttribute("currentUser");
+		
+		if(user.getRole().equals("coach")) {
+			clientDAO.updateIsLookingForCoach(false, clientId);
+			clientDAO.assignCoach(clientId, user.getId());
+		}
+		
+		redirect.addFlashAttribute("clientId", clientId);
+		
+		return "redirect:/client";
+	}
+	
+	@RequestMapping(path="/noLongerCoaching", method=RequestMethod.POST)
+	public String noLongerCoachingClient(@RequestParam long clientId,
+			HttpSession session, RedirectAttributes redirect) {
+		User user = (User)session.getAttribute("currentUser");
+		
+		if(user.getRole().equals("coach")) {
+			clientDAO.assignCoach(clientId, null);
+			clientDAO.updateIsLookingForCoach(true, clientId);
+		}
+		
+		redirect.addFlashAttribute("clientId", clientId);
+		
+		return "redirect:/client";
+	}
+	
+	@RequestMapping(path="/completedCourse", method=RequestMethod.POST)
+	public String clientCompletedCourse(@RequestParam long clientId,
+			HttpSession session, RedirectAttributes redirect) {
+		User user = (User)session.getAttribute("currentUser");
+		
+		if(user.getRole().equals("coach"))
+			clientDAO.updateCompleted(true, clientId);
+		
+		return "redirect:/client";
 	}
 }

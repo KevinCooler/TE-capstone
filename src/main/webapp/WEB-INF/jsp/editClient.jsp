@@ -13,11 +13,17 @@
 			<input type="hidden" name="clientId" value=<c:out value="${client.id}"/>>
 			<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 			<div class="row">
-				<label for="isLookingForCoach">Looking For a Coach: </label>
-  					<label class="radio-inline">
-    					<input type="radio" name="isLookingForCoach" id="Radios1" value="TRUE" <c:if test="${client.isLookingForCoach}">checked</c:if>>Yes</label>
- 					<label class="radio-inline">
- 						<input type="radio" name="isLookingForCoach" id="Radios2" value="FALSE" <c:if test="${!client.isLookingForCoach}">checked</c:if>>No</label>
+				<c:if test="${client.completed == 'false' && client.pairedWith == 0}">
+					<label for="isLookingForCoach">Looking For a Coach: </label>
+	  				<label class="radio-inline">
+	    				<input type="radio" name="isLookingForCoach" id="Radios1" value="TRUE" 
+	    					<c:if test="${client.isLookingForCoach}">checked</c:if>>Yes
+	    			</label>
+	 				<label class="radio-inline">
+	 					<input type="radio" name="isLookingForCoach" id="Radios2" value="FALSE" 
+	 						<c:if test="${!client.isLookingForCoach}">checked</c:if>>No
+	 				</label>
+ 				</c:if>
 				<div class="form-group">
 					<label for="firstName">First Name:</label>
 					<input type="text" id="fisrtName" name="firstName" value=<c:out value="${client.firstName}"/> class="form-control"/>
