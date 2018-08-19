@@ -48,8 +48,8 @@ public class JDBCClientDAO implements ClientDAO {
 	@Override
 	public void addClient(String firstName, String lastName, long id) {
 		String sqlStatement = "INSERT INTO clients (client_id, first_name, "
-				+ "last_name, city_location, state_location, about_me) "
-				+ "VALUES(?, ?, ?, 'update', 'update', 'update');";
+				+ "last_name, city_location, state_location, about_me, completed) "
+				+ "VALUES(?, ?, ?, 'update', 'update', 'update', 0);";
 		
 		temp.update(sqlStatement, id, firstName, lastName);	
 	}

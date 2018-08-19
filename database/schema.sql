@@ -41,6 +41,7 @@ CREATE TABLE clients (
   city_location varchar(45),
   state_location varchar(45),
   about_me text,
+  completed BIT,
   
   CONSTRAINT fk_client_id FOREIGN KEY(client_id) REFERENCES app_user(id)
 );
@@ -86,7 +87,10 @@ CREATE TABLE messages (
   receiver_id INT NOT NULL,
   receiver_name VARCHAR(50),
   message_text TEXT,
-  create_date TIMESTAMP NOT NULL
+  create_date TIMESTAMP NOT NULL,
+  
+  CONSTRAINT fk_sender_id FOREIGN KEY(sender_id) REFERENCES app_user(id),
+  CONSTRAINT fk_receiver_id FOREIGN KEY(receiver_id) REFERENCES app_user(id)
 );
 
 COMMIT;

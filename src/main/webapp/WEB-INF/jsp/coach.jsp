@@ -70,13 +70,15 @@
 	</div>
 	<div class="col-sm-5">
 		<h3>Reviews</h3>
-		<span id="new-review"><u>New Review</u></span>
-		<c:url var="reviewLink" value="/addReview"/>
-		<form id="review-form" method="POST" action="${reviewLink}">
-			<input type="hidden" name="coachId" value="${coach.id}">
-			<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}">
-		</form>
-		<br>
+		<c:if test="${currentUser.role == 'client'}">
+			<span id="new-review"><u>New Review</u></span>
+			<c:url var="reviewLink" value="/addReview"/>
+			<form id="review-form" method="POST" action="${reviewLink}">
+				<input type="hidden" name="coachId" value="${coach.id}">
+				<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}">
+			</form>
+			<br>
+		</c:if>
 		<table class="table">
 			<c:forEach var="review" items="${coach.reviews}">
 				<tr>

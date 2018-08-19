@@ -44,6 +44,7 @@ public class CoachController {
 			ModelMap map, Model model) {
 		Coach coach;
 		
+		
 		if(model.containsAttribute("coachId")) {
 			long id = (Long)model.asMap().get("coachId");
 			coach = coachDAO.getCoachById(id);
