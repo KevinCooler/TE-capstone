@@ -1,3 +1,36 @@
+.welcome-bar{
+    position: relative;
+    color: white;
+    height: 300px;
+    margin-bottom: 30px;
+}
+
+#banner-img {
+    object-fit: cover;
+    height: 300px;
+    width: 100%;
+}
+
+.title-details {
+    position: absolute;
+    left: 20px;
+    bottom: 10px;
+    font-size: 1.5em;
+}
+.welcome-bar a {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+}
+
+.fas{
+    font-size: 60px;
+}
+
+#get-started {
+    font-size: 14px;
+}
+
 #availability-delete {
 	margin-bottom: 5px;
 	margin-left: 10px;
