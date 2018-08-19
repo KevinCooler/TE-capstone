@@ -96,7 +96,7 @@
 	<div class="col-sm-2"></div>
 </div>
 
-<c:if test="${currentUser.role == 'coach' || currentUser.role == admin}">
+<c:if test="${currentUser.role == 'coach' || currentUser.role == 'admin'}">
 	<div class="row">
 		<div class="col-sm-2"></div>
 		
