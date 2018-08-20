@@ -1,6 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:import url="/WEB-INF/jsp/header.jsp" />
-
 <div class="row">
     <div class="col-sm-7">
         <h1>Manage Coaches</h1>
@@ -36,7 +35,7 @@
     <div class="col-sm-4">
         <h1>Add New Coach</h1>
         <c:url var="formAction" value="/addCoach" />
-        <form method="POST" action="${formAction}">
+        <form id="newCoachForm" method="POST" action="${formAction}">
         <input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
             <div class="row">
                 <div class="form-group">

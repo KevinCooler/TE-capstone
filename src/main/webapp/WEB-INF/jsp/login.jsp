@@ -12,12 +12,8 @@
 					required : true
 				},
 				password : {
-					required : true
-				}
-			},
-			messages : {			
-				confirmPassword : {
-					equalTo : "Passwords do not match"
+					required : true,
+
 				}
 			},
 			errorClass : "error"

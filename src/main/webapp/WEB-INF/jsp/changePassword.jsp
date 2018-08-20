@@ -3,19 +3,16 @@
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
 <script type="text/javascript">
-/* 	$(document).ready(function () {
+$(document).ready(function () {
 		$.validator.addMethod('capitals', function(thing){
 			return thing.match(/[A-Z]/);
 		});
-		$("form").validate({
+		$("#changePassword").validate({
 			
 			rules : {
-				userName : {
-					required : true
-				},
 				password : {
 					required : true,
-					minlength: 15,
+					minlength: 8,
 					capitals: true,
 				},
 				confirmPassword : {
@@ -25,7 +22,7 @@
 			},
 			messages : {			
 				password: {
-					minlength: "Password too short, make it at least 15 characters",
+					minlength: "Password too short, make it at least 8 characters",
 					capitals: "Field must contain a capital letter",
 				},
 				confirmPassword : {
@@ -34,20 +31,16 @@
 			},
 			errorClass : "error"
 		});
-	}); */
+	});
 </script>
 
 <c:url var="formAction" value="/changePassword" />
-<form method="POST" action="${formAction}">
+<form id="changePassword" method="POST" action="${formAction}">
 <input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 	<div class="row">
 		<div class="col-sm-4"></div>
 		<div class="col-sm-4">
 			<h2>Change Password</h2>
-			<div class="form-group">
-				<label for="userName">User Name: </label>
-				<input type="text" id="userName" name="userName" placeHolder="User Name" class="form-control" />
-			</div>
 			<div class="form-group">
 				<label for="oldPassword">Old Password: </label>
 				<input type="password" id="oldPassword" name="oldPassword" placeHolder="Old Password" class="form-control" />
