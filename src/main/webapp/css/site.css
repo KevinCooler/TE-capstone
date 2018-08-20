@@ -27,11 +27,6 @@
 .title-details p{
 	margin: 0 !important;
 }
-/* .welcome-bar a {
-    position: absolute;
-    right: 60px;
-    bottom: 45px;
-} */
 
 .welcome-bar a {
 	margin-top:5px;
@@ -71,6 +66,10 @@
 .coach-avail{
 	border-collapse: separate;
 	border-spacing: 7px 0px;
+}
+
+.coach-image {
+	height:150px;
 }
 
 .looking-for-coach{
