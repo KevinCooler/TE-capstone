@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.techelevator.model.DAOs.AvailabilityDAO;
 import com.techelevator.model.DAOs.CoachDAO;
@@ -43,10 +44,16 @@ public class AdminController {
 	public String submitAddCoach(@RequestParam("firstName") String firstName, 
 								 @RequestParam("lastName") String lastName, 
 								 @RequestParam("password") String password, 
-								 @RequestParam("confirmPassword") String confirmPassword) {
+								 @RequestParam("confirmPassword") String confirmPassword,
+								 RedirectAttributes redirect) {
 		String userName = firstName.substring(0, 1).toLowerCase() + lastName.toLowerCase();
-		Long coachId = userDAO.saveUser(userName, password, "coach");
-		coachDAO.addCoach(firstName, lastName, coachId);
+		if(userDAO.getUserByUserName(userName) != null) {
+			redirect.addFlashAttribute("duplicateUsername", "Oops! This username already exists. Please try again.");
+		}
+		else {
+			Long coachId = userDAO.saveUser(userName, password, "coach");
+			coachDAO.addCoach(firstName, lastName, coachId);
+		}
 		return "redirect:/admin";
 	}
 	

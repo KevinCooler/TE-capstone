@@ -55,6 +55,7 @@
                     <label for="confirmPassword">Confirm Password: </label>
                     <input type="password" id="confirmPassword" name="confirmPassword" placeHolder="Re-Type Password" class="form-control" />   
                 </div>
+                <p class="text-danger"><c:out value="${duplicateUsername}"/></p>
                 <button type="submit" class="btn btn-default">Create Coach</button>
             </div>
         </form>
