@@ -4,11 +4,13 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.techelevator.model.DAOs.ClientDAO;
 import com.techelevator.model.DAOs.CoachDAO;
@@ -82,8 +84,10 @@ public class AuthenticationController {
 	public String doSignUp(@RequestParam String userName, 
 						   @RequestParam String password,
 						   @RequestParam String firstName,
-						   @RequestParam String lastName) {
+						   @RequestParam String lastName,
+						   RedirectAttributes attr) {
 		if(userDAO.getUserByUserName(userName) != null) {
+			attr.addFlashAttribute("userNameError", "This username is already in use, select another.");
 			return "redirect:/signUp";
 		}
 		long clientId = userDAO.saveUser(userName, password, "client");
@@ -105,15 +109,21 @@ public class AuthenticationController {
 	}
 	
 	@RequestMapping(path="/changePassword", method=RequestMethod.POST)
-	public String doChangePassword(@RequestParam String userName, 
-						   @RequestParam String oldPassword,
-						   @RequestParam String newPassword,
-						   @RequestParam String confirmNewPassword) {
-		if(userDAO.searchForUsernameAndPassword(userName, oldPassword) && newPassword.equals(confirmNewPassword)) {
-			userDAO.updatePassword(userName, newPassword);
-			return "redirect:/successChangePassword";
+	public String doChangePassword(@RequestParam String oldPassword,
+						   		   @RequestParam String newPassword,
+						   		   @RequestParam String confirmNewPassword,
+						   		   HttpSession session) {
+		if(session.getAttribute("currentUser") == null) {
+			return "redirect:/login";
+		} else {
+			User user = (User) session.getAttribute("currentUser");
+			String userName = user.getUserName();
+			if(userDAO.searchForUsernameAndPassword(userName, oldPassword) && newPassword.equals(confirmNewPassword)) {
+				userDAO.updatePassword(userName, newPassword);
+				return "redirect:/successChangePassword";
+			}
+			return "redirect:/changePassword";
 		}
-		return "redirect:/changePassword";
 	}
 	
 	@RequestMapping(path="/successChangePassword", method=RequestMethod.GET)

@@ -62,7 +62,8 @@
 					<label for="userName">User Name: </label>
 					<input type="text" id="userName" name="userName" placeHolder="User Name" class="form-control" />
 				</div>
-				<div class="form-group col-sm-6">
+				<div class="form-group col-sm-6 text-danger">
+				<c:out value="${userNameError}"/>
 				</div>
 			</div>
 			<div class="row">

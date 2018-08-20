@@ -13,13 +13,7 @@
 				},
 				password : {
 					required : true,
-					minlength: 8,
-					capitals: true,
-				}
-			},
-			messages : {			
-				confirmPassword : {
-					equalTo : "Passwords do not match"
+
 				}
 			},
 			errorClass : "error"
