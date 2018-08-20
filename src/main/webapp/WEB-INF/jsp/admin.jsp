@@ -5,7 +5,7 @@
         <h1>Manage Coaches</h1>
         <table class="table">
             <tbody>
-                <c:forEach var="coach" items="${coaches}">
+                <c:forEach var="coach" items="${coaches}" varStatus="status">
                     <c:url var="editCoachURL" value="/editCoach">
                         <c:param name="coachId" value="${coach.id}"/>
                     </c:url>
@@ -18,6 +18,7 @@
                     <tr>
                         <td>
                         	<c:out value="${coach.firstName} ${coach.lastName}"/>
+                        	<p class="font-weight-light"><c:out value="${users[status.index].userName}"/></p>
                         </td>
                         <td>
                             <a href="${coachURL}" class="admin-button btn btn-primary">View</a>

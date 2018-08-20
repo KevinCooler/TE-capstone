@@ -1,6 +1,9 @@
 package com.techelevator.controller;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +19,7 @@ import com.techelevator.model.DAOs.AvailabilityDAO;
 import com.techelevator.model.DAOs.CoachDAO;
 import com.techelevator.model.DAOs.ReviewDAO;
 import com.techelevator.model.DAOs.UserDAO;
+import com.techelevator.model.Objects.Coach;
 import com.techelevator.model.Objects.User;
 import com.techelevator.security.PageAuthorizer;
 
@@ -36,7 +40,13 @@ public class AdminController {
 	@RequestMapping(path="/admin", method=RequestMethod.GET)
 	public String displayAdminPage(ModelMap map, HttpSession session) {
 		if(authorizer.isNotAdmin((User) session.getAttribute("currentUser"))) return "redirect:/";
-		map.addAttribute("coaches", coachDAO.getCoachList());
+		List<Coach> coaches = coachDAO.getCoachList();
+		map.addAttribute("coaches", coaches);
+		List<User> users = new ArrayList<User>();
+		for(Coach coach: coaches) {
+			users.add(userDAO.getUserByUserId(coach.getId()));
+		}
+		map.addAttribute("users",  users);
 		return "admin";
 	}
 	

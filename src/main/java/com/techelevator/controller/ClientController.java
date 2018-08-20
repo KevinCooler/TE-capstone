@@ -30,6 +30,7 @@ import com.techelevator.security.PageAuthorizer;
 public class ClientController {
 	
 	private CoachDAO coachDAO;
+	private UserDAO userDAO;
 	private ClientDAO clientDAO;
 	private FeedbackDAO feedbackDAO;
 	private PageAuthorizer authorizer = new PageAuthorizer();
@@ -39,6 +40,7 @@ public class ClientController {
 		this.clientDAO = clientDAO;
 		this.coachDAO = coachDAO;
 		this.feedbackDAO = feedbackDAO;
+		this.userDAO = userDAO;
 	}
 	
 	@RequestMapping(path="/browseCoaches", method=RequestMethod.GET)
@@ -58,6 +60,7 @@ public class ClientController {
 			if(authorizer.isNotAdmin(user) && authorizer.isNotCoach(user) && authorizer.isNotThisUser(user,  id)) return "redirect:/";
 			client = clientDAO.getClientById(id);
 			map.addAttribute("client", client);
+			map.addAttribute("clientUser", userDAO.getUserByUserId(id));
 			if(authorizer.isNotCoach(user)) {
 				feedbacks = feedbackDAO.getFeedbackByClientId(id);
 				map.addAttribute("feedbacks", feedbacks);
@@ -69,11 +72,12 @@ public class ClientController {
 				return "redirect:/";
 			
 			client = clientDAO.getClientById(clientId);
+			User clientUser = userDAO.getUserByUserId(clientId);
 			map.addAttribute("client", client);
+			map.addAttribute("clientUser", clientUser);
 			feedbacks = feedbackDAO.getFeedbackByClientId(clientId);
 			if(authorizer.isNotCoach(user)) {
 				map.addAttribute("feedbacks", feedbacks);
-				map.addAttribute("client", client);
 			}
 		} 
 		
