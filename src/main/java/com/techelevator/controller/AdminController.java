@@ -44,9 +44,9 @@ public class AdminController {
 	public String submitAddCoach(@RequestParam("firstName") String firstName, 
 								 @RequestParam("lastName") String lastName, 
 								 @RequestParam("password") String password, 
+								 @RequestParam("userName") String userName,
 								 @RequestParam("confirmPassword") String confirmPassword,
 								 RedirectAttributes redirect) {
-		String userName = firstName.substring(0, 1).toLowerCase() + lastName.toLowerCase();
 		if(userDAO.getUserByUserName(userName) != null) {
 			redirect.addFlashAttribute("duplicateUsername", "Oops! This username already exists. Please try again.");
 		}

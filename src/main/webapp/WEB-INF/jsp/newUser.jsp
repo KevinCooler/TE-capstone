@@ -11,7 +11,8 @@
 			
 			rules : {
 				userName : {
-					required : true
+					required : true,
+					email: true
 				},
 				password : {
 					required : true,
@@ -59,8 +60,8 @@
 			</div>
 			<div class="row">
 				<div class="form-group col-sm-6">
-					<label for="userName">User Name: </label>
-					<input type="text" id="userName" name="userName" placeHolder="User Name" class="form-control" />
+					<label for="userName">Email: </label>
+					<input type="text" id="userName" name="userName" placeHolder="Email" class="form-control" />
 				</div>
 				<div class="form-group col-sm-6 text-danger">
 				<c:out value="${userNameError}"/>

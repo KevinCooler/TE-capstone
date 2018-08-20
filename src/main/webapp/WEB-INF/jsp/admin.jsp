@@ -47,6 +47,10 @@
                     <input type="text" id="lastName" name="lastName" placeHolder="Last Name" class="form-control" />
                 </div>
                 <div class="form-group">
+					<label for="userName">Email: </label>
+					<input type="text" id="userName" name="userName" placeHolder="Email" class="form-control" />
+				</div>
+                <div class="form-group">
                     <label for="password">Password: </label>
                     <input type="password" id="password" name="password" placeHolder="Password" class="form-control" />
                 </div>
@@ -54,7 +58,7 @@
                     <label for="confirmPassword">Confirm Password: </label>
                     <input type="password" id="confirmPassword" name="confirmPassword" placeHolder="Re-Type Password" class="form-control" />   
                 </div>
-                <p class="text-danger"><c:out value="${duplicateUsername}"/></p>
+                <p class="error"><c:out value="${duplicateUsername}"/></p>
                 <button type="submit" class="btn btn-default">Create Coach</button>
             </div>
         </form>
