@@ -63,7 +63,7 @@
 					<label for="userName">Email: </label>
 					<input type="text" id="userName" name="userName" placeHolder="Email" class="form-control" />
 				</div>
-				<div class="form-group col-sm-6 text-danger">
+				<div class="form-group col-sm-6 error">
 				<c:out value="${userNameError}"/>
 				</div>
 			</div>

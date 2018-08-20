@@ -48,7 +48,7 @@ public class AdminController {
 								 @RequestParam("confirmPassword") String confirmPassword,
 								 RedirectAttributes redirect) {
 		if(userDAO.getUserByUserName(userName) != null) {
-			redirect.addFlashAttribute("duplicateUsername", "Oops! This username already exists. Please try again.");
+			redirect.addFlashAttribute("duplicateUsername", "Oops! This email address is already in use. Please try again.");
 		}
 		else {
 			Long coachId = userDAO.saveUser(userName, password, "coach");

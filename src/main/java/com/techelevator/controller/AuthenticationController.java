@@ -87,7 +87,7 @@ public class AuthenticationController {
 						   @RequestParam String lastName,
 						   RedirectAttributes attr) {
 		if(userDAO.getUserByUserName(userName) != null) {
-			attr.addFlashAttribute("userNameError", "This username is already in use, select another.");
+			attr.addFlashAttribute("userNameError", "Oops! This email address is already in use. Please try again.");
 			return "redirect:/signUp";
 		}
 		long clientId = userDAO.saveUser(userName, password, "client");

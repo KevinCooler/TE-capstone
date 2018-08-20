@@ -16,7 +16,9 @@
                         <c:param name="coachId" value="${coach.id}"/>
                     </c:url>
                     <tr>
-                        <td><c:out value="${coach.firstName} ${coach.lastName}"/></td>
+                        <td>
+                        	<c:out value="${coach.firstName} ${coach.lastName}"/>
+                        </td>
                         <td>
                             <a href="${coachURL}" class="admin-button btn btn-primary">View</a>
                         </td>

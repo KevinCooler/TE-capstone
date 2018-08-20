@@ -11,6 +11,10 @@ $(document).ready(function () {
 				lastName : {
 					required : true
 				},
+				userName: {
+					required: true,
+					email: true
+				},
 				password : {
 					required : true,
 					minlength: 8,
