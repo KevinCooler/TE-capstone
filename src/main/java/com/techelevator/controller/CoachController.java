@@ -45,6 +45,7 @@ public class CoachController {
 	public String displayCoach(@RequestParam(required=false) Long coachId, 
 			ModelMap map, Model model, HttpSession session) {
 		Coach coach;
+		List<Client> clients;
 		User user = (User) session.getAttribute("currentUser");
 		
 		if(user != null) {
@@ -52,7 +53,14 @@ public class CoachController {
 				Client client = clientDAO.getClientById(user.getId());
 				map.addAttribute("client", client);
 			} else {
-				List<Client> clients = clientDAO.getClientsByCoach(coachId);
+//				long id = (Long)model.asMap().get("coachId");
+				if(model.containsAttribute("coachId")) {
+					long id = (Long)model.asMap().get("coachId");
+					clients = clientDAO.getClientsByCoach(id);
+				}
+				else {
+					clients = clientDAO.getClientsByCoach(coachId);
+				}
 				map.addAttribute("clients", clients);
 			}
 		}

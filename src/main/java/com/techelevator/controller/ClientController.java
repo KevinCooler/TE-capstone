@@ -96,7 +96,7 @@ public class ClientController {
 			return "newMessage";
 		}
 		
-		return "redirect:/browseCoaches";
+		return "redirect:/login";
 	}
 	
 	@RequestMapping(path="/editClient", method=RequestMethod.GET)

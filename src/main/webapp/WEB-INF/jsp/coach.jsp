@@ -12,22 +12,19 @@
 
 <div class="row">
 	<div class="col-sm-2"></div>
-	<div class="col-sm-8">
+	<div class="col-sm-2">
+		<img class="coach-image hidden-xs img" src="img/empty_profile.png" alt="empty profile picture"/>
+	</div>
+	<div class="col-sm-6">
 		<c:if test="${currentUser.id == coach.id}">
 			<a style="text-align: right" href="${editCoachURL}">Edit Profile</a>
 		</c:if>
-		<h1 style="text-align: center"><c:out value="${coach.firstName} ${coach.lastName}" /></h1>
-	</div>
-	<div class="col-sm-2"></div>
-</div>
-<div class="row">
-	<div class="col-sm-5"></div>
-	<div class="col-sm-2">
+		<h1><c:out value="${coach.firstName} ${coach.lastName}" /></h1>
 		<img style="height:15px" class="img img-responsive" 
 			src="img/<c:out value="${coach.averageReview}"/>-star.png" alt="star rating"/>
-		<div style="text-align: center"><c:out value="${coach.city}, ${coach.state}"/></div>
+		<c:out value="${coach.city}, ${coach.state}"/>
 	</div>
-	<div class="col-sm-5"></div>
+	<div class="col-sm-2"></div>
 </div>
 <div class="row">
 	<div class="col-sm-2"></div>
