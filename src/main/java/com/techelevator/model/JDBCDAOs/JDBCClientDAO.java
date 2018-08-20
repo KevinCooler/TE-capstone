@@ -36,7 +36,8 @@ public class JDBCClientDAO implements ClientDAO {
 	@Override
 	public List<Client> getClientList() {
 		List<Client> clients = new ArrayList<Client>();
-		String sqlStatement = "SELECT * FROM clients ORDER BY is_looking_for_coach DESC";
+		String sqlStatement = "SELECT * FROM clients "
+				+ "ORDER BY is_looking_for_coach DESC, last_name;";
 		SqlRowSet result = temp.queryForRowSet(sqlStatement);
 		
 		while(result.next())
@@ -44,12 +45,24 @@ public class JDBCClientDAO implements ClientDAO {
 		
 		return clients;
 	}
+	
+	public List<Client> getClientsByCoach(long coachId) {
+		List<Client> clients = new ArrayList<Client>();
+		String sqlStatement = "SELECT * FROM clients WHERE paired_with = ? "
+				+ "ORDER BY completed DESC, last_name;";
+		SqlRowSet results = temp.queryForRowSet(sqlStatement, coachId);
+		
+		while(results.next())
+			clients.add(mapRowToClient(results));
+
+		return clients;
+	}
 
 	@Override
 	public void addClient(String firstName, String lastName, long id) {
 		String sqlStatement = "INSERT INTO clients (client_id, first_name, "
-				+ "last_name, city_location, state_location, about_me) "
-				+ "VALUES(?, ?, ?, 'update', 'update', 'update');";
+				+ "last_name, city_location, state_location, about_me, completed, is_looking_for_coach) "
+				+ "VALUES(?, ?, ?, 'update', 'update', 'update', 'false', 'true');";
 		
 		temp.update(sqlStatement, id, firstName, lastName);	
 	}
@@ -92,13 +105,31 @@ public class JDBCClientDAO implements ClientDAO {
 		client.setCity(result.getString("city_location"));
 		client.setLookingForCoach(result.getBoolean("is_looking_for_coach"));
 		client.setAboutMe(result.getString("about_me"));
+		client.setPairedWith(result.getLong("paired_with"));
+		client.setCompleted(result.getBoolean("completed"));
 		
 		return client;
 	}
 
 	@Override
-	public void updateIsLookingForCoach(boolean isLookingForCoach, long id) {
+	public void updateIsLookingForCoach(boolean isLookingForCoach, long clientId) {
 		String sqlStatement = "UPDATE clients SET is_looking_for_coach = ? WHERE client_id = ?;";
-		temp.update(sqlStatement, isLookingForCoach, id);
+		
+		temp.update(sqlStatement, isLookingForCoach, clientId);
 	}
+
+	@Override
+	public void assignCoach(long clientId, Long coachId) {
+		String sqlStatement = "UPDATE clients SET paired_with = ? "
+				+ "WHERE client_id = ?;";
+		
+		temp.update(sqlStatement, coachId, clientId);
+	}
+
+	@Override
+	public void updateCompleted(boolean completed, long clientId) {
+		String sqlStatement = "UPDATE clients SET completed = ? WHERE client_id = ?;";
+		
+		temp.update(sqlStatement, completed, clientId);
+	}	
 }

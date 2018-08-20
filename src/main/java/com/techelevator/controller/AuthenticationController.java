@@ -53,7 +53,7 @@ public class AuthenticationController {
 			User user = userDAO.getUserByUserName(userName);
 			session.setAttribute("currentUser", user);
 			
-			if(destination != null && ! destination.isEmpty()) {
+			if(destination != null && !destination.isEmpty()) {
 				return "redirect:" + destination;
 			} else {
 				if(user.getRole().equals("admin")) {

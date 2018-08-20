@@ -9,7 +9,21 @@ public class Client {
 	private String state;
 	private String city;
 	private String aboutMe;
+	private boolean completed = false;
+	private Long pairedWith = null;
 	
+	public boolean isCompleted() {
+		return completed;
+	}
+	public void setCompleted(boolean completed) {
+		this.completed = completed;
+	}
+	public Long getPairedWith() {
+		return pairedWith;
+	}
+	public void setPairedWith(long pairedWith) {
+		this.pairedWith = pairedWith;
+	}
 	public long getId() {
 		return id;
 	}

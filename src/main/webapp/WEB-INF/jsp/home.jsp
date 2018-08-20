@@ -10,7 +10,12 @@
           <h1>Mental Health Matters</h1>
           <p>Ingenious marketing copy. And some more ingenious marketing copy.</p>
         </div>
+<<<<<<< HEAD
         <a class="btn btn-primary" href="${signUpURL}">Get Started <i id="get-started" class="fas fa-arrow-alt-circle-right"></i></a>
+=======
+        <c:url var="signUpLink" value="/signUp"/>
+        <a class="btn btn-primary" href="${signUpLink}">Get Started <i id="get-started" class="fas fa-arrow-circle-down"></i></a>
+>>>>>>> 5bb8f867474b3cbb1bc3f05027d08a1e56a89af7
     </div>
     
     

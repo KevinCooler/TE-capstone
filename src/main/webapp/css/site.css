@@ -87,3 +87,13 @@
 	border-collapse: separate;
 	border-spacing: 0px 2px;
 }
+
+.client-status {
+	display: flex;
+	
+}
+
+.client-status form {
+	margin-right: 15px;
+	margin-bottom: 10px;
+}
