@@ -12,7 +12,9 @@
 					required : true
 				},
 				password : {
-					required : true
+					required : true,
+					minlength: 8,
+					capitals: true,
 				}
 			},
 			messages : {			

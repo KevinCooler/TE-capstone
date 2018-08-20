@@ -3,7 +3,7 @@
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
 <script type="text/javascript">
-/* 	$(document).ready(function () {
+$(document).ready(function () {
 		$.validator.addMethod('capitals', function(thing){
 			return thing.match(/[A-Z]/);
 		});
@@ -15,7 +15,7 @@
 				},
 				password : {
 					required : true,
-					minlength: 15,
+					minlength: 8,
 					capitals: true,
 				},
 				confirmPassword : {
@@ -25,7 +25,7 @@
 			},
 			messages : {			
 				password: {
-					minlength: "Password too short, make it at least 15 characters",
+					minlength: "Password too short, make it at least 8 characters",
 					capitals: "Field must contain a capital letter",
 				},
 				confirmPassword : {
@@ -34,7 +34,7 @@
 			},
 			errorClass : "error"
 		});
-	}); */
+	});
 </script>
 
 <c:url var="formAction" value="/changePassword" />
