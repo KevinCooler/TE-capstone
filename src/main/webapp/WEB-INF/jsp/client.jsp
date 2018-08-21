@@ -46,7 +46,7 @@
         		<input type="submit" class="btn btn-primary" value="I'm No Longer Coaching This Client">
         	</form>
         	<c:url var="completedLink" value="/completedCourse"/>
-        	<form method="POST" action="${completedLink}">
+        	<form id="clientCompletedProgram" method="POST" action="${completedLink}">
 				<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}">
 				<input type="hidden" name="clientId" value="${client.id}">
         		<input type="submit" class="btn btn-primary" value="Client Has Completed The Program">
