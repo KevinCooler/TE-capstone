@@ -22,7 +22,6 @@ insert into app_user (user_name, password, role, salt) VALUES ('testing3', 'test
 public class JDBCCoachDAOIntegrationTest extends DAOIntegrationTest{
 
 	private JDBCCoachDAO coachDao;
-	//private JDBCUserDAO userDAO;
 	
 	@Before
 	public void setup() {

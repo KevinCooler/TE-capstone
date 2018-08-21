@@ -48,6 +48,11 @@ public class JDBCReviewDAO implements ReviewDAO{
 		review.setReviewText(results.getString("review_text"));
 		LocalDateTime time = results.getTimestamp("create_date").toLocalDateTime();
 		review.setCreateDate(time);
+		results.getTimestamp("edit_date");
+		if(!results.wasNull()) {
+			time = results.getTimestamp("edit_date").toLocalDateTime();
+			review.setEditDate(time);
+		}
 		
 		return review;
 	}
@@ -64,7 +69,7 @@ public class JDBCReviewDAO implements ReviewDAO{
 	@Override
 	public void editReview(long reviewId, long clientId, int rating, String reviewText) {
 		String sqlStatement = "UPDATE coach_reviews "
-				+ "SET review_text = ?,  rating = ? "
+				+ "SET review_text = ?,  rating = ?, edit_date = NOW() "
 				+ "WHERE id = ? AND client_id = ?;";
 		
 		temp.update(sqlStatement, reviewText, rating, reviewId, clientId);

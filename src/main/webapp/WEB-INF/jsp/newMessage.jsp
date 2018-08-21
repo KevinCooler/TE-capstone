@@ -13,7 +13,7 @@
 				value="${recipientName}">
 			<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}">
 			<textarea name="messageText" rows="10" cols="80"></textarea>
-			<div><input type="submit" value="Submit"></div>
+			<div><input type="submit" class="btn btn-primary" value="Submit"></div>
 		</form>
 	</div>
 	<div class="col-sm-2"></div>

@@ -68,6 +68,7 @@ CREATE TABLE coach_reviews (
   review_text TEXT,
   rating INT NOT NULL, 
   create_date TIMESTAMP NOT NULL,
+  edit_date TIMESTAMP,
   
   CONSTRAINT fk_coach_id FOREIGN KEY(coach_id) REFERENCES coaches(coach_id),
   CONSTRAINT fk_client_id FOREIGN KEY(client_id) REFERENCES clients(client_id)

@@ -88,6 +88,9 @@
 									src="img/<c:out value="${review.rating}"/>-star.png" alt="star rating">
 								<span id="review-text"><c:out value="${review.reviewText}"/></span>
 									- <c:out value="${review.createDate}"/>
+								<c:if test="${review.editDate != null}">
+									<br><i>Last Edited - <c:out value="${review.editDate}"/></i>
+								</c:if>
 								<br><span class="edit-button">Edit</span>
 							</span>
 							
@@ -108,6 +111,9 @@
 								src="img/<c:out value="${review.rating}"/>-star.png" alt="star rating">
 							<c:out value="${review.reviewText}"/>
 							- <c:out value="${review.createDate}"/>
+							<c:if test="${review.editDate != null}">
+								<br><i>Last Edited - <c:out value="${review.editDate}"/></i>
+							</c:if>
 						</td>
 					</tr>
 				</c:otherwise>

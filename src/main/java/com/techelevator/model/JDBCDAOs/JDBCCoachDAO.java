@@ -66,12 +66,12 @@ public class JDBCCoachDAO implements CoachDAO{
 	}
 
 	@Override
-	public void addCoach(String firstName, String lastName, long id) {
+	public long addCoach(String firstName, String lastName, long id) {
 		String sqlStatement = "INSERT INTO coaches (coach_id, first_name, "
 				+ "last_name, city_location, state_location, about_me) "
-				+ "VALUES(?, ?, ?, 'update', 'update', 'update');";
+				+ "VALUES(?, ?, ?, 'update', 'update', 'update') returning coach_id;";
 		
-		temp.update(sqlStatement, id, firstName, lastName);
+		return temp.update(sqlStatement, id, firstName, lastName);
 	}
 
 	@Override

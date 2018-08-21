@@ -11,6 +11,7 @@ public class Review {
 	private int rating;
 	private String reviewText;
 	private LocalDateTime createDate;
+	private LocalDateTime editDate = null;
 	
 	public long getId() {
 		return id;
@@ -48,5 +49,16 @@ public class Review {
 	}
 	public void setCreateDate(LocalDateTime createDate) {
 		this.createDate = createDate;
+	}
+	public String getEditDate() {
+		if(this.editDate != null) {
+			DateTimeFormatter format = DateTimeFormatter.ofPattern("M/d/yyyy H:mm");
+			return this.editDate.format(format);
+		}
+		
+		return null;
+	}
+	public void setEditDate(LocalDateTime editDate) {
+		this.editDate = editDate;
 	}
 }

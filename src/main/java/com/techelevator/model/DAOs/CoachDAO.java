@@ -10,7 +10,7 @@ public interface CoachDAO {
 	
 	List<Coach> getCoachList();
 	
-	void addCoach(String firstName, String lastName, long id);
+	long addCoach(String firstName, String lastName, long id);
 	
 	void removeCoach(long id);
 	
