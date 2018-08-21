@@ -22,11 +22,14 @@ insert into app_user (user_name, password, role, salt) VALUES ('testing3', 'test
 public class JDBCCoachDAOIntegrationTest extends DAOIntegrationTest{
 
 	private JDBCCoachDAO coachDao;
+	private long coachIdOne;
+	private long coachIdTwo;
+	private long coachIdThree;
 	
 	@Before
 	public void setup() {
 		coachDao = new JDBCCoachDAO(super.getDataSource());
-		coachDao.addCoach("John", "Doe", 1);
+		coachIdOne = coachDao.addCoach("John", "Doe", 1);
 	}
 	
 	@Test
