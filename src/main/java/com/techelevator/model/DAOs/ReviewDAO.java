@@ -10,6 +10,8 @@ public interface ReviewDAO {
 	
 	void addReview(long coachId, long clientId, int review, String reviewText);
 	
+	void editReview(long reviewId, long clientId, int rating, String reviewText);
+	
 	void removeReview(long reviewId);
 	
 	void removeReviewsByCoachId(long coachId);

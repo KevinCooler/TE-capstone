@@ -20,6 +20,7 @@ import com.techelevator.model.DAOs.CoachDAO;
 import com.techelevator.model.DAOs.ReviewDAO;
 import com.techelevator.model.Objects.Client;
 import com.techelevator.model.Objects.Coach;
+import com.techelevator.model.Objects.Review;
 import com.techelevator.model.Objects.User;
 import com.techelevator.security.PageAuthorizer;
 
@@ -48,23 +49,6 @@ public class CoachController {
 		List<Client> clients;
 		User user = (User) session.getAttribute("currentUser");
 		
-		if(user != null) {
-			if(user.getRole().equals("client")) {
-				Client client = clientDAO.getClientById(user.getId());
-				map.addAttribute("client", client);
-			} else {
-//				long id = (Long)model.asMap().get("coachId");
-				if(model.containsAttribute("coachId")) {
-					long id = (Long)model.asMap().get("coachId");
-					clients = clientDAO.getClientsByCoach(id);
-				}
-				else {
-					clients = clientDAO.getClientsByCoach(coachId);
-				}
-				map.addAttribute("clients", clients);
-			}
-		}
-		
 		if(model.containsAttribute("coachId")) {
 			long id = (Long)model.asMap().get("coachId");
 			coach = coachDAO.getCoachById(id);
@@ -75,7 +59,24 @@ public class CoachController {
 			coach = coachDAO.getCoachById(coachId);
 			map.addAttribute("coach", coach);
 		}
-		
+
+		if(user != null) {
+			if(user.getRole().equals("client")) {
+				Client client = clientDAO.getClientById(user.getId());
+				map.addAttribute("client", client);
+				map.addAttribute("prevReview", hasClientLeftReview(client.getId(), coach));
+			} else {
+				if(model.containsAttribute("coachId")) {
+					long id = (Long)model.asMap().get("coachId");
+					clients = clientDAO.getClientsByCoach(id);
+				}
+				else {
+					clients = clientDAO.getClientsByCoach(coachId);
+				}
+				map.addAttribute("clients", clients);
+			}
+		}
+
 		if(coach != null)
 			return "coach";
 		return "redirect:/";
@@ -153,6 +154,20 @@ public class CoachController {
 		return "redirect:/coach";
 	}
 	
+	@RequestMapping(path="/editReview", method=RequestMethod.POST)
+	public String editReview(@RequestParam long reviewId, @RequestParam long coachId,
+			@RequestParam String reviewText, HttpSession session, @RequestParam int rating,
+			RedirectAttributes redirect) {
+		User user = (User)session.getAttribute("currentUser");
+		
+		if(user != null)
+			reviewDao.editReview(reviewId, user.getId(), rating, reviewText);
+		
+		redirect.addFlashAttribute("coachId", coachId);
+		
+		return "redirect:/coach";
+	}
+	
 	@RequestMapping(path="/browseClients", method=RequestMethod.GET)
 	public String displayBrowseClients(ModelMap map, HttpSession session) {
 		User user = (User) session.getAttribute("currentUser");
@@ -211,5 +226,14 @@ public class CoachController {
 			clientDAO.updateCompleted(true, clientId);
 		
 		return "redirect:/client";
+	}
+	
+	private boolean hasClientLeftReview(long clientId, Coach coach) {
+		for(Review review : coach.getReviews()) {
+			if(review.getClientId() == clientId)
+				return true;
+		}
+		
+		return false;
 	}
 }
