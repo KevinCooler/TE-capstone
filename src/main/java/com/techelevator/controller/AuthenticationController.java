@@ -112,7 +112,8 @@ public class AuthenticationController {
 	public String doChangePassword(@RequestParam String oldPassword,
 						   		   @RequestParam String newPassword,
 						   		   @RequestParam String confirmNewPassword,
-						   		   HttpSession session) {
+						   		   HttpSession session,
+						   		   RedirectAttributes redirect) {
 		if(session.getAttribute("currentUser") == null) {
 			return "redirect:/login";
 		} else {
@@ -122,6 +123,7 @@ public class AuthenticationController {
 				userDAO.updatePassword(userName, newPassword);
 				return "redirect:/successChangePassword";
 			}
+			redirect.addFlashAttribute("incorrectPassword",  "Oops! The Old Password entered was not correct.");
 			return "redirect:/changePassword";
 		}
 	}

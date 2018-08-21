@@ -13,6 +13,7 @@
 			<div class="form-group">
 				<label for="oldPassword">Old Password: </label>
 				<input type="password" id="oldPassword" name="oldPassword" placeHolder="Old Password" class="form-control" />
+				<p class="error"><c:out value="${incorrectPassword}"/></p>
 			</div>
 			<div class="form-group">
 				<label for="newPassword">New Password: </label>
