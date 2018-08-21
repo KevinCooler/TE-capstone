@@ -4,15 +4,15 @@
 
 BEGIN;
 
-insert into app_user (user_name, password, salt, role) values ('Kevin@gmail.com', 1, 2, 'admin');
-insert into app_user (user_name, password, salt, role) values ('Kerry@gmail.com', 1, 2, 'admin');
-insert into app_user (user_name, password, salt, role) values ('Brian@gmail.com', 1, 2, 'admin');
-insert into app_user (user_name, password, salt, role) values ('John@gmail.com', 1, 2, 'coach');
-insert into app_user (user_name, password, salt, role) values ('Steve@gmail.com', 1, 2, 'coach');
-insert into app_user (user_name, password, salt, role) values ('Andrew@gmail.com', 1, 2, 'coach');
-insert into app_user (user_name, password, salt, role) values ('Trey@gmail.com', 1, 2, 'client');
-insert into app_user (user_name, password, salt, role) values ('Tim@gmail.com', 1, 2, 'client');
-insert into app_user (user_name, password, salt, role) values ('Nick@gmail.com', 1, 2, 'client');
+insert into app_user (user_name, password, salt, role) values ('kevin@gmail.com', 1, 2, 'admin');
+insert into app_user (user_name, password, salt, role) values ('kerry@gmail.com', 1, 2, 'admin');
+insert into app_user (user_name, password, salt, role) values ('brian@gmail.com', 1, 2, 'admin');
+insert into app_user (user_name, password, salt, role) values ('john@gmail.com', 1, 2, 'coach');
+insert into app_user (user_name, password, salt, role) values ('steve@gmail.com', 1, 2, 'coach');
+insert into app_user (user_name, password, salt, role) values ('andrew@gmail.com', 1, 2, 'coach');
+insert into app_user (user_name, password, salt, role) values ('trey@gmail.com', 1, 2, 'client');
+insert into app_user (user_name, password, salt, role) values ('tim@gmail.com', 1, 2, 'client');
+insert into app_user (user_name, password, salt, role) values ('nick@gmail.com', 1, 2, 'client');
 
 insert into clients (client_id, first_name, last_name, is_looking_for_coach, city_location, state_location, about_me) values (7, 'Trey', 'Tomlin', 'true', 'Columbus', 'Ohio', 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.');
 insert into clients (client_id, first_name, last_name, is_looking_for_coach, city_location, state_location, about_me) values (8, 'Tim', 'Hart', 'false', 'Dayton', 'Ohio', 'this is a test about me');

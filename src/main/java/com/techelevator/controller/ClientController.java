@@ -136,13 +136,12 @@ public class ClientController {
 								  @RequestParam String firstName,
 								  @RequestParam String lastName, @RequestParam String city,
 								  @RequestParam String state, @RequestParam String aboutMe,
-								  @RequestParam boolean isLookingForCoach,
+								  @RequestParam(required=false) Boolean isLookingForCoach,
 								  RedirectAttributes redirect) {
 		clientDAO.updateName(firstName, lastName, clientId);
 		clientDAO.updateLocation(city, state, clientId);
 		clientDAO.updateAboutMe(aboutMe, clientId);
-		clientDAO.updateIsLookingForCoach(isLookingForCoach, clientId);
-		
+		if(isLookingForCoach != null) clientDAO.updateIsLookingForCoach(isLookingForCoach, clientId);
 		redirect.addFlashAttribute("clientId", clientId);
 		
 		return "redirect:/client";
