@@ -1,6 +1,9 @@
 package com.techelevator.controller;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.techelevator.model.DAOs.AvailabilityDAO;
 import com.techelevator.model.DAOs.CoachDAO;
 import com.techelevator.model.DAOs.ReviewDAO;
 import com.techelevator.model.DAOs.UserDAO;
+import com.techelevator.model.Objects.Coach;
 import com.techelevator.model.Objects.User;
 import com.techelevator.security.PageAuthorizer;
 
@@ -35,7 +40,13 @@ public class AdminController {
 	@RequestMapping(path="/admin", method=RequestMethod.GET)
 	public String displayAdminPage(ModelMap map, HttpSession session) {
 		if(authorizer.isNotAdmin((User) session.getAttribute("currentUser"))) return "redirect:/";
-		map.addAttribute("coaches", coachDAO.getCoachList());
+		List<Coach> coaches = coachDAO.getCoachList();
+		map.addAttribute("coaches", coaches);
+		List<User> users = new ArrayList<User>();
+		for(Coach coach: coaches) {
+			users.add(userDAO.getUserByUserId(coach.getId()));
+		}
+		map.addAttribute("users",  users);
 		return "admin";
 	}
 	
@@ -43,10 +54,16 @@ public class AdminController {
 	public String submitAddCoach(@RequestParam("firstName") String firstName, 
 								 @RequestParam("lastName") String lastName, 
 								 @RequestParam("password") String password, 
-								 @RequestParam("confirmPassword") String confirmPassword) {
-		String userName = firstName.substring(0, 1).toLowerCase() + lastName.toLowerCase();
-		Long coachId = userDAO.saveUser(userName, password, "coach");
-		coachDAO.addCoach(firstName, lastName, coachId);
+								 @RequestParam("userName") String userName,
+								 @RequestParam("confirmPassword") String confirmPassword,
+								 RedirectAttributes redirect) {
+		if(userDAO.getUserByUserName(userName) != null) {
+			redirect.addFlashAttribute("duplicateUsername", "Oops! This email address is already in use. Please try again.");
+		}
+		else {
+			Long coachId = userDAO.saveUser(userName, password, "coach");
+			coachDAO.addCoach(firstName, lastName, coachId);
+		}
 		return "redirect:/admin";
 	}
 	

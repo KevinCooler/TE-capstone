@@ -12,15 +12,24 @@
 }
 
 .title-details {
+	background-color:rgba(75,75,75,.7);
+    z-index:0;
+    padding: 5px;
+    border-radius:10px;
     position: absolute;
-    left: 20px;
-    bottom: 10px;
+    left: 5px;
+    bottom: 5px;
     font-size: 1.5em;
 }
+.title-details h1{
+	margin: 0 !important;
+}
+.title-details p{
+	margin: 0 !important;
+}
+
 .welcome-bar a {
-    position: absolute;
-    right: 20px;
-    bottom: 20px;
+	margin-top:5px;
 }
 
 .fas{
@@ -34,6 +43,9 @@
 #availability-delete {
 	margin-bottom: 5px;
 	margin-left: 10px;
+}
+.feature-row {
+	margin-bottom:50px;	
 }
 
 .browse-name {
@@ -54,6 +66,10 @@
 .coach-avail{
 	border-collapse: separate;
 	border-spacing: 7px 0px;
+}
+
+.coach-image {
+	height:150px;
 }
 
 .looking-for-coach{
@@ -79,4 +95,7 @@
 .client-status form {
 	margin-right: 15px;
 	margin-bottom: 10px;
+}
+.error{
+	color: red;
 }

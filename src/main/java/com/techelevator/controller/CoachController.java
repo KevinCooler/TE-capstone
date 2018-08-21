@@ -46,6 +46,7 @@ public class CoachController {
 	public String displayCoach(@RequestParam(required=false) Long coachId, 
 			ModelMap map, Model model, HttpSession session) {
 		Coach coach;
+		List<Client> clients;
 		User user = (User) session.getAttribute("currentUser");
 		
 		if(model.containsAttribute("coachId")) {
@@ -58,18 +59,24 @@ public class CoachController {
 			coach = coachDAO.getCoachById(coachId);
 			map.addAttribute("coach", coach);
 		}
-		
+
 		if(user != null) {
 			if(user.getRole().equals("client")) {
 				Client client = clientDAO.getClientById(user.getId());
 				map.addAttribute("client", client);
 				map.addAttribute("prevReview", hasClientLeftReview(client.getId(), coach));
 			} else {
-				List<Client> clients = clientDAO.getClientsByCoach(coachId);
+				if(model.containsAttribute("coachId")) {
+					long id = (Long)model.asMap().get("coachId");
+					clients = clientDAO.getClientsByCoach(id);
+				}
+				else {
+					clients = clientDAO.getClientsByCoach(coachId);
+				}
 				map.addAttribute("clients", clients);
 			}
 		}
-		
+
 		if(coach != null)
 			return "coach";
 		return "redirect:/";

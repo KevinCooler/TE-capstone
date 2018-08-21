@@ -17,6 +17,9 @@
 				
 				<tr>
 					<td>
+						<img class="coach-image hidden-xs" src="img/empty_profile.png" alt="empty profile picture"/>
+					</td>
+					<td>
 						<div class="browse-name">
 							<h4><c:out value="${coach.firstName} ${coach.lastName}"/></h4>
 						</div>
@@ -31,7 +34,7 @@
 						<a href="${newMessageURL}" class="browse-button btn btn-primary">Contact</a>
 					</td>
 					<td>
-						<p><c:out value="${coach.aboutMe}"/></p>
+						<p class="hidden-xs"><c:out value="${coach.aboutMe}"/></p>
 					</td>
 				</tr>
 			</c:forEach>

@@ -14,7 +14,7 @@
 	
 	<div class="col-sm-8">
 		<c:if test="${currentUser.id == client.id}">
-			<a style="text-align: right" href="${editClientURL}">Edit Profile</a>
+			<a href="${editClientURL}">Edit Profile</a>
 		</c:if>
 		
 		<h1 style="text-align: center">
@@ -36,7 +36,7 @@
       	
       	<c:if test="${client.pairedWith == currentUser.id && client.completed == 'false'}">
       		<p class="looking-for-coach">
-      			You're currently coaching ${client.firstName} ${client.lastName}
+      			<c:out value="You're currently coaching ${client.firstName} ${client.lastName}"/>
       		</p>
       		<c:url var="noCoachingLink" value="/noLongerCoaching"/>
       		<div class="client-status">
@@ -58,14 +58,11 @@
 	<div class="col-sm-2"></div>
 </div>
 
-<div class="row">
+<div class="row text-center">
 	<div class="col-sm-2"></div>
-	
 	<div class="col-sm-8">
-		<div style="text-align: center">
-			<c:out value="${client.city}, ${client.state}"/>
-		</div>
-		<p><c:out value="${client.aboutMe}"/></p>
+		<div><c:out value="${client.city}, ${client.state}"/></div>
+		<p><c:out value="${clientUser.userName}"/></p>
 	</div>
 	
 	<div class="col-sm-2"></div>
@@ -73,11 +70,10 @@
 
 <div class="row">
 	<div class="col-sm-2"></div>
-	
 	<div class="col-sm-8">
+		<p><c:out value="${client.aboutMe}"/></p>
 		<a class="btn btn-primary btn-block" href="${newMessageURL}">Contact</a>
 	</div>
-	
 	<div class="col-sm-2"></div>
 </div>
 

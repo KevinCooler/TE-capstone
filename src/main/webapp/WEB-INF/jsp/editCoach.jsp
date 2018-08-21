@@ -16,27 +16,31 @@
 		<input type="hidden" name="coachId" value=<c:out value="${coach.id}"/>>
 		<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 			<div class="row">
-				<div class="form-group">
+				<div class="form-group col-sm-6">
 					<label for="firstName">First Name: </label>
 					<input type="text" id="firstName" name="firstName" 
 						value=<c:out value="${coach.firstName}"/> class="form-control" />
 				</div>
-				<div class="form-group">
+				<div class="form-group col-sm-6">
 					<label for="lastName">Last Name: </label>
 					<input type="text" id="lastName" name="lastName" 
 						value=<c:out value="${coach.lastName}"/> class="form-control" />
 				</div>
-				<div class="form-group">
+			</div>
+			<div class="row">
+				<div class="form-group col-sm-6">
 					<label for="city">City: </label>
 					<input type="text" id="city" name="city" 
 						value=<c:out value="${coach.city}"/> class="form-control" />
 				</div>
-				<div class="form-group">
+				<div class="form-group col-sm-6">
 					<label for="state">State: </label>
 					<input type="text" id="state" name="state" 
 						value=<c:out value="${coach.state}"/> class="form-control" />	
 				</div>
-				<div class="form-group">
+			</div>
+			<div class="row">
+				<div class="form-group col-sm-12">
 					<label for="aboutMe">About Me: </label>
 					<textarea class="form-control" id="aboutMe" name="aboutMe" rows="5"><c:out value="${coach.aboutMe}"/></textarea>
 				</div>
