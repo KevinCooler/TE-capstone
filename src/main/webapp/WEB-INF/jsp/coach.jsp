@@ -78,20 +78,22 @@
 			<br>
 		</c:if>
 		<table class="table">
-			<c:forEach var="review" items="${coach.reviews}" varStatus="count">
+			<c:forEach var="review" items="${coach.reviews}">
 			<c:choose>
-				<c:when test="${prevReview && review.clientId == client.id}">
+				<c:when test="${prevReview && review.clientId == currentUser.id}">
 					<tr>
-						<td class="edit" data-count="${count.index}">
-							<span class="edit" data-count="${count.index}">
-								<c:url var="reviewEditLink" value="/editReview"/>
+						<td>
+							<span class="edit" data-rating="${review.rating}">
 								<img style="height:15px" class="img img-responsive" 
 									src="img/<c:out value="${review.rating}"/>-star.png" alt="star rating">
 								<span id="review-text"><c:out value="${review.reviewText}"/></span>
 									- <c:out value="${review.createDate}"/>
+								<br><span class="edit-button">Edit</span>
 							</span>
-								
-							<form id="response-${count.index}" method="POST" action="${reviewEditLink}">
+							
+							<c:url var="reviewEditLink" value="/editReview"/>
+							<form id="edit-review" method="POST" action="${reviewEditLink}">
+								<input type="hidden" name="reviewId" value="${review.id}">
 								<input type="hidden" name="coachId" value="${coach.id}">
 								<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}">
 							</form>

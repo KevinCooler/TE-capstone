@@ -60,6 +60,15 @@ public class JDBCReviewDAO implements ReviewDAO{
 		
 		temp.update(sqlStatement, coachId, clientId, reviewText, review);
 	}
+	
+	@Override
+	public void editReview(long reviewId, long clientId, int rating, String reviewText) {
+		String sqlStatement = "UPDATE coach_reviews "
+				+ "SET review_text = ?,  rating = ? "
+				+ "WHERE id = ? AND client_id = ?;";
+		
+		temp.update(sqlStatement, reviewText, rating, reviewId, clientId);
+	}
 
 	@Override
 	public void removeReview(long reviewId) {

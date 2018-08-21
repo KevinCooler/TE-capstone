@@ -154,6 +154,20 @@ public class CoachController {
 		return "redirect:/coach";
 	}
 	
+	@RequestMapping(path="/editReview", method=RequestMethod.POST)
+	public String editReview(@RequestParam long reviewId, @RequestParam long coachId,
+			@RequestParam String reviewText, HttpSession session, @RequestParam int rating,
+			RedirectAttributes redirect) {
+		User user = (User)session.getAttribute("currentUser");
+		
+		if(user != null)
+			reviewDao.editReview(reviewId, user.getId(), rating, reviewText);
+		
+		redirect.addFlashAttribute("coachId", coachId);
+		
+		return "redirect:/coach";
+	}
+	
 	@RequestMapping(path="/browseClients", method=RequestMethod.GET)
 	public String displayBrowseClients(ModelMap map, HttpSession session) {
 		User user = (User) session.getAttribute("currentUser");

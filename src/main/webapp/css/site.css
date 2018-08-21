@@ -82,6 +82,11 @@
 	text-decoration: underline;
 }
 
+.edit-button {
+	font-weight: bold;
+	text-decoration: underline;
+}
+
 .feedbackButton{
 	border-collapse: separate;
 	border-spacing: 0px 2px;
