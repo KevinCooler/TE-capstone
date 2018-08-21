@@ -10,22 +10,26 @@ $(document).ready(function () {
 		$("#changePassword").validate({
 			
 			rules : {
-				password : {
-					required : true,
-					minlength: 8,
-					capitals: true,
+				oldPassword : {
+					required : true
 				},
-				confirmPassword : {
+				newPassword : {
+					required : true,
+					minLength : 8,
+					capitals : true
+				},
+				confirmNewPassword : {
 					required : true,		
-					equalTo : "#password"  
+					equalTo : "#newPassword"  
 				}
 			},
 			messages : {			
-				password: {
-					minlength: "Password too short, make it at least 8 characters",
-					capitals: "Field must contain a capital letter",
+				newPassword : {
+				//	required : "password is required"
+					minLength : "password must be at least 8 charaters",
+					capitals : "password must contain at least one capital"
 				},
-				confirmPassword : {
+				confirmNewPassword : {
 					equalTo : "Passwords do not match"
 				}
 			},
