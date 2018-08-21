@@ -10,7 +10,7 @@ $(document).ready(function () {
 				},
 				newPassword : {
 					required : true,
-					minLength : 8,
+					minlength : 8,
 					capitals : true
 				},
 				confirmNewPassword : {
@@ -24,7 +24,7 @@ $(document).ready(function () {
 				},
 				newPassword : {
 					required : "password is required",
-					minLength : "password must be at least 8 charaters",
+					minlength : "password must be at least 8 charaters",
 					capitals : "password must contain at least one capital"
 				},
 				confirmNewPassword : {
