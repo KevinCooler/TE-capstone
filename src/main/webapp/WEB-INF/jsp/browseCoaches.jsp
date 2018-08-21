@@ -30,8 +30,8 @@
 						</div>
 					</td>
 					<td>
-						<a href="${coachURL}" class="browse-button btn btn-success">Details</a>
-						<a href="${newMessageURL}" class="browse-button btn btn-primary">Contact</a>
+						<a href="${coachURL}" class="browse-button btn btn-success">Details <i class="fa fa-info-circle" aria-hidden="true"></i></a>
+						<a href="${newMessageURL}" class="browse-button btn btn-primary">Contact <i class="fa fa-comments" aria-hidden="true"></i></a>
 					</td>
 					<td>
 						<p class="hidden-xs"><c:out value="${coach.aboutMe}"/></p>

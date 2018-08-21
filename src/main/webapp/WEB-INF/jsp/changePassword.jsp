@@ -23,7 +23,7 @@
 				<label for="confirmNewPassword">Confirm New Password: </label>
 				<input type="password" id="confirmNewPassword" name="confirmNewPassword" placeHolder="Re-Type New Password" class="form-control" />	
 			</div>
-			<button type="submit" class="btn btn-default">Change Password</button>
+			<button type="submit" class="btn btn-primary">Change Password</button>
 		</div>
 		<div class="col-sm-4"></div>
 	</div>
