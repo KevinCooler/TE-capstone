@@ -17,21 +17,27 @@
 				
 				<tr>
 					<td>
-						<img class="coach-image hidden-xs" src="img/empty_profile.png" alt="empty profile picture"/>
+						<a href="${coachURL}"><img class="coach-image hidden-xs" src="img/empty_profile.png" alt="empty profile picture"/></a>
 					</td>
 					<td>
 						<div class="browse-name">
 							<h4><c:out value="${coach.firstName} ${coach.lastName}"/></h4>
 						</div>
-						<img style="height:15px" class="img img-responsive" 
+						<c:choose>
+							<c:when test="${coach.averageReview == 0}">
+							</c:when>
+							<c:otherwise>
+								<img style="height:15px" class="img img-responsive" 
 							src="img/<c:out value="${coach.averageReview}"/>-star.png" alt="star rating"/>
+							</c:otherwise>
+						</c:choose>
 						<div>
 							<c:out value="${coach.city}, ${coach.state}"/>
 						</div>
 					</td>
 					<td>
-						<a href="${coachURL}" class="browse-button btn btn-success">Details</a>
-						<a href="${newMessageURL}" class="browse-button btn btn-primary">Contact</a>
+						<a href="${coachURL}" class="browse-button btn btn-success">Details <i class="fa fa-info-circle" aria-hidden="true"></i></a>
+						<a href="${newMessageURL}" class="browse-button btn btn-primary">Contact <i class="fa fa-comments" aria-hidden="true"></i></a>
 					</td>
 					<td>
 						<p class="hidden-xs"><c:out value="${coach.aboutMe}"/></p>

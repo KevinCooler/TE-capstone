@@ -29,8 +29,8 @@
 						</div>
 					</td>
 					<td>
-						<a href="${clientURL}" class="browse-button btn btn-success">Details</a>
-						<a href="${newMessageURL}" class="browse-button btn btn-primary">Contact</a>
+						<a href="${clientURL}" class="browse-button btn btn-success">Details <i class="fa fa-info-circle" aria-hidden="true"></i></a>
+						<a href="${newMessageURL}" class="browse-button btn btn-primary">Contact <i class="fa fa-comments" aria-hidden="true"></i></a>
 					</td>
 					<td>
 						<p><c:out value="${client.aboutMe}"/></p>

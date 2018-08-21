@@ -75,6 +75,6 @@ public class Coach {
 			return Math.round(average / count);
 		}
 		
-		return 1;
+		return 0;
 	}
 }

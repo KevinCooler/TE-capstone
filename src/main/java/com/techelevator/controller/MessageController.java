@@ -73,7 +73,7 @@ public class MessageController {
 	@RequestMapping(path="/viewProfile", method=RequestMethod.GET)
 	public String viewProfile(@RequestParam long userId,  RedirectAttributes redirect) {
 		User user = userDAO.getUserByUserId(userId);
-		
+		if(user == null) return "redirect:/messages";
 		if(user.getRole().equals("coach")) {
 			redirect.addFlashAttribute("coachId", userId);
 			return "redirect:/coach";
@@ -81,8 +81,7 @@ public class MessageController {
 			redirect.addFlashAttribute("clientId", userId);
 			return "redirect:/client";
 		}
-		
-		return null;
+		return "redirect:/messages";
 	}
 	
 	private String getSenderName(User user) {

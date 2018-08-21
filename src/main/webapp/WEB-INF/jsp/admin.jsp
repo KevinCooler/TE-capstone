@@ -21,13 +21,13 @@
                         	<p class="font-weight-light"><c:out value="${users[status.index].userName}"/></p>
                         </td>
                         <td>
-                            <a href="${coachURL}" class="admin-button btn btn-primary">View</a>
+                            <a href="${coachURL}" class="admin-button btn btn-primary">View <i class="fa fa-info-circle" aria-hidden="true"></i></a>
                         </td>
                         <td>
-                            <a href="${editCoachURL}" class="admin-button btn btn-success">Edit</a>
+                            <a href="${editCoachURL}" class="admin-button btn btn-success">Edit <i class="fa fa-edit" aria-hidden="true"></i></a>
                         </td>
                         <td>
-                            <a href="${deleteCoachURL}" class="admin-button btn btn-danger">Delete</a>
+                            <a href="${deleteCoachURL}" class="admin-button btn btn-danger deleteCoach">Delete <i class="fa fa-trash" aria-hidden="true"></i></a>
                         </td>
                     </tr>
                 </c:forEach>
