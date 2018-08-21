@@ -18,9 +18,12 @@ $(document).ready(function () {
 					equalTo : "#newPassword"  
 				}
 			},
-			messages : {			
+			messages : {
+				oldPassword : {
+					required : "password is required"
+				},
 				newPassword : {
-				//	required : "password is required"
+					required : "password is required",
 					minLength : "password must be at least 8 charaters",
 					capitals : "password must contain at least one capital"
 				},
