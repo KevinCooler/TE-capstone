@@ -71,7 +71,7 @@
 	<div class="col-sm-5">
 		<h3>Reviews</h3>
 		<c:if test="${currentUser.role == 'client' && client.completed == 'true' 
-			&& client.pairedWith == coach.id}">
+			&& client.pairedWith == coach.id && !prevReview}">
 			<span id="new-review" class="response">New Review</span>
 			<c:url var="reviewLink" value="/addReview"/>
 			<form id="review-form" method="POST" action="${reviewLink}">
@@ -81,15 +81,38 @@
 			<br>
 		</c:if>
 		<table class="table">
-			<c:forEach var="review" items="${coach.reviews}">
-				<tr>
-					<td>
-						<img style="height:15px" class="img img-responsive" 
-							src="img/<c:out value="${review.rating}"/>-star.png" alt="star rating">
-						<c:out value="${review.reviewText}"/>
-						- <c:out value="${review.createDate}"/>
-					</td>
-				</tr>
+			<c:forEach var="review" items="${coach.reviews}" varStatus="count">
+			<c:choose>
+				<c:when test="${prevReview && review.clientId == client.id}">
+					<tr>
+						<td class="edit" data-count="${count.index}">
+							<span class="edit" data-count="${count.index}">
+								<c:url var="reviewEditLink" value="/editReview"/>
+								<img style="height:15px" class="img img-responsive" 
+									src="img/<c:out value="${review.rating}"/>-star.png" alt="star rating">
+								<span id="review-text"><c:out value="${review.reviewText}"/></span>
+									- <c:out value="${review.createDate}"/>
+							</span>
+								
+							<form id="response-${count.index}" method="POST" action="${reviewEditLink}">
+								<input type="hidden" name="coachId" value="${coach.id}">
+								<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}">
+							</form>
+							
+						</td>
+					</tr>
+				</c:when>
+				<c:otherwise>
+					<tr>
+						<td>
+							<img style="height:15px" class="img img-responsive" 
+								src="img/<c:out value="${review.rating}"/>-star.png" alt="star rating">
+							<c:out value="${review.reviewText}"/>
+							- <c:out value="${review.createDate}"/>
+						</td>
+					</tr>
+				</c:otherwise>
+			</c:choose>
 			</c:forEach>
 		</table>
 	</div>
