@@ -27,7 +27,7 @@
                             <a href="${editCoachURL}" class="admin-button btn btn-success">Edit</a>
                         </td>
                         <td>
-                            <a href="${deleteCoachURL}" class="admin-button btn btn-danger">Delete</a>
+                            <a href="${deleteCoachURL}" class="admin-button btn btn-danger deleteCoach">Delete</a>
                         </td>
                     </tr>
                 </c:forEach>
