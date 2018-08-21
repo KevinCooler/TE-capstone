@@ -17,7 +17,7 @@
 				
 				<tr>
 					<td>
-						<img class="coach-image hidden-xs" src="img/empty_profile.png" alt="empty profile picture"/>
+						<a href="${coachURL}"><img class="coach-image hidden-xs" src="img/empty_profile.png" alt="empty profile picture"/></a>
 					</td>
 					<td>
 						<div class="browse-name">
