@@ -10,7 +10,7 @@ public interface MessageDAO {
 	
 	Message viewMessage(long messageId, long userId);
 	
-	void addMessage(long senderId, String senderName, 
+	long addMessage(long senderId, String senderName, 
 			long receiverId, String receiverName, String messageText);
 	
 	void removeMessage(long messageId);

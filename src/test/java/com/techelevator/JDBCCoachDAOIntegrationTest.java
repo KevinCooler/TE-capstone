@@ -5,19 +5,8 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
 import com.techelevator.model.JDBCDAOs.JDBCCoachDAO;
 import com.techelevator.model.Objects.Coach;
-
-//import com.techelevator.model.JDBCUserDAO;
-
-/* To get these tests to run, this dummy user needs to be added into the app_user table.
- * If this isn's the first user in your table, you'll need to manually adjust the ids in the tests
- * 
-insert into app_user (user_name, password, role, salt) VALUES ('testing1', 'testing', 'coach', 'llll');
-insert into app_user (user_name, password, role, salt) VALUES ('testing2', 'testing', 'coach', 'llll');
-insert into app_user (user_name, password, role, salt) VALUES ('testing3', 'testing', 'coach', 'llll');
- */
 
 public class JDBCCoachDAOIntegrationTest extends DAOIntegrationTest{
 
@@ -25,77 +14,100 @@ public class JDBCCoachDAOIntegrationTest extends DAOIntegrationTest{
 	private long coachIdOne;
 	private long coachIdTwo;
 	private long coachIdThree;
+	private TestingUtilities util;
 	
 	@Before
 	public void setup() {
 		coachDao = new JDBCCoachDAO(super.getDataSource());
-		coachIdOne = coachDao.addCoach("John", "Doe", 1);
+		util = new TestingUtilities(super.getDataSource());
+		coachIdOne = util.newUser("test1");
+		coachDao.addCoach("John", "Doe", coachIdOne);
+		
 	}
 	
 	@Test
 	public void testCoachAddition() {
-		Coach coach = coachDao.getCoachById(1);
+		Coach coach = coachDao.getCoachById(coachIdOne);
 		Assert.assertEquals("John", coach.getFirstName());
 		Assert.assertEquals("Doe", coach.getLastName());
-		Assert.assertEquals(1, coach.getId());
+		Assert.assertEquals(coachIdOne, coach.getId());
 	}
 	
 	@Test
 	public void testCoachList() {
-		coachDao.addCoach("Jane", "Doe", 2);
-		coachDao.addCoach("Jim", "Doe", 3);
 		List<Coach> list = coachDao.getCoachList();
+		int listSize = list.size();
 		
-		Assert.assertEquals(3, list.size());
-		Assert.assertEquals("Jane", list.get(1).getFirstName());
-		Assert.assertEquals("Jim", list.get(2).getFirstName());
+		coachIdTwo = util.newUser("test2");
+		coachIdThree = util.newUser("test3");
+		coachDao.addCoach("Jane", "Doe", coachIdTwo);
+		coachDao.addCoach("Jim", "Doe", coachIdThree);
+		
+		list = coachDao.getCoachList();
+		Assert.assertEquals(listSize + 2, list.size());
+	}
+	
+	@Test
+	public void testContentsOfCoachList() {
+		coachIdTwo = util.newUser("test2");
+		coachIdThree = util.newUser("test3");
+		coachDao.addCoach("Jane", "Doe", coachIdTwo);
+		coachDao.addCoach("Jim", "Doe", coachIdThree);
+		
+		List<Coach> list = coachDao.getCoachList();
+		int listSize = list.size();
+		int janeIndex = listSize - 2;
+		int jimIndex = listSize - 1;
+		
+		Assert.assertEquals("Jane", list.get(janeIndex).getFirstName());
+		Assert.assertEquals("Jim", list.get(jimIndex).getFirstName());
 	}
 	
 	@Test
 	public void testRemoveCoach() {
-		Coach coach = coachDao.getCoachById(1);
+		Coach coach = coachDao.getCoachById(coachIdOne);
 		Assert.assertEquals("John", coach.getFirstName());
 		
-		coachDao.removeCoach(1);
-		coach = coachDao.getCoachById(1);
+		coachDao.removeCoach(coachIdOne);
+		coach = coachDao.getCoachById(coachIdOne);
 		
 		Assert.assertEquals(null, coach);
 	}
 	
 	@Test
 	public void testUpdateName() {
-		Coach coach = coachDao.getCoachById(1);
+		Coach coach = coachDao.getCoachById(coachIdOne);
 		Assert.assertEquals("John", coach.getFirstName());
 		Assert.assertEquals("Doe", coach.getLastName());
 		
-		coachDao.updateName("Joey", "Jenkins", 1);
+		coachDao.updateName("Joey", "Jenkins", coachIdOne);
 		
-		coach = coachDao.getCoachById(1);
+		coach = coachDao.getCoachById(coachIdOne);
 		Assert.assertEquals("Joey", coach.getFirstName());
 		Assert.assertEquals("Jenkins", coach.getLastName());
 	}
 	
 	@Test
 	public void testUpdateLocation() {
-		Coach coach = coachDao.getCoachById(1);
+		Coach coach = coachDao.getCoachById(coachIdOne);
 		Assert.assertEquals("update", coach.getCity());
 		Assert.assertEquals("update", coach.getState());
 		
-		coachDao.updateLocation("Columbus", "OH", 1);
+		coachDao.updateLocation("Columbus", "OH", coachIdOne);
 		
-		coach = coachDao.getCoachById(1);
+		coach = coachDao.getCoachById(coachIdOne);
 		Assert.assertEquals("Columbus", coach.getCity());
 		Assert.assertEquals("OH", coach.getState());
 	}
 	
 	@Test
 	public void updateAboutMe() {
-		Coach coach = coachDao.getCoachById(1);
+		Coach coach = coachDao.getCoachById(coachIdOne);
 		Assert.assertEquals("update", coach.getAboutMe());
 		
-		coachDao.updateAboutMe("I'm a test coach", 1);
+		coachDao.updateAboutMe("I'm a test coach", coachIdOne);
 		
-		coach = coachDao.getCoachById(1);
+		coach = coachDao.getCoachById(coachIdOne);
 		Assert.assertEquals("I'm a test coach", coach.getAboutMe());
 	}
 }

@@ -12,41 +12,82 @@ import com.techelevator.model.Objects.Review;
 public class JDBCReviewDAOIntegrationTest extends DAOIntegrationTest {
 	
 	private JDBCReviewDAO reviewDAO;
+	private TestingUtilities util;
+	private long coachId;
+	private long clientId;
 	
 	@Before
 	public void setup() {
-		reviewDAO = new JDBCReviewDAO(this.getDataSource());
+		reviewDAO = new JDBCReviewDAO(super.getDataSource());
+		util = new TestingUtilities(super.getDataSource());
+		
+		coachId = util.newCoach("Test", "Coach");
+		clientId = util.newClient("Test", "Client");
 	}
 	
 	@Test
 	public void testAddingReview() {
-		reviewDAO.addReview(4, 1, 4, "This is a test review.");
+		reviewDAO.addReview(coachId, clientId, 4, "Test Review");
 		
-		List<Review> list = reviewDAO.getReviewList(4);
+		List<Review> list = reviewDAO.getReviewList(coachId);
 		
 		Assert.assertEquals(1, list.size());
 	}
 	
 	@Test
-	public void testReviewDetails() {
-		reviewDAO.addReview(4, 1, 4, "This is a test review.");
-		List<Review> list = reviewDAO.getReviewList(4);
-		
-		Review review = list.get(0);
+	public void testReviewContents() {
+		reviewDAO.addReview(coachId, clientId, 4, "Test Review");
+		Review review = reviewDAO.getReviewList(coachId).get(0);
 		
 		Assert.assertEquals(4, review.getRating());
-		Assert.assertEquals("This is a test review.", review.getReviewText());
+		Assert.assertEquals("Test Review", review.getReviewText());
+	}
+	
+	@Test
+	public void testReviewList() {
+		reviewDAO.addReview(coachId, clientId, 4, "Test Review 1");
+		reviewDAO.addReview(coachId, clientId, 4, "Test Review 2");
+		reviewDAO.addReview(coachId, clientId, 4, "Test Review 3");
+		
+		List<Review> list = reviewDAO.getReviewList(coachId);
+		
+		Assert.assertEquals(3, list.size());
 	}
 	
 	@Test
 	public void testRemovingReview() {
-		reviewDAO.addReview(4, 1, 4, "This is a test review.");
-		List<Review> list = reviewDAO.getReviewList(4);
-		long id = list.get(0).getId();
+		long reviewId = reviewDAO.addReview(coachId, clientId, 4, "Test Review");
+		List<Review> list = reviewDAO.getReviewList(coachId);
+		Assert.assertEquals(1, list.size());
 		
-		reviewDAO.removeReview(id);
-		list = reviewDAO.getReviewList(4);
-		
+		reviewDAO.removeReview(reviewId);
+		list = reviewDAO.getReviewList(coachId);
 		Assert.assertEquals(0, list.size());
+	}
+	
+	@Test
+	public void testRemovingReviewsByCoachId() {
+		reviewDAO.addReview(coachId, clientId, 4, "Test Review 1");
+		reviewDAO.addReview(coachId, clientId, 4, "Test Review 2");
+		reviewDAO.addReview(coachId, clientId, 4, "Test Review 3");
+		List<Review> list = reviewDAO.getReviewList(coachId);
+		Assert.assertEquals(3, list.size());
+		
+		reviewDAO.removeReviewsByCoachId(coachId);
+		list = reviewDAO.getReviewList(coachId);
+		Assert.assertEquals(0, list.size());
+	}
+	
+	@Test
+	public void testEditingReview() {
+		long reviewId = reviewDAO.addReview(coachId, clientId, 4, "Test Review");
+		Review review = reviewDAO.getReviewList(coachId).get(0);
+		Assert.assertEquals(4, review.getRating());
+		Assert.assertEquals("Test Review", review.getReviewText());
+		
+		reviewDAO.editReview(reviewId, clientId, 2, "Updated Review");
+		review = reviewDAO.getReviewList(coachId).get(0);
+		Assert.assertEquals(2, review.getRating());
+		Assert.assertEquals("Updated Review", review.getReviewText());
 	}
 }

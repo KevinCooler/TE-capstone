@@ -67,14 +67,14 @@ public class JDBCMessageDAO implements MessageDAO{
 	}
 
 	@Override
-	public void addMessage(long senderId, String senderName,
+	public long addMessage(long senderId, String senderName,
 			long receiverId, String receiverName, String messageText) {
 		String sqlStatement = "INSERT INTO messages "
 				+ "(sender_id, sender_name, receiver_id, "
 				+ "receiver_name, message_text, create_date) "
-				+ "VALUES(?, ?, ?, ?, ?, NOW());";
+				+ "VALUES(?, ?, ?, ?, ?, NOW()) returning id;";
 		
-		temp.update(sqlStatement, senderId, senderName, receiverId, receiverName, messageText);
+		return temp.queryForObject(sqlStatement, Long.class, senderId, senderName, receiverId, receiverName, messageText);
 	}
 
 	@Override
