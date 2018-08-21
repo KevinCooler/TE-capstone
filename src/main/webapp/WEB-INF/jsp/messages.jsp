@@ -18,12 +18,10 @@
 							<td>
 								To:
 							</td>
-							<td class="response" data-count="${count.index}">
-								<c:out value="${message.receiverName}"/>
-							</td>
+							
 							<td>
 								<a href="${profileLink}">
-									<button type="button" class="btn btn-primary">View Profile</button>
+									<c:out value="${message.receiverName}"/>
 								</a>
 							</td>
 							<td>
@@ -31,6 +29,10 @@
 							</td>
 							<td>
 								<c:out value="${message.createDate}"/>
+							</td>
+							<td class="response" data-count="${count.index}">
+								<button type="button" class="btn btn-primary">Reply <i class="fa fa-reply" aria-hidden="true"></i></button>
+								
 							</td>
 						</tr>
 						<tr>
@@ -55,12 +57,9 @@
 							<td>
 								From:
 							</td>
-							<td class="response" data-count="${count.index}">
-								<c:out value="${message.senderName}"/>
-							</td>
 							<td>
 								<a href="${profileLink}">
-									<button type="button" class="btn btn-primary">View Profile</button>
+									<c:out value="${message.senderName}"/>
 								</a>
 							</td>
 							<td>
@@ -68,6 +67,9 @@
 							</td>
 							<td>
 								<c:out value="${message.createDate}"/>
+							</td>
+							<td class="response" data-count="${count.index}">
+								<button type="button" class="btn btn-primary">Reply <i class="fa fa-reply" aria-hidden="true"></i></button>
 							</td>
 						</tr>
 						<tr>
