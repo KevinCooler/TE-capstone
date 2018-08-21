@@ -20,8 +20,14 @@
 			<a style="text-align: right" href="${editCoachURL}">Edit Profile</a>
 		</c:if>
 		<h1><c:out value="${coach.firstName} ${coach.lastName}" /></h1>
-		<img style="height:15px" class="img img-responsive" 
+		<c:choose>
+			<c:when test="${coach.averageReview == 0}">
+			</c:when>
+			<c:otherwise>
+				<img style="height:15px" class="img img-responsive" 
 			src="img/<c:out value="${coach.averageReview}"/>-star.png" alt="star rating"/>
+			</c:otherwise>
+		</c:choose>
 		<c:out value="${coach.city}, ${coach.state}"/>
 	</div>
 	<div class="col-sm-2"></div>

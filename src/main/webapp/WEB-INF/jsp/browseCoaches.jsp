@@ -23,8 +23,14 @@
 						<div class="browse-name">
 							<h4><c:out value="${coach.firstName} ${coach.lastName}"/></h4>
 						</div>
-						<img style="height:15px" class="img img-responsive" 
+						<c:choose>
+							<c:when test="${coach.averageReview == 0}">
+							</c:when>
+							<c:otherwise>
+								<img style="height:15px" class="img img-responsive" 
 							src="img/<c:out value="${coach.averageReview}"/>-star.png" alt="star rating"/>
+							</c:otherwise>
+						</c:choose>
 						<div>
 							<c:out value="${coach.city}, ${coach.state}"/>
 						</div>
