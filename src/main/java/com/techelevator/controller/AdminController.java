@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.techelevator.model.DAOs.AvailabilityDAO;
 import com.techelevator.model.DAOs.CoachDAO;
+import com.techelevator.model.DAOs.MessageDAO;
 import com.techelevator.model.DAOs.ReviewDAO;
 import com.techelevator.model.DAOs.UserDAO;
 import com.techelevator.model.Objects.Coach;
@@ -29,12 +30,14 @@ public class AdminController {
 
 	private CoachDAO coachDAO;
 	private UserDAO userDAO;
+	private MessageDAO messageDAO;
 	private PageAuthorizer authorizer = new PageAuthorizer();
 
 	@Autowired
-	public AdminController(CoachDAO coachDAO, UserDAO userDAO, AvailabilityDAO availDAO, ReviewDAO reviewDAO) {
+	public AdminController(CoachDAO coachDAO, UserDAO userDAO, AvailabilityDAO availDAO, ReviewDAO reviewDAO, MessageDAO messageDAO) {
 		this.coachDAO = coachDAO;
 		this.userDAO = userDAO;
+		this.messageDAO = messageDAO;
 	}
 	
 	@RequestMapping(path="/admin", method=RequestMethod.GET)
@@ -68,8 +71,13 @@ public class AdminController {
 	}
 	
 	@RequestMapping(path="/deleteCoach", method=RequestMethod.GET)
-	public String doDeleteCoach(@RequestParam long coachId, HttpSession session) {
+	public String doDeleteCoach(@RequestParam long coachId, HttpSession session, RedirectAttributes redirect) {
 		if(authorizer.isNotAdmin((User) session.getAttribute("currentUser"))) return "redirect:/";
+		if(coachDAO.hasPairedClients(coachId)) {
+			redirect.addFlashAttribute("hasPairedClients",  "Oops! This coach cannot be deleted since they are still paired with a client.");
+			return "redirect:/admin";
+		}
+		messageDAO.removeMessagesByUserId(coachId);
 		coachDAO.removeCoach(coachId);
 		userDAO.deleteUserByUserId(coachId);
 		return "redirect:/admin";

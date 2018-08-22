@@ -57,4 +57,17 @@ public class JDBCMessageDAOIntegrationTest extends DAOIntegrationTest{
 		
 		Assert.assertEquals(3, list.size());
 	}
+	
+	@Test
+	public void testRemovingMessagesByUserId() {
+		messageDao.addMessage(senderId, "Test Sender", receiverId, "Test Receiver", "Test 1");
+		messageDao.addMessage(senderId, "Test Sender", receiverId, "Test Receiver", "Test 2");
+		messageDao.addMessage(senderId, "Test Sender", receiverId, "Test Receiver", "Test 3");
+		List<Message> list = messageDao.getMessages(receiverId);
+		Assert.assertEquals(3, list.size());
+		
+		messageDao.removeMessagesByUserId(senderId);
+		list = messageDao.getMessages(senderId);
+		Assert.assertEquals(0, list.size());
+	}
 }

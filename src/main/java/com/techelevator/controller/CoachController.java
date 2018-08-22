@@ -163,7 +163,6 @@ public class CoachController {
 		try {
 			return Files.readAllBytes(image.toPath());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
@@ -190,10 +189,8 @@ public class CoachController {
 			stream.write(file.getBytes());
 		
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

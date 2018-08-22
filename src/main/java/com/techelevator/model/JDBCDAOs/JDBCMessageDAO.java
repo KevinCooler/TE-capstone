@@ -83,4 +83,11 @@ public class JDBCMessageDAO implements MessageDAO{
 		
 		temp.update(sqlStatement, messageId);
 	}
+
+	@Override
+	public void removeMessagesByUserId(long userId) {
+		String sqlStatement = "DELETE FROM messages WHERE sender_id = ? OR receiver_id = ?;";
+		
+		temp.update(sqlStatement, userId, userId);
+	}
 }
