@@ -17,7 +17,8 @@
 				
 				<tr>
 					<td>
-						<a href="${coachURL}"><img class="coach-image hidden-xs" src="img/empty_profile.png" alt="empty profile picture"/></a>
+						<c:url var="profilePicture" value="/image/coach${coach.id}"/>
+						<a href="${coachURL}"><img class="coach-image hidden-xs profilePicture" src="${profilePicture}" alt="empty profile picture"/></a>
 					</td>
 					<td>
 						<div class="browse-name">

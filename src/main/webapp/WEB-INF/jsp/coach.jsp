@@ -15,7 +15,7 @@
 	<div class="col-sm-2">
 		<c:url var="profilePicture" value="/image/coach${coach.id}"/>
 		<c:url var="emptyProfilePicture" value="/img/empty_profile"/>
-		<img id="profilePicture" class="coach-image hidden-xs img" src="${profilePicture}" alt="empty profile picture"/>
+		<img class="coach-image hidden-xs img profilePicture" src="${profilePicture}" alt="empty profile picture"/>
 	</div>
 	<div class="col-sm-6">
 		<c:if test="${currentUser.id == coach.id}">
