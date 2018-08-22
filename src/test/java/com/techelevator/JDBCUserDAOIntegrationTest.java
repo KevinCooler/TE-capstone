@@ -3,8 +3,6 @@ package com.techelevator;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 import com.techelevator.model.JDBCDAOs.JDBCUserDAO;
 import com.techelevator.model.Objects.User;
@@ -61,19 +59,5 @@ public class JDBCUserDAOIntegrationTest extends DAOIntegrationTest{
 		User user = userDAO.getUserByUserName("testUserName");
 		userDAO.deleteUserByUserId(user.getId());
 		Assert.assertFalse(userDAO.searchForUsernameAndPassword(user.getUserName(),  user.getPassword()));
-		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

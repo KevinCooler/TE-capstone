@@ -8,7 +8,7 @@ public interface ReviewDAO {
 
 	List<Review> getReviewList(long coachId);
 	
-	void addReview(long coachId, long clientId, int review, String reviewText);
+	long addReview(long coachId, long clientId, int review, String reviewText);
 	
 	void editReview(long reviewId, long clientId, int rating, String reviewText);
 	

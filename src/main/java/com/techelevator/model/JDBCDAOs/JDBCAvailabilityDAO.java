@@ -50,12 +50,12 @@ public class JDBCAvailabilityDAO implements AvailabilityDAO{
 	}
 
 	@Override
-	public void addAvailability(long coachId, int day, int hourStart, int hourEnd) {
+	public long addAvailability(long coachId, int day, int hourStart, int hourEnd) {
 		String sqlStatement = "INSERT INTO availability "
 				+ "(coach_id, day_of_week, hour_start, hour_end) "
-				+ "VALUES (?, ?, ?, ?);";
+				+ "VALUES (?, ?, ?, ?) returning availability_id;";
 		
-		temp.update(sqlStatement, coachId, day, hourStart, hourEnd);
+		return temp.queryForObject(sqlStatement, Long.class, coachId, day, hourStart, hourEnd);
 	}
 
 	@Override

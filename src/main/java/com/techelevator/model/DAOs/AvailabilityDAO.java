@@ -8,7 +8,7 @@ public interface AvailabilityDAO {
 
 	List<Availability> getAvailabilityList(long coachId);
 	
-	void addAvailability(long coachId, int day, int hourStart, int hourEnd);
+	long addAvailability(long coachId, int day, int hourStart, int hourEnd);
 	
 	void removeAvailability(long id);
 	

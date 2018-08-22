@@ -58,12 +58,12 @@ public class JDBCReviewDAO implements ReviewDAO{
 	}
 
 	@Override
-	public void addReview(long coachId, long clientId, int review, String reviewText) {
+	public long addReview(long coachId, long clientId, int review, String reviewText) {
 		String sqlStatement = "INSERT INTO coach_reviews "
 				+ "(coach_id, client_id, review_text, rating, create_date) "
-				+ "VALUES(?, ?, ?, ?, NOW());";
+				+ "VALUES(?, ?, ?, ?, NOW()) returning id;";
 		
-		temp.update(sqlStatement, coachId, clientId, reviewText, review);
+		return temp.queryForObject(sqlStatement, Long.class, coachId, clientId, reviewText, review);
 	}
 	
 	@Override

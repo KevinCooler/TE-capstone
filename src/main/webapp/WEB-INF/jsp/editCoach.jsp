@@ -12,6 +12,21 @@
 	<div class="col-sm-8">
 		<c:url var="formAction" value="/editCoach" />
 		<h2>Edit Coaching Profile</h2>
+		
+		<!-- Profile Pic Upload -->
+		
+		<c:url var="picUploadLink" value="/uploadProfilePic">
+			<c:param name="coachId" value="${coach.id}"/>
+			<c:param name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
+		</c:url>
+		<form method="POST" action="${picUploadLink}" enctype="multipart/form-data">
+			<!-- <input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/> -->
+			Upload File: <input type="file" name="file">
+			<input type="submit" value="Submit">
+		</form>
+		
+		<!-- Profile Pic Upload -->
+		
 		<form method="POST" action="${formAction}">
 		<input type="hidden" name="coachId" value=<c:out value="${coach.id}"/>>
 		<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
