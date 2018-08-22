@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -16,9 +17,11 @@ import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -135,24 +138,40 @@ public class CoachController {
 	
 	//Profile Pic
 	
+	
 	@RequestMapping(path="/uploadProfilePic", method=RequestMethod.POST)
-	public String uploadPicture(@RequestParam("file") MultipartFile file, 
-			HttpServletRequest request, RedirectAttributes redirect) {
+	public String handleFileUpload(@RequestParam MultipartFile file, ModelMap map,
+								HttpServletRequest request, RedirectAttributes redirect) {
 		long coachId = Long.parseLong(request.getParameter("coachId"));
-		
 		File imagePath = getImageFilePath();
-		String fileName = imagePath + File.separator + "coach" + coachId;
+		String imageName = imagePath + File.separator + "coach" + coachId;
 		
-		System.out.println(fileName);
-		createImage(file, fileName);
-		
-		redirect.addFlashAttribute("coachId", coachId);
-		
+		if (file.isEmpty()) {
+			map.addAttribute("message", "File Object empty");
+		} else {
+			createImage(file, imageName);
+		}
+		map.addAttribute("message", "uploaded to: " + imageName);
 		return "redirect:/coach";
 	}
 	
+	@RequestMapping(path="/image/{imageName}", method=RequestMethod.GET)
+	@ResponseBody
+	public byte[] getImage(@PathVariable(value="imageName") String imageName) {
+		String imagePath = getServerContextPath() + File.separator + imageName;
+		File image = new File(imagePath);
+		try {
+			return Files.readAllBytes(image.toPath());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		
+	}
+	
 	private File getImageFilePath() {
-		String serverPath = servletContext.getRealPath("/") + "img/profiles";
+		String serverPath = getServerContextPath();
 		File filePath = new File(serverPath);
 		if (!filePath.exists()) {
 			filePath.mkdirs();
@@ -160,16 +179,25 @@ public class CoachController {
 		return filePath;
 	}
 	
+	private String getServerContextPath() {
+		return servletContext.getRealPath("/") + "uploads";
+	}
+	
 	private void createImage(MultipartFile file, String name) {
 		File image = new File(name);
-		
 		try (BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(image))) {
-			//System.out.println(file.getBytes().toString());
+	
 			stream.write(file.getBytes());
+		
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+	
 	
 	//Profile Pic
 	

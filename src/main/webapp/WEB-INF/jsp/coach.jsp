@@ -3,6 +3,15 @@
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
+<script type="text/javascript">
+$(document).ready(function() {
+	function imgError(image) {
+	    image.onerror = "";
+	    image.src = "/img/empty_profile.png";
+	    return true;
+	}
+}); 
+</script>
 <c:url var="newMessageURL" value="/messageCoach">
 	<c:param name="coachId" value="${coach.id}"/>
 </c:url>
@@ -13,7 +22,9 @@
 <div class="row">
 	<div class="col-sm-2"></div>
 	<div class="col-sm-2">
-		<img class="coach-image hidden-xs img" src="img/empty_profile.png" alt="empty profile picture"/>
+		<c:url var="profilePicture" value="/image/coach${coach.id}"/>
+		<c:url var="emptyProfilePicture" value="/img/empty_profile"/>
+		<img id="profilePicture" class="coach-image hidden-xs img" src="${profilePicture}" onerror="imgError(this);" alt="empty profile picture"/>
 	</div>
 	<div class="col-sm-6">
 		<c:if test="${currentUser.id == coach.id}">
