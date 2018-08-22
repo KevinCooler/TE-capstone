@@ -19,6 +19,7 @@
     	<script src="${jsHref}/coachValidation.js"></script>
     	<script src="${jsHref}/confirm.js"></script>
     	<script src="${jsHref}/changePassword.js"></script>
+    	<script src="${jsHref}/profilePicture.js"></script>
     	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 		<link rel="stylesheet"  href="css/site.css"></link>
 		
