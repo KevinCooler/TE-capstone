@@ -3,13 +3,6 @@
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
-<script type="text/javascript">
-$(document).ready(function() {
-	$("#profilePicture").error(function () {
-		  $(this).unbind("error").attr("src", "img/empty_profile.png");
-		});
-}); 
-</script>
 <c:url var="newMessageURL" value="/messageCoach">
 	<c:param name="coachId" value="${coach.id}"/>
 </c:url>
