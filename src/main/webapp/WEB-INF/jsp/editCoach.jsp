@@ -7,26 +7,49 @@
 	<c:param name="coachId" value="${coach.id}"></c:param>
 </c:url>
 
+
 <div class="row">
 	<div class="col-sm-2"></div>
 	<div class="col-sm-8">
+		<h2><u>Edit Coaching Profile</u></h2>
+	</div>
+	<div class="col-sm-2"></div>
+</div>
+
+<hr>
+
+<!-- Profile Pic Upload -->
+<div class="row">
+	<div class="col-sm-2"></div>
+	<div class="col-sm-3">
 		<c:url var="formAction" value="/editCoach" />
-		<h2>Edit Coaching Profile</h2>
-		
-		<!-- Profile Pic Upload -->
-		
 		<c:url var="picUploadLink" value="/uploadProfilePic">
 			<c:param name="coachId" value="${coach.id}"/>
 			<c:param name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 		</c:url>
 		<form method="POST" action="${picUploadLink}" enctype="multipart/form-data">
 			<!-- <input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/> -->
-			Upload File: <input type="file" name="file">
-			<input type="submit" value="Submit">
+			<h4>Upload Profile Picture - <br>
+			(Size must be under 1MB)</h4>
+			<input type="file" name="file"><br>
+			<input type="submit" class="btn btn-primary" value="Submit">
 		</form>
-		
-		<!-- Profile Pic Upload -->
-		
+	</div>
+	<div class="col-sm-5">
+		<b><u>Current Profile</u></b><br>
+		<c:url var="profilePicture" value="/image/coach${coach.id}"/>
+		<c:url var="emptyProfilePicture" value="/img/empty_profile"/>
+		<img class="coach-image hidden-xs img profilePicture" 
+			src="${profilePicture}" alt="empty profile picture"/>
+	</div>
+	<div class="col-sm-2"></div>
+</div>
+<!-- Profile Pic Upload -->
+	<br>
+	<hr>
+<div class="row">
+	<div class="col-sm-2"></div>
+	<div class="col-sm-8">
 		<form method="POST" action="${formAction}">
 		<input type="hidden" name="coachId" value=<c:out value="${coach.id}"/>>
 		<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
@@ -65,6 +88,8 @@
 	</div>
 	<div class="col-sm-2"></div>
 </div>
+
+<hr>
 
 <div class="row">
 	<div class="col-sm-2"></div>
