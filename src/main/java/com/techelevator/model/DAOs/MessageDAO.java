@@ -14,4 +14,6 @@ public interface MessageDAO {
 			long receiverId, String receiverName, String messageText);
 	
 	void removeMessage(long messageId);
+	
+	void removeMessagesByUserId(long userId);
 }
