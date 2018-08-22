@@ -104,4 +104,19 @@ public class JDBCCoachDAO implements CoachDAO{
 		
 		temp.update(sqlStatement, aboutMe, id);
 	}
+
+	@Override
+	public boolean hasPairedClients(long id) {
+		String sqlSelectPairedClients = "select * from clients where paired_with = ?";
+		SqlRowSet result = temp.queryForRowSet(sqlSelectPairedClients, id);
+		return result.next();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }

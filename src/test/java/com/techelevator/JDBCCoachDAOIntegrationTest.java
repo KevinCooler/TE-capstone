@@ -5,6 +5,9 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.techelevator.model.DAOs.UserDAO;
+import com.techelevator.model.JDBCDAOs.JDBCClientDAO;
 import com.techelevator.model.JDBCDAOs.JDBCCoachDAO;
 import com.techelevator.model.Objects.Coach;
 
@@ -15,14 +18,28 @@ public class JDBCCoachDAOIntegrationTest extends DAOIntegrationTest{
 	private long coachIdTwo;
 	private long coachIdThree;
 	private TestingUtilities util;
+	private JDBCClientDAO clientDAO;
 	
 	@Before
 	public void setup() {
 		coachDao = new JDBCCoachDAO(super.getDataSource());
+		clientDAO = new JDBCClientDAO(super.getDataSource());
 		util = new TestingUtilities(super.getDataSource());
 		coachIdOne = util.newUser("test1");
 		coachDao.addCoach("John", "Doe", coachIdOne);
 		
+	}
+	
+	@Test
+	public void returns_true_when_coach_has_client() {
+		long clientId = util.newClient("client",  "paried");
+		clientDAO.assignCoach(clientId, coachIdOne);
+		Assert.assertTrue(coachDao.hasPairedClients(coachIdOne));
+	}
+	
+	@Test
+	public void returns_false_when_coach_does_not_have_client() {
+		Assert.assertFalse(coachDao.hasPairedClients(coachIdOne));
 	}
 	
 	@Test
