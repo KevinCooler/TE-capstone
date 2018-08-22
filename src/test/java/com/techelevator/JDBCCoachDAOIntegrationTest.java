@@ -6,7 +6,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.techelevator.model.DAOs.UserDAO;
 import com.techelevator.model.JDBCDAOs.JDBCClientDAO;
 import com.techelevator.model.JDBCDAOs.JDBCCoachDAO;
 import com.techelevator.model.Objects.Coach;

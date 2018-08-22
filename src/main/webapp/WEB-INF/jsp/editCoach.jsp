@@ -21,7 +21,25 @@
 <!-- Profile Pic Upload -->
 <div class="row">
 	<div class="col-sm-2"></div>
-	<div class="col-sm-3">
+	<div class="col-sm-4 current-pic">
+		<div>
+			<c:url var="profilePicture" value="/image/coach${coach.id}"/>
+			<c:url var="emptyProfilePicture" value="/img/empty_profile"/>
+			<img class="coach-image hidden-xs img profilePicture" 
+				src="${profilePicture}" alt="empty profile picture"/>
+			<c:url var="picDeleteLink" value="/deleteProfilePic"/>
+			<br>
+			<b><u>Current Profile</u></b>
+		</div>
+		<div>
+			<form method="POST" action ="${picDeleteLink}">
+				<input type="hidden" name="coachId" value=<c:out value="${coach.id}"/>>
+				<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
+				<input type="submit" class="btn btn-primary" value="Delete Picture">
+			</form>
+		</div>
+	</div>
+	<div class="col-sm-4">
 		<c:url var="formAction" value="/editCoach" />
 		<c:url var="picUploadLink" value="/uploadProfilePic">
 			<c:param name="coachId" value="${coach.id}"/>
@@ -34,13 +52,7 @@
 			<input type="file" name="file"><br>
 			<input type="submit" class="btn btn-primary" value="Submit">
 		</form>
-	</div>
-	<div class="col-sm-5">
-		<b><u>Current Profile</u></b><br>
-		<c:url var="profilePicture" value="/image/coach${coach.id}"/>
-		<c:url var="emptyProfilePicture" value="/img/empty_profile"/>
-		<img class="coach-image hidden-xs img profilePicture" 
-			src="${profilePicture}" alt="empty profile picture"/>
+		<span class="error">${errorMessage}</span>
 	</div>
 	<div class="col-sm-2"></div>
 </div>

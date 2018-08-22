@@ -110,3 +110,7 @@
 .error{
 	color: red;
 }
+
+.current-pic {
+	display: flex;
+}

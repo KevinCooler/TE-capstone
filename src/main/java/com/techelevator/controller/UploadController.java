@@ -12,19 +12,18 @@ import java.nio.file.Files;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -38,26 +37,41 @@ public class UploadController {
 	ServletContext servletContext;
 
 	@RequestMapping(path="/uploadProfilePic", method=RequestMethod.POST)
-	public String handleFileUpload(@RequestParam MultipartFile file, ModelMap map,
-								HttpServletRequest request, RedirectAttributes redirect,
-								HttpSession session) {
-		long coachId = Long.parseLong(request.getParameter("coachId"));
+	public String handleFileUpload(@RequestParam MultipartFile file, 
+			@RequestParam long coachId, RedirectAttributes redirect,
+			HttpSession session) {
 		redirect.addFlashAttribute("coachId", coachId);
-		User user = (User) session.getAttribute("currentUser");
+		User user = (User)session.getAttribute("currentUser");
 		
-		if(user.getId() != coachId)
-			return "redirect:/coach";
-		
-		File imagePath = getImageFilePath();
-		String imageName = imagePath + File.separator + "coach" + coachId;
-		
-		if (file.isEmpty()) {
-			map.addAttribute("message", "File Object empty");
-		} else {
-			createImage(file, imageName);
+		if(user != null) {
+			if(user.getId() != coachId)
+				return "redirect:/coach";
+			
+			String errorMessage = fileCheck(file);
+			
+			if(errorMessage != null) {
+				redirect.addFlashAttribute("errorMessage", errorMessage);
+				return "redirect:/editCoach";
+			}
+			
+			createImageFile(file, coachId);
 		}
 		
 		return "redirect:/coach";
+	}
+	
+	@RequestMapping(path="/deleteProfilePic", method=RequestMethod.POST)
+	public String deletePicture(@RequestParam long coachId, 
+			RedirectAttributes redirect) {
+		String imagePath = getServerContextPath() + File.separator + "coach" + coachId;
+		File image = new File(imagePath);
+		
+		if(image.exists())
+			image.delete();
+		
+		redirect.addFlashAttribute("coachId", coachId);
+		
+		return "redirect:/editCoach";
 	}
 	
 	@RequestMapping(path="/image/{imageName}", method=RequestMethod.GET)
@@ -65,20 +79,47 @@ public class UploadController {
 	public byte[] getImage(@PathVariable(value="imageName") String imageName) {
 		String imagePath = getServerContextPath() + File.separator + imageName;
 		File image = new File(imagePath);
-		try {
-			return Files.readAllBytes(image.toPath());
-		} catch (IOException e) {
-			e.printStackTrace();
-			return null;
+		
+		if(image.exists()) {
+			try {
+				return Files.readAllBytes(image.toPath());
+			} catch (IOException e) {
+				e.printStackTrace();
+				return null;
+			}
 		}
+		
+		return null;
+	}
+	
+	private String fileCheck(MultipartFile file) {
+		if(file.isEmpty())
+			return "No file was selected";
+		
+		if(file.getSize() > 1048576) // If file is over 1MB
+			return "File size must be under 1MB";
+		
+		if(!file.getContentType().contains("image"))
+			return "Only image files can be uploaded (jpg, gif, png)";
+		
+		return null;
+	}
+	
+	private void createImageFile(MultipartFile file, long coachId) {
+		File imagePath = getImageFilePath();
+		String imageName = imagePath + File.separator + "coach" + coachId;
+		
+		createImage(file, imageName);
 	}
 	
 	private File getImageFilePath() {
 		String serverPath = getServerContextPath();
 		File filePath = new File(serverPath);
+		
 		if (!filePath.exists()) {
 			filePath.mkdirs();
 		}
+		
 		return filePath;
 	}
 	
@@ -86,14 +127,14 @@ public class UploadController {
 		return servletContext.getRealPath("/") + "uploads";
 	}
 	
-	private void createImage(MultipartFile file, String name) {
+	private void createImage(MultipartFile file, String imageName) {
 		String fileType = FilenameUtils.getExtension(file.getOriginalFilename());
-		File image = new File(name);
+		File image = new File(imageName);
 		byte[] updatedFile = resizePicture(file, fileType);
 
 		try (BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(image))) {
 			stream.write(updatedFile);
-		} catch (IOException e) {
+		} catch (IOException | MaxUploadSizeExceededException e) {
 			e.printStackTrace();
 		}
 	}
@@ -107,7 +148,7 @@ public class UploadController {
 		try (InputStream in = new ByteArrayInputStream(file.getBytes())) {
 			BufferedImage originalImage = ImageIO.read(in);
 			ByteArrayOutputStream out = new ByteArrayOutputStream();
-			ImageIO.write(crop(originalImage), fileType, out );
+			ImageIO.write(crop(originalImage), fileType, out);
 			out.flush();
 			updatedPic = out.toByteArray();
 			out.close();
