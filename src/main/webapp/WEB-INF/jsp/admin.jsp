@@ -33,6 +33,7 @@
                 </c:forEach>
             </tbody>
         </table>
+        <p class="error"><c:out value="${hasPairedClients}"/></p>
     </div>
     <div class="col-sm-1"></div>
     <div class="col-sm-4">
