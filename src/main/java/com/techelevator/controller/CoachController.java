@@ -1,13 +1,18 @@
 package com.techelevator.controller;
 
+import java.awt.image.BufferedImage;
 import java.io.BufferedOutputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -151,6 +156,7 @@ public class CoachController {
 		} else {
 			createImage(file, imageName);
 		}
+		
 		map.addAttribute("message", "uploaded to: " + imageName);
 		return "redirect:/coach";
 	}
@@ -166,7 +172,6 @@ public class CoachController {
 			e.printStackTrace();
 			return null;
 		}
-		
 	}
 	
 	private File getImageFilePath() {
@@ -184,15 +189,54 @@ public class CoachController {
 	
 	private void createImage(MultipartFile file, String name) {
 		File image = new File(name);
+		byte[] updatedFile = resizePicture(file);
+
 		try (BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(image))) {
-	
-			stream.write(file.getBytes());
-		
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			stream.write(updatedFile);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	// I heavily relied upon these tutorials to set this crop functionality up:
+	// http://blog.netgloo.com/2015/03/03/spring-boot-crop-uploaded-image/
+	// https://www.mkyong.com/java/how-to-convert-bufferedimage-to-byte-in-java/
+	private byte[] resizePicture(MultipartFile file) {
+		byte[] updatedPic = null;
+		
+		try (InputStream in = new ByteArrayInputStream(file.getBytes())) {
+			BufferedImage originalImage = ImageIO.read(in);
+			ByteArrayOutputStream out = new ByteArrayOutputStream();
+			ImageIO.write(crop(originalImage), "jpg", out );
+			out.flush();
+			updatedPic = out.toByteArray();
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return updatedPic;
+	}
+	
+	private BufferedImage crop(BufferedImage originalImage) {
+		int height = originalImage.getHeight();
+		int width = originalImage.getWidth();
+		int croppedHeight = 0;
+		int croppedWidth = 0;
+		int squareSize = 0;
+		
+		if(height == width)
+			return originalImage;
+		
+		if(height > width) {
+			croppedHeight = (height - width) / 2;
+			squareSize = width;
+		} else {
+			croppedWidth = (width - height) / 2;
+			squareSize = height;
+		}
+		
+		return originalImage.getSubimage(croppedWidth, croppedHeight, squareSize, squareSize);
 	}
 	
 	
