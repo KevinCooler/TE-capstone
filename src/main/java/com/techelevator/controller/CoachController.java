@@ -1,10 +1,18 @@
 package com.techelevator.controller;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -12,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.techelevator.model.DAOs.AvailabilityDAO;
@@ -33,6 +42,9 @@ public class CoachController {
 	private ReviewDAO reviewDao;
 	private ClientDAO clientDAO;
 	private PageAuthorizer authorizer = new PageAuthorizer();
+	
+	@Autowired
+	ServletContext servletContext;
 	
 	@Autowired
 	public CoachController(CoachDAO coachDAO, AvailabilityDAO availDAO, ReviewDAO reviewDao, ClientDAO clientDAO) {
@@ -120,6 +132,46 @@ public class CoachController {
 		
 		return "redirect:/coach";
 	}
+	
+	//Profile Pic
+	
+	@RequestMapping(path="/uploadProfilePic", method=RequestMethod.POST)
+	public String uploadPicture(@RequestParam("file") MultipartFile file, 
+			HttpServletRequest request, RedirectAttributes redirect) {
+		long coachId = Long.parseLong(request.getParameter("coachId"));
+		
+		File imagePath = getImageFilePath();
+		String fileName = imagePath + File.separator + "coach" + coachId;
+		
+		System.out.println(fileName);
+		createImage(file, fileName);
+		
+		redirect.addFlashAttribute("coachId", coachId);
+		
+		return "redirect:/coach";
+	}
+	
+	private File getImageFilePath() {
+		String serverPath = servletContext.getRealPath("/") + "img/profiles";
+		File filePath = new File(serverPath);
+		if (!filePath.exists()) {
+			filePath.mkdirs();
+		}
+		return filePath;
+	}
+	
+	private void createImage(MultipartFile file, String name) {
+		File image = new File(name);
+		
+		try (BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(image))) {
+			//System.out.println(file.getBytes().toString());
+			stream.write(file.getBytes());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	//Profile Pic
 	
 	@RequestMapping(path="/deleteAvailability", method=RequestMethod.GET)
 	public String doDeleteAvailability(@RequestParam Long availId, 
