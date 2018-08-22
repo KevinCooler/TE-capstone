@@ -3,21 +3,23 @@
 -- *****************************************************************************
 BEGIN;
 
-insert into app_user (user_name, password, salt, role) values ('trey@gmail.com', 1, 2, 'client');
-insert into app_user (user_name, password, salt, role) values ('lindseyh@gmail.com', 1, 2, 'client');
-insert into app_user (user_name, password, salt, role) values ('itsjess@techelevator.com', 1, 2, 'client');
-insert into app_user (user_name, password, salt, role) values ('kevin@gmail.com', 1, 2, 'client');
-insert into app_user (user_name, password, salt, role) values ('kerry@yahoo.com', 1, 2, 'client');
-insert into app_user (user_name, password, salt, role) values ('brian@hotmail.com', 1, 2, 'client');
-insert into app_user (user_name, password, salt, role) values ('johnsonS4@gmail.com', 1, 2, 'client');
-insert into app_user (user_name, password, salt, role) values ('sara457@gmail.com', 1, 2, 'client');
+insert into app_user (user_name, password, salt, role) values ('trey@gmail.com', 'mX8Y1FO1mT7UQNMuCRNnyA==', 'YqUUyvvBqfUKg2kFLO8YzvpoPUtX+PXKAvhHeuxLNlrFF9SYJVXPDXIAjDvtnHfn42EVAcYEt7fAGLvADMsp6CWru6kKavE/EU9nie4/QmTMFs8oJg2CByOWx0q4etHqj4LkDi6/nViSwPs4gvet7rdPrYhOXZ/MO8rvCd/ODJ0=', 'client');
+insert into app_user (user_name, password, salt, role) values ('lindseyh@gmail.com', 'mX8Y1FO1mT7UQNMuCRNnyA==', 'YqUUyvvBqfUKg2kFLO8YzvpoPUtX+PXKAvhHeuxLNlrFF9SYJVXPDXIAjDvtnHfn42EVAcYEt7fAGLvADMsp6CWru6kKavE/EU9nie4/QmTMFs8oJg2CByOWx0q4etHqj4LkDi6/nViSwPs4gvet7rdPrYhOXZ/MO8rvCd/ODJ0=', 'client');
+insert into app_user (user_name, password, salt, role) values ('itsjess@techelevator.com', 'mX8Y1FO1mT7UQNMuCRNnyA==', 'YqUUyvvBqfUKg2kFLO8YzvpoPUtX+PXKAvhHeuxLNlrFF9SYJVXPDXIAjDvtnHfn42EVAcYEt7fAGLvADMsp6CWru6kKavE/EU9nie4/QmTMFs8oJg2CByOWx0q4etHqj4LkDi6/nViSwPs4gvet7rdPrYhOXZ/MO8rvCd/ODJ0=', 'client');
+insert into app_user (user_name, password, salt, role) values ('kevin@gmail.com', 'mX8Y1FO1mT7UQNMuCRNnyA==', 'YqUUyvvBqfUKg2kFLO8YzvpoPUtX+PXKAvhHeuxLNlrFF9SYJVXPDXIAjDvtnHfn42EVAcYEt7fAGLvADMsp6CWru6kKavE/EU9nie4/QmTMFs8oJg2CByOWx0q4etHqj4LkDi6/nViSwPs4gvet7rdPrYhOXZ/MO8rvCd/ODJ0=', 'client');
+insert into app_user (user_name, password, salt, role) values ('kerry@yahoo.com', 'mX8Y1FO1mT7UQNMuCRNnyA==', 'YqUUyvvBqfUKg2kFLO8YzvpoPUtX+PXKAvhHeuxLNlrFF9SYJVXPDXIAjDvtnHfn42EVAcYEt7fAGLvADMsp6CWru6kKavE/EU9nie4/QmTMFs8oJg2CByOWx0q4etHqj4LkDi6/nViSwPs4gvet7rdPrYhOXZ/MO8rvCd/ODJ0=', 'client');
+insert into app_user (user_name, password, salt, role) values ('brian@hotmail.com', 'mX8Y1FO1mT7UQNMuCRNnyA==', 'YqUUyvvBqfUKg2kFLO8YzvpoPUtX+PXKAvhHeuxLNlrFF9SYJVXPDXIAjDvtnHfn42EVAcYEt7fAGLvADMsp6CWru6kKavE/EU9nie4/QmTMFs8oJg2CByOWx0q4etHqj4LkDi6/nViSwPs4gvet7rdPrYhOXZ/MO8rvCd/ODJ0=', 'client');
+insert into app_user (user_name, password, salt, role) values ('johnsonS4@gmail.com', 'mX8Y1FO1mT7UQNMuCRNnyA==', 'YqUUyvvBqfUKg2kFLO8YzvpoPUtX+PXKAvhHeuxLNlrFF9SYJVXPDXIAjDvtnHfn42EVAcYEt7fAGLvADMsp6CWru6kKavE/EU9nie4/QmTMFs8oJg2CByOWx0q4etHqj4LkDi6/nViSwPs4gvet7rdPrYhOXZ/MO8rvCd/ODJ0=', 'client');
+insert into app_user (user_name, password, salt, role) values ('sara457@gmail.com', 'mX8Y1FO1mT7UQNMuCRNnyA==', 'YqUUyvvBqfUKg2kFLO8YzvpoPUtX+PXKAvhHeuxLNlrFF9SYJVXPDXIAjDvtnHfn42EVAcYEt7fAGLvADMsp6CWru6kKavE/EU9nie4/QmTMFs8oJg2CByOWx0q4etHqj4LkDi6/nViSwPs4gvet7rdPrYhOXZ/MO8rvCd/ODJ0=', 'client');
 
-insert into app_user (user_name, password, salt, role) values ('instructor@techelevator.com', 1, 2, 'coach');
-insert into app_user (user_name, password, salt, role) values ('madeline.stiers@gjps.com', 1, 2, 'coach');
-insert into app_user (user_name, password, salt, role) values ('emma.axelrod33@gmail.com', 1, 2, 'coach');
-insert into app_user (user_name, password, salt, role) values ('patterson@gmail.com', 1, 2, 'coach');
-insert into app_user (user_name, password, salt, role) values ('lmartin3@hotmail.com', 1, 2, 'coach');
-insert into app_user (user_name, password, salt, role) values ('dean.hrbrt@gmail.com', 1, 2, 'coach');
+insert into app_user (user_name, password, salt, role) values ('instructor@techelevator.com', 'mX8Y1FO1mT7UQNMuCRNnyA==', 'YqUUyvvBqfUKg2kFLO8YzvpoPUtX+PXKAvhHeuxLNlrFF9SYJVXPDXIAjDvtnHfn42EVAcYEt7fAGLvADMsp6CWru6kKavE/EU9nie4/QmTMFs8oJg2CByOWx0q4etHqj4LkDi6/nViSwPs4gvet7rdPrYhOXZ/MO8rvCd/ODJ0=', 'coach');
+insert into app_user (user_name, password, salt, role) values ('madeline.stiers@gjps.com', 'mX8Y1FO1mT7UQNMuCRNnyA==', 'YqUUyvvBqfUKg2kFLO8YzvpoPUtX+PXKAvhHeuxLNlrFF9SYJVXPDXIAjDvtnHfn42EVAcYEt7fAGLvADMsp6CWru6kKavE/EU9nie4/QmTMFs8oJg2CByOWx0q4etHqj4LkDi6/nViSwPs4gvet7rdPrYhOXZ/MO8rvCd/ODJ0=', 'coach');
+insert into app_user (user_name, password, salt, role) values ('emma.axelrod33@gmail.com', 'mX8Y1FO1mT7UQNMuCRNnyA==', 'YqUUyvvBqfUKg2kFLO8YzvpoPUtX+PXKAvhHeuxLNlrFF9SYJVXPDXIAjDvtnHfn42EVAcYEt7fAGLvADMsp6CWru6kKavE/EU9nie4/QmTMFs8oJg2CByOWx0q4etHqj4LkDi6/nViSwPs4gvet7rdPrYhOXZ/MO8rvCd/ODJ0=', 'coach');
+insert into app_user (user_name, password, salt, role) values ('patterson@gmail.com', 'mX8Y1FO1mT7UQNMuCRNnyA==', 'YqUUyvvBqfUKg2kFLO8YzvpoPUtX+PXKAvhHeuxLNlrFF9SYJVXPDXIAjDvtnHfn42EVAcYEt7fAGLvADMsp6CWru6kKavE/EU9nie4/QmTMFs8oJg2CByOWx0q4etHqj4LkDi6/nViSwPs4gvet7rdPrYhOXZ/MO8rvCd/ODJ0=', 'coach');
+insert into app_user (user_name, password, salt, role) values ('lmartin3@hotmail.com', 'mX8Y1FO1mT7UQNMuCRNnyA==', 'YqUUyvvBqfUKg2kFLO8YzvpoPUtX+PXKAvhHeuxLNlrFF9SYJVXPDXIAjDvtnHfn42EVAcYEt7fAGLvADMsp6CWru6kKavE/EU9nie4/QmTMFs8oJg2CByOWx0q4etHqj4LkDi6/nViSwPs4gvet7rdPrYhOXZ/MO8rvCd/ODJ0=', 'coach');
+insert into app_user (user_name, password, salt, role) values ('dean.hrbrt@gmail.com', 'mX8Y1FO1mT7UQNMuCRNnyA==', 'YqUUyvvBqfUKg2kFLO8YzvpoPUtX+PXKAvhHeuxLNlrFF9SYJVXPDXIAjDvtnHfn42EVAcYEt7fAGLvADMsp6CWru6kKavE/EU9nie4/QmTMFs8oJg2CByOWx0q4etHqj4LkDi6/nViSwPs4gvet7rdPrYhOXZ/MO8rvCd/ODJ0=', 'coach');
+
+insert into app_user (user_name, password, salt, role) values ('admin@mhm.com', 'mX8Y1FO1mT7UQNMuCRNnyA==', 'YqUUyvvBqfUKg2kFLO8YzvpoPUtX+PXKAvhHeuxLNlrFF9SYJVXPDXIAjDvtnHfn42EVAcYEt7fAGLvADMsp6CWru6kKavE/EU9nie4/QmTMFs8oJg2CByOWx0q4etHqj4LkDi6/nViSwPs4gvet7rdPrYhOXZ/MO8rvCd/ODJ0=', 'admin');
 
 insert into coaches (coach_id, first_name, last_name, city_location, state_location, about_me) values (9, 'John', 'Fulton', 'Columbus', 'Ohio', 
 'I am a certified health coach specializing in recovery coaching, mindfulness coaching, and health coaching. I work with all attachments including substance, codependency, and food. I use Buddhist principles to aid with recovery and to help promote happiness.');
