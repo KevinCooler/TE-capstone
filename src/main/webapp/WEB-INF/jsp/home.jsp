@@ -19,12 +19,15 @@
     	<div class="col-sm-5">
         	<i class="fas fa-search"></i>
 	        <h2>Browse Coaches</h2>
-	        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo. Vitae semper quis lectus nulla at volutpat. Egestas egestas fringilla phasellus faucibus scelerisque eleifend donec pretium. </p>
+	        <p>Connect with a coach that will reshape the way you think about mental health.  
+	        	Our 12 week program will provide you with tools and techniques that will last 
+	        	a lifetime.</p>
 	    </div>
 	    <div class="col-sm-5">
 	       <i class="fas fa-users"></i>
 	       <h2>Read Reviews</h2>
-	       <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo. </p>
+	       <p>See reviews and ratings for each coach before you make a choice.
+	       </p>
       	</div>
       	<div class="col-sm-1"></div>
 	</div>
