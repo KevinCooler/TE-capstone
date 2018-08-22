@@ -5,11 +5,9 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-	function imgError(image) {
-	    image.onerror = "";
-	    image.src = "/img/empty_profile.png";
-	    return true;
-	}
+	$("#profilePicture").error(function () {
+		  $(this).unbind("error").attr("src", "img/empty_profile.png");
+		});
 }); 
 </script>
 <c:url var="newMessageURL" value="/messageCoach">
@@ -24,7 +22,7 @@ $(document).ready(function() {
 	<div class="col-sm-2">
 		<c:url var="profilePicture" value="/image/coach${coach.id}"/>
 		<c:url var="emptyProfilePicture" value="/img/empty_profile"/>
-		<img id="profilePicture" class="coach-image hidden-xs img" src="${profilePicture}" onerror="imgError(this);" alt="empty profile picture"/>
+		<img id="profilePicture" class="coach-image hidden-xs img" src="${profilePicture}" alt="empty profile picture"/>
 	</div>
 	<div class="col-sm-6">
 		<c:if test="${currentUser.id == coach.id}">
