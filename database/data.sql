@@ -3,23 +3,23 @@
 -- *****************************************************************************
 BEGIN;
 
-insert into app_user (user_name, password, salt, role) values ('trey@gmail.com', 'mX8Y1FO1mT7UQNMuCRNnyA==', 'YqUUyvvBqfUKg2kFLO8YzvpoPUtX+PXKAvhHeuxLNlrFF9SYJVXPDXIAjDvtnHfn42EVAcYEt7fAGLvADMsp6CWru6kKavE/EU9nie4/QmTMFs8oJg2CByOWx0q4etHqj4LkDi6/nViSwPs4gvet7rdPrYhOXZ/MO8rvCd/ODJ0=', 'client');
-insert into app_user (user_name, password, salt, role) values ('lindseyh@gmail.com', 'mX8Y1FO1mT7UQNMuCRNnyA==', 'YqUUyvvBqfUKg2kFLO8YzvpoPUtX+PXKAvhHeuxLNlrFF9SYJVXPDXIAjDvtnHfn42EVAcYEt7fAGLvADMsp6CWru6kKavE/EU9nie4/QmTMFs8oJg2CByOWx0q4etHqj4LkDi6/nViSwPs4gvet7rdPrYhOXZ/MO8rvCd/ODJ0=', 'client');
-insert into app_user (user_name, password, salt, role) values ('itsjess@techelevator.com', 'mX8Y1FO1mT7UQNMuCRNnyA==', 'YqUUyvvBqfUKg2kFLO8YzvpoPUtX+PXKAvhHeuxLNlrFF9SYJVXPDXIAjDvtnHfn42EVAcYEt7fAGLvADMsp6CWru6kKavE/EU9nie4/QmTMFs8oJg2CByOWx0q4etHqj4LkDi6/nViSwPs4gvet7rdPrYhOXZ/MO8rvCd/ODJ0=', 'client');
+insert into app_user (user_name, password, salt, role) values ('doug@gmail.com', 'mX8Y1FO1mT7UQNMuCRNnyA==', 'YqUUyvvBqfUKg2kFLO8YzvpoPUtX+PXKAvhHeuxLNlrFF9SYJVXPDXIAjDvtnHfn42EVAcYEt7fAGLvADMsp6CWru6kKavE/EU9nie4/QmTMFs8oJg2CByOWx0q4etHqj4LkDi6/nViSwPs4gvet7rdPrYhOXZ/MO8rvCd/ODJ0=', 'client');
+insert into app_user (user_name, password, salt, role) values ('lindsey@gmail.com', 'mX8Y1FO1mT7UQNMuCRNnyA==', 'YqUUyvvBqfUKg2kFLO8YzvpoPUtX+PXKAvhHeuxLNlrFF9SYJVXPDXIAjDvtnHfn42EVAcYEt7fAGLvADMsp6CWru6kKavE/EU9nie4/QmTMFs8oJg2CByOWx0q4etHqj4LkDi6/nViSwPs4gvet7rdPrYhOXZ/MO8rvCd/ODJ0=', 'client');
+insert into app_user (user_name, password, salt, role) values ('jessica@gmail.com', 'mX8Y1FO1mT7UQNMuCRNnyA==', 'YqUUyvvBqfUKg2kFLO8YzvpoPUtX+PXKAvhHeuxLNlrFF9SYJVXPDXIAjDvtnHfn42EVAcYEt7fAGLvADMsp6CWru6kKavE/EU9nie4/QmTMFs8oJg2CByOWx0q4etHqj4LkDi6/nViSwPs4gvet7rdPrYhOXZ/MO8rvCd/ODJ0=', 'client');
 insert into app_user (user_name, password, salt, role) values ('kevin@gmail.com', 'mX8Y1FO1mT7UQNMuCRNnyA==', 'YqUUyvvBqfUKg2kFLO8YzvpoPUtX+PXKAvhHeuxLNlrFF9SYJVXPDXIAjDvtnHfn42EVAcYEt7fAGLvADMsp6CWru6kKavE/EU9nie4/QmTMFs8oJg2CByOWx0q4etHqj4LkDi6/nViSwPs4gvet7rdPrYhOXZ/MO8rvCd/ODJ0=', 'client');
-insert into app_user (user_name, password, salt, role) values ('kerry@yahoo.com', 'mX8Y1FO1mT7UQNMuCRNnyA==', 'YqUUyvvBqfUKg2kFLO8YzvpoPUtX+PXKAvhHeuxLNlrFF9SYJVXPDXIAjDvtnHfn42EVAcYEt7fAGLvADMsp6CWru6kKavE/EU9nie4/QmTMFs8oJg2CByOWx0q4etHqj4LkDi6/nViSwPs4gvet7rdPrYhOXZ/MO8rvCd/ODJ0=', 'client');
-insert into app_user (user_name, password, salt, role) values ('brian@hotmail.com', 'mX8Y1FO1mT7UQNMuCRNnyA==', 'YqUUyvvBqfUKg2kFLO8YzvpoPUtX+PXKAvhHeuxLNlrFF9SYJVXPDXIAjDvtnHfn42EVAcYEt7fAGLvADMsp6CWru6kKavE/EU9nie4/QmTMFs8oJg2CByOWx0q4etHqj4LkDi6/nViSwPs4gvet7rdPrYhOXZ/MO8rvCd/ODJ0=', 'client');
-insert into app_user (user_name, password, salt, role) values ('johnsonS4@gmail.com', 'mX8Y1FO1mT7UQNMuCRNnyA==', 'YqUUyvvBqfUKg2kFLO8YzvpoPUtX+PXKAvhHeuxLNlrFF9SYJVXPDXIAjDvtnHfn42EVAcYEt7fAGLvADMsp6CWru6kKavE/EU9nie4/QmTMFs8oJg2CByOWx0q4etHqj4LkDi6/nViSwPs4gvet7rdPrYhOXZ/MO8rvCd/ODJ0=', 'client');
-insert into app_user (user_name, password, salt, role) values ('sara457@gmail.com', 'mX8Y1FO1mT7UQNMuCRNnyA==', 'YqUUyvvBqfUKg2kFLO8YzvpoPUtX+PXKAvhHeuxLNlrFF9SYJVXPDXIAjDvtnHfn42EVAcYEt7fAGLvADMsp6CWru6kKavE/EU9nie4/QmTMFs8oJg2CByOWx0q4etHqj4LkDi6/nViSwPs4gvet7rdPrYhOXZ/MO8rvCd/ODJ0=', 'client');
+insert into app_user (user_name, password, salt, role) values ('kerry@gmail.com', 'mX8Y1FO1mT7UQNMuCRNnyA==', 'YqUUyvvBqfUKg2kFLO8YzvpoPUtX+PXKAvhHeuxLNlrFF9SYJVXPDXIAjDvtnHfn42EVAcYEt7fAGLvADMsp6CWru6kKavE/EU9nie4/QmTMFs8oJg2CByOWx0q4etHqj4LkDi6/nViSwPs4gvet7rdPrYhOXZ/MO8rvCd/ODJ0=', 'client');
+insert into app_user (user_name, password, salt, role) values ('brian@gmail.com', 'mX8Y1FO1mT7UQNMuCRNnyA==', 'YqUUyvvBqfUKg2kFLO8YzvpoPUtX+PXKAvhHeuxLNlrFF9SYJVXPDXIAjDvtnHfn42EVAcYEt7fAGLvADMsp6CWru6kKavE/EU9nie4/QmTMFs8oJg2CByOWx0q4etHqj4LkDi6/nViSwPs4gvet7rdPrYhOXZ/MO8rvCd/ODJ0=', 'client');
+insert into app_user (user_name, password, salt, role) values ('sam@gmail.com', 'mX8Y1FO1mT7UQNMuCRNnyA==', 'YqUUyvvBqfUKg2kFLO8YzvpoPUtX+PXKAvhHeuxLNlrFF9SYJVXPDXIAjDvtnHfn42EVAcYEt7fAGLvADMsp6CWru6kKavE/EU9nie4/QmTMFs8oJg2CByOWx0q4etHqj4LkDi6/nViSwPs4gvet7rdPrYhOXZ/MO8rvCd/ODJ0=', 'client');
+insert into app_user (user_name, password, salt, role) values ('sara@gmail.com', 'mX8Y1FO1mT7UQNMuCRNnyA==', 'YqUUyvvBqfUKg2kFLO8YzvpoPUtX+PXKAvhHeuxLNlrFF9SYJVXPDXIAjDvtnHfn42EVAcYEt7fAGLvADMsp6CWru6kKavE/EU9nie4/QmTMFs8oJg2CByOWx0q4etHqj4LkDi6/nViSwPs4gvet7rdPrYhOXZ/MO8rvCd/ODJ0=', 'client');
 
-insert into app_user (user_name, password, salt, role) values ('instructor@techelevator.com', 'mX8Y1FO1mT7UQNMuCRNnyA==', 'YqUUyvvBqfUKg2kFLO8YzvpoPUtX+PXKAvhHeuxLNlrFF9SYJVXPDXIAjDvtnHfn42EVAcYEt7fAGLvADMsp6CWru6kKavE/EU9nie4/QmTMFs8oJg2CByOWx0q4etHqj4LkDi6/nViSwPs4gvet7rdPrYhOXZ/MO8rvCd/ODJ0=', 'coach');
-insert into app_user (user_name, password, salt, role) values ('madeline.stiers@gjps.com', 'mX8Y1FO1mT7UQNMuCRNnyA==', 'YqUUyvvBqfUKg2kFLO8YzvpoPUtX+PXKAvhHeuxLNlrFF9SYJVXPDXIAjDvtnHfn42EVAcYEt7fAGLvADMsp6CWru6kKavE/EU9nie4/QmTMFs8oJg2CByOWx0q4etHqj4LkDi6/nViSwPs4gvet7rdPrYhOXZ/MO8rvCd/ODJ0=', 'coach');
-insert into app_user (user_name, password, salt, role) values ('emma.axelrod33@gmail.com', 'mX8Y1FO1mT7UQNMuCRNnyA==', 'YqUUyvvBqfUKg2kFLO8YzvpoPUtX+PXKAvhHeuxLNlrFF9SYJVXPDXIAjDvtnHfn42EVAcYEt7fAGLvADMsp6CWru6kKavE/EU9nie4/QmTMFs8oJg2CByOWx0q4etHqj4LkDi6/nViSwPs4gvet7rdPrYhOXZ/MO8rvCd/ODJ0=', 'coach');
-insert into app_user (user_name, password, salt, role) values ('patterson@gmail.com', 'mX8Y1FO1mT7UQNMuCRNnyA==', 'YqUUyvvBqfUKg2kFLO8YzvpoPUtX+PXKAvhHeuxLNlrFF9SYJVXPDXIAjDvtnHfn42EVAcYEt7fAGLvADMsp6CWru6kKavE/EU9nie4/QmTMFs8oJg2CByOWx0q4etHqj4LkDi6/nViSwPs4gvet7rdPrYhOXZ/MO8rvCd/ODJ0=', 'coach');
-insert into app_user (user_name, password, salt, role) values ('lmartin3@hotmail.com', 'mX8Y1FO1mT7UQNMuCRNnyA==', 'YqUUyvvBqfUKg2kFLO8YzvpoPUtX+PXKAvhHeuxLNlrFF9SYJVXPDXIAjDvtnHfn42EVAcYEt7fAGLvADMsp6CWru6kKavE/EU9nie4/QmTMFs8oJg2CByOWx0q4etHqj4LkDi6/nViSwPs4gvet7rdPrYhOXZ/MO8rvCd/ODJ0=', 'coach');
-insert into app_user (user_name, password, salt, role) values ('dean.hrbrt@gmail.com', 'mX8Y1FO1mT7UQNMuCRNnyA==', 'YqUUyvvBqfUKg2kFLO8YzvpoPUtX+PXKAvhHeuxLNlrFF9SYJVXPDXIAjDvtnHfn42EVAcYEt7fAGLvADMsp6CWru6kKavE/EU9nie4/QmTMFs8oJg2CByOWx0q4etHqj4LkDi6/nViSwPs4gvet7rdPrYhOXZ/MO8rvCd/ODJ0=', 'coach');
+insert into app_user (user_name, password, salt, role) values ('john@gmail.com', 'mX8Y1FO1mT7UQNMuCRNnyA==', 'YqUUyvvBqfUKg2kFLO8YzvpoPUtX+PXKAvhHeuxLNlrFF9SYJVXPDXIAjDvtnHfn42EVAcYEt7fAGLvADMsp6CWru6kKavE/EU9nie4/QmTMFs8oJg2CByOWx0q4etHqj4LkDi6/nViSwPs4gvet7rdPrYhOXZ/MO8rvCd/ODJ0=', 'coach');
+insert into app_user (user_name, password, salt, role) values ('madeline@gmail.com', 'mX8Y1FO1mT7UQNMuCRNnyA==', 'YqUUyvvBqfUKg2kFLO8YzvpoPUtX+PXKAvhHeuxLNlrFF9SYJVXPDXIAjDvtnHfn42EVAcYEt7fAGLvADMsp6CWru6kKavE/EU9nie4/QmTMFs8oJg2CByOWx0q4etHqj4LkDi6/nViSwPs4gvet7rdPrYhOXZ/MO8rvCd/ODJ0=', 'coach');
+insert into app_user (user_name, password, salt, role) values ('emma@gmail.com', 'mX8Y1FO1mT7UQNMuCRNnyA==', 'YqUUyvvBqfUKg2kFLO8YzvpoPUtX+PXKAvhHeuxLNlrFF9SYJVXPDXIAjDvtnHfn42EVAcYEt7fAGLvADMsp6CWru6kKavE/EU9nie4/QmTMFs8oJg2CByOWx0q4etHqj4LkDi6/nViSwPs4gvet7rdPrYhOXZ/MO8rvCd/ODJ0=', 'coach');
+insert into app_user (user_name, password, salt, role) values ('randy@gmail.com', 'mX8Y1FO1mT7UQNMuCRNnyA==', 'YqUUyvvBqfUKg2kFLO8YzvpoPUtX+PXKAvhHeuxLNlrFF9SYJVXPDXIAjDvtnHfn42EVAcYEt7fAGLvADMsp6CWru6kKavE/EU9nie4/QmTMFs8oJg2CByOWx0q4etHqj4LkDi6/nViSwPs4gvet7rdPrYhOXZ/MO8rvCd/ODJ0=', 'coach');
+insert into app_user (user_name, password, salt, role) values ('lucas@gmail.com', 'mX8Y1FO1mT7UQNMuCRNnyA==', 'YqUUyvvBqfUKg2kFLO8YzvpoPUtX+PXKAvhHeuxLNlrFF9SYJVXPDXIAjDvtnHfn42EVAcYEt7fAGLvADMsp6CWru6kKavE/EU9nie4/QmTMFs8oJg2CByOWx0q4etHqj4LkDi6/nViSwPs4gvet7rdPrYhOXZ/MO8rvCd/ODJ0=', 'coach');
+insert into app_user (user_name, password, salt, role) values ('dean@gmail.com', 'mX8Y1FO1mT7UQNMuCRNnyA==', 'YqUUyvvBqfUKg2kFLO8YzvpoPUtX+PXKAvhHeuxLNlrFF9SYJVXPDXIAjDvtnHfn42EVAcYEt7fAGLvADMsp6CWru6kKavE/EU9nie4/QmTMFs8oJg2CByOWx0q4etHqj4LkDi6/nViSwPs4gvet7rdPrYhOXZ/MO8rvCd/ODJ0=', 'coach');
 
-insert into app_user (user_name, password, salt, role) values ('admin@mhm.com', 'mX8Y1FO1mT7UQNMuCRNnyA==', 'YqUUyvvBqfUKg2kFLO8YzvpoPUtX+PXKAvhHeuxLNlrFF9SYJVXPDXIAjDvtnHfn42EVAcYEt7fAGLvADMsp6CWru6kKavE/EU9nie4/QmTMFs8oJg2CByOWx0q4etHqj4LkDi6/nViSwPs4gvet7rdPrYhOXZ/MO8rvCd/ODJ0=', 'admin');
+insert into app_user (user_name, password, salt, role) values ('admin@gmail.com', 'mX8Y1FO1mT7UQNMuCRNnyA==', 'YqUUyvvBqfUKg2kFLO8YzvpoPUtX+PXKAvhHeuxLNlrFF9SYJVXPDXIAjDvtnHfn42EVAcYEt7fAGLvADMsp6CWru6kKavE/EU9nie4/QmTMFs8oJg2CByOWx0q4etHqj4LkDi6/nViSwPs4gvet7rdPrYhOXZ/MO8rvCd/ODJ0=', 'admin');
 
 insert into coaches (coach_id, first_name, last_name, city_location, state_location, about_me) values (9, 'John', 'Fulton', 'Columbus', 'Ohio', 
 'I am a certified health coach specializing in recovery coaching, mindfulness coaching, and health coaching. I work with all attachments including substance, codependency, and food. I use Buddhist principles to aid with recovery and to help promote happiness.');
@@ -34,7 +34,7 @@ insert into coaches (coach_id, first_name, last_name, city_location, state_locat
 insert into coaches (coach_id, first_name, last_name, city_location, state_location, about_me) values (14, 'Dean', 'Hebert', 'Columbus', 'Ohio', 
 'Dean works with individual athletes, coaches, and teams on sports performance enhancement. He earned his B.S. in Rehabilitation and Masters degree in Education Administration from the University of Arizona with post-graduate work in sports psychology. Dean is also a certified hypnotherapist. Dean is a Masters All-American runner himself; head coach of RxRunning & Racing Team; and works extensively with runners, triathletes and duathletes. Dean has more than 20 years of college teaching, human resources and workforce training and coaching experience with athletes and non-athletes alike.');
 
-insert into clients (client_id, first_name, last_name, is_looking_for_coach, city_location, state_location, completed, about_me) values (1, 'Trey', 'Tomlin', 'true', 'Columbus', 'Ohio', false,
+insert into clients (client_id, first_name, last_name, is_looking_for_coach, city_location, state_location, completed, about_me) values (1, 'Doug', 'Funny', 'true', 'Columbus', 'Ohio', false,
 'Hard-working and dependable with a passion for learning. Enjoy working in team and communication driven environments. I have made several small games and various calculators and I always strive to improve on my programming skills. Looking for a junior developer role where I would be a part of a team..');
 insert into clients (client_id, first_name, last_name, is_looking_for_coach, city_location, state_location, completed, paired_with, about_me) values (2, 'Lindsey', 'Hart', 'false', 'Dayton', 'Ohio', false, 11,
 'I am currently a Java student with a background in Education. I have spent the past five years in education but I have always loved working with technology. I am energized to enter the technology field and look forward to collaborating with peers to learn new things and tackle tomorrows problems.');
@@ -228,6 +228,37 @@ insert into feedback (client_id, module, detail) values (8, 9, 'Et netus et male
 insert into feedback (client_id, module, detail) values (8, 10, 'Et netus et malesuada fames ac turpis egestas. Viverra accumsan in nisl nisi scelerisque eu. Faucibus pulvinar elementum integer enim neque volutpat ac tincidunt vitae. Sodales ut eu sem integer vitae justo eget.');
 insert into feedback (client_id, module, detail) values (8, 11, 'Egestas quis ipsum suspendisse ultrices gravida dictum fusce ut placerat. ');
 insert into feedback (client_id, module, detail) values (8, 12, 'Cursus risus at ultrices mi tempus imperdiet. Etiam dignissim diam quis enim. ');
+
+INSERT INTO messages (sender_id, sender_name, receiver_id, receiver_name, message_text, create_date) VALUES(5, 'Kerry Daniszewski', 13, 'Lucas Martin', 
+'Hi Kerry. I see that you are looking for a coach. Let me know if I can help.', NOW());
+INSERT INTO messages (sender_id, sender_name, receiver_id, receiver_name, message_text, create_date) VALUES(6, 'Brian Mulh', 13, 'Lucas Martin', 
+'Hi Brian. I see that you are looking for a coach. Let me know if I can help.', NOW());
+INSERT INTO messages (sender_id, sender_name, receiver_id, receiver_name, message_text, create_date) VALUES(1, 'Doug Funny', 13, 'Lucas Martin', 
+'Hi Doug. I see that you are looking for a coach. Let me know if I can help.', NOW());
+INSERT INTO messages (sender_id, sender_name, receiver_id, receiver_name, message_text, create_date) VALUES(1, 'Doug Funny', 14, 'Dean Hebert', 
+'Would you be interested in meeting to talk about starting the modules?', NOW());
+INSERT INTO messages (sender_id, sender_name, receiver_id, receiver_name, message_text, create_date) VALUES(7, 'Sam Johnson', 9, 'John Fulton', 
+'Can I schedule meetings for Thursdays at 5pm?', NOW());
+INSERT INTO messages (sender_id, sender_name, receiver_id, receiver_name, message_text, create_date) VALUES(9, 'John Fulton', 7, 'Sam Johnson', 
+'That works great! I will see you on Thursday.', NOW());
+INSERT INTO messages (sender_id, sender_name, receiver_id, receiver_name, message_text, create_date) VALUES(9, 'John Fulton', 7, 'Sam Johnson', 
+'Congrats on finishing the program. I was nice to work with you.', NOW());
+INSERT INTO messages (sender_id, sender_name, receiver_id, receiver_name, message_text, create_date) VALUES(10, 'Madeline Stiers', 4, 'Kevin Cooler', 
+'I will be late to our meeting tomorrow.', NOW());
+INSERT INTO messages (sender_id, sender_name, receiver_id, receiver_name, message_text, create_date) VALUES(2, 'Lindsey Hart', 11, 'Emma Axelrod', 
+'Hi Emma, lets set up a meeting for Saturday. Let me know when what time is best.', NOW());
+INSERT INTO messages (sender_id, sender_name, receiver_id, receiver_name, message_text, create_date) VALUES(11, 'Emma Axelrod', 2, 'Lindsey Hart', 
+'How about 4:30pm?', NOW());
+INSERT INTO messages (sender_id, sender_name, receiver_id, receiver_name, message_text, create_date) VALUES(10, 'Jessica Miller', 11, 'Emma Axelrod', 
+'Can I reschedule the meeting for next week? Something came up.', NOW());
+INSERT INTO messages (sender_id, sender_name, receiver_id, receiver_name, message_text, create_date) VALUES(11, 'Emma Axelrod', 3, 'Jessica Miller', 
+'Sure, just let me know what will work. Will the following week still be ok?', NOW());
+INSERT INTO messages (sender_id, sender_name, receiver_id, receiver_name, message_text, create_date) VALUES(8, 'Sara Daktyl', 12, 'Randy Patterson', 
+'If we schedule a meeting time, how many sessions will be complete?', NOW());
+INSERT INTO messages (sender_id, sender_name, receiver_id, receiver_name, message_text, create_date) VALUES(12, 'Randy Patterson', 8, 'Sara Daktyl', 
+'The program is made up of 12 modules, covered over 12 weeks.', NOW());
+INSERT INTO messages (sender_id, sender_name, receiver_id, receiver_name, message_text, create_date) VALUES(8, 'Sara Daktyl', 12, 'Randy Patterson', 
+'Ok cool. I would like to do Tuesday mornings at 9:00. Thanks!', NOW());
 
 COMMIT;
 

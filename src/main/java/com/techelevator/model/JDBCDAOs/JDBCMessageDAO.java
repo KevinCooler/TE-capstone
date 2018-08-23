@@ -29,7 +29,7 @@ public class JDBCMessageDAO implements MessageDAO{
 		List<Message> list = new ArrayList<Message>();
 		String sqlStatement = "SELECT * FROM messages "
 				+ "WHERE sender_id=? OR receiver_id=? "
-				+ "ORDER BY create_date DESC;";
+				+ "ORDER BY id DESC;";
 		
 		SqlRowSet results = temp.queryForRowSet(sqlStatement, userId, userId);
 		
