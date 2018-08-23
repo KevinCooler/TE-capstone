@@ -37,49 +37,67 @@
 		});
 	});
 </script>
-<div class="row text-center">
+
+<div id="new-user" class="row text-center">
 	<h2>Welcome to MHM</h2>
 	<p>Please start by creating an account.</p>
 	<p> Next, you will be able to customize your profile and contact potential coaches.</p>
 </div>
+
 <c:url var="formAction" value="/signUp" />
-<form method="POST" action="${formAction}">
+<form method="POST" id="new-user-form" action="${formAction}">
 <input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 	<div class="row">
+	
 		<div class="col-sm-3"></div>
+		
 		<div class="col-sm-6">
 			<div class="row">
+			
 				<div class="form-group col-sm-6">
 					<label for="firstName">First Name: </label>
 					<input type="text" id="firstName" name="firstName" placeHolder="First Name" class="form-control" />
 				</div>
+				
 				<div class="form-group col-sm-6">
 					<label for="lastName">Last Name: </label>
 					<input type="text" id="lastName" name="lastName" placeHolder="Last Name" class="form-control" />
 				</div>
+				
 			</div>
+			
 			<div class="row">
+			
 				<div class="form-group col-sm-6">
 					<label for="userName">Email: </label>
 					<input type="text" id="userName" name="userName" placeHolder="Email" class="form-control" />
 				</div>
+				
 				<div class="form-group col-sm-6 error">
 				<c:out value="${userNameError}"/>
 				</div>
+				
 			</div>
+			
 			<div class="row">
+			
 				<div class="form-group col-sm-6">
 					<label for="password">Password: </label>
 					<input type="password" id="password" name="password" placeHolder="Password" class="form-control" />
 				</div>
+				
 				<div class="form-group col-sm-6">
 					<label for="confirmPassword">Confirm Password: </label>
 					<input type="password" id="confirmPassword" name="confirmPassword" placeHolder="Re-Type Password" class="form-control" />
 				</div>
+				
 			</div>
+			
 			<button type="submit" class="btn btn-primary">Create Account</button>
 		</div>
+		
 		<div class="col-sm-3"></div>
+		
 	</div>
 </form>
 		

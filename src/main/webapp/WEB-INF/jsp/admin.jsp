@@ -1,9 +1,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:import url="/WEB-INF/jsp/header.jsp" />
+
 <div class="row">
+<!-- --------------------------------------------------------------- -->
+<!-- Manage Coaches Table -->
     <div class="col-sm-7">
         <h1>Manage Coaches</h1>
-        <table class="table">
+        <table id="manage-coaches" class="table">
             <tbody>
                 <c:forEach var="coach" items="${coaches}" varStatus="status">
                     <c:url var="editCoachURL" value="/editCoach">
@@ -33,14 +36,16 @@
                 </c:forEach>
             </tbody>
         </table>
-        <p class="error"><c:out value="${hasPairedClients}"/></p>
     </div>
+<!-- End Manage Coaches Table -->
+<!-- --------------------------------------------------------------- -->
+<!-- Add New Coach Form -->
     <div class="col-sm-1"></div>
     <div class="col-sm-4">
         <h1>Add New Coach</h1>
         <c:url var="formAction" value="/addCoach" />
         <form id="newCoachForm" method="POST" action="${formAction}">
-        <input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
+        	<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
             <div class="row">
                 <div class="form-group">
                     <label for="firstName">First Name: </label>
@@ -67,6 +72,8 @@
             </div>
         </form>
     </div>
+<!-- End Add New Coach Form -->
+<!-- --------------------------------------------------------------- -->
 </div>
 
 <c:import url="/WEB-INF/jsp/footer.jsp" />

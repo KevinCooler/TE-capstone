@@ -4,7 +4,7 @@
 
 	<c:url var="signUpURL" value="/signUp"/>
 
-	<div class="welcome-bar">
+	<div id="home-logo" class="welcome-bar">
         <img id="banner-img" class="img-responsive hidden-xs" src="img/Smile_3.jpg" alt="MHM banner picture">
         <div class="title-details">
           <h1 class="logo">Mental Health Matters</h1>
@@ -13,8 +13,7 @@
         <a class="btn btn-primary" href="${signUpURL}">Get Started <i id="get-started" class="fas fa-arrow-alt-circle-right"></i></a>
     </div>
     
-    
-    <div class="row text-center feature-row">
+    <div id="home-details" class="row text-center feature-row">
     	<div class="col-sm-1"></div>
     	<div class="col-sm-5">
         	<i class="fas fa-search"></i>
@@ -66,5 +65,4 @@
 		<div class="col-sm-1"></div>
 	</div>
   
-
 <c:import url="/WEB-INF/jsp/footer.jsp" />

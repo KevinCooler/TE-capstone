@@ -3,16 +3,20 @@
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
-
 <div class="row">
+
 	<div class="col-sm-2"></div>
-	<div class="col-sm-8">
+	
+	<div id="client-edit" class="col-sm-8">
 		<c:url var="formAction" value="/editClient" />
 		<h2>Edit Client</h2>
-		<form method="POST" action="${formAction}">
+		<form method="POST" id="client-edit-form" action="${formAction}">
 			<input type="hidden" name="clientId" value=<c:out value="${client.id}"/>>
 			<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 			<div class="row">
+			
+			<!-- If client hasn't completed the course and isn't currently paired with a coach,
+					they can toggle whether they're still looking -->
 				<c:if test="${client.completed == 'false' && client.pairedWith == 0}">
 					<label for="isLookingForCoach">Looking For a Coach: </label>
 	  				<label class="radio-inline">
@@ -24,6 +28,7 @@
 	 						<c:if test="${!client.isLookingForCoach}">checked</c:if>>No
 	 				</label>
  				</c:if>
+ 				
  				<div class="row">
  					<div class="form-group col-sm-6">
 						<label for="firstName">First Name:</label>
@@ -54,13 +59,15 @@
 				<button type="submit" class="btn btn-primary btn-block">Submit Changes</button>
 			</div>
 		</form>
+		
 		<h2>Module Feedback</h2>
 		<p>Feedback is not visible to coaches. We appreciate any information you are able to provide. We aim to use this information to find ways to improve the program.</p>
 		<c:forEach var = "i" begin = "1" end = "12">
 			<div class="row feedbackButton">
 				<c:url var="moduleFormAction" value="/submitModuleFeedback" />
 				<button type="button" id="module${i}Button" class="btn btn-primary browse-button"><c:out value="Module ${i}"/></button>
-				<form method="POST" action="${moduleFormAction}" id="module${i}" style="display:none">
+				<form method="POST" action="${moduleFormAction}" 
+					id="module${i}" style="display:none">
 					<input type="hidden" id="module" name="module" value="${i}">
 					<input type="hidden" id="clientId" name="clientId" value=<c:out value="${client.id}"/>>
 					<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>

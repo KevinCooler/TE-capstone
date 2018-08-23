@@ -3,8 +3,10 @@
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
 <div class="row">
+
 	<div class="col-sm-2"></div>
-	<div class="col-sm-8" style="text-align: center">
+	
+	<div id="new-message" class="col-sm-8" style="text-align: center">
 		<h1>Message ${recipientName}</h1>
 		<c:url var="addMessage" value="/addMessage"/>
 		<form id="message-form" method="POST" action="${addMessage}">
@@ -16,7 +18,9 @@
 			<div><input type="submit" class="btn btn-primary" value="Submit"></div>
 		</form>
 	</div>
+	
 	<div class="col-sm-2"></div>
+	
 </div>
 
 <c:import url="/WEB-INF/jsp/footer.jsp" />
