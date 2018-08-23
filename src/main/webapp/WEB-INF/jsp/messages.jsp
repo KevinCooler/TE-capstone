@@ -3,12 +3,15 @@
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
 <div class="row">
+
 	<div class="col-sm-1"></div>
-	<div class="col-sm-10">
+	
+	<div id="messages" class="col-sm-10">
 		<h1>Messages</h1>
-		<table class="table">
+		<table id="messages-table" class="table">
 		<c:url var="addMessage" value="/addMessage"/>
 		<c:forEach var="message" items="${messages}" varStatus="count">
+			<!-- If the current user sent a message, it's marked as "To", otherwise "From" -->
 				<c:choose>
 					<c:when test="${message.didUserSend}">
 					<c:url var="profileLink" value="/viewProfile">
@@ -32,7 +35,6 @@
 							</td>
 							<td class="response" data-count="${count.index}">
 								<button type="button" class="btn btn-primary">Reply <i class="fa fa-reply" aria-hidden="true"></i></button>
-								
 							</td>
 						</tr>
 						<tr>
@@ -90,7 +92,9 @@
 		</c:forEach>
 		</table>
 	</div>
+	
 	<div class="col-sm-1"></div>
+	
 </div>
 
 <c:import url="/WEB-INF/jsp/footer.jsp" />

@@ -3,10 +3,12 @@
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
 <div class="row">
+
 	<div class="col-sm-1"></div>
+	
 	<div class="col-sm-10">
 		<h1>Browse Clients</h1>
-		<table class="table"> 
+		<table id="clients-table" class="table"> 
 			<c:forEach var="client" items="${clients}">
 				<c:url var="clientURL" value="/client">
 					<c:param name="clientId" value="${client.id}"/>
@@ -14,6 +16,7 @@
 				<c:url var="newMessageURL" value="/messageClient">
 					<c:param name="clientId" value="${client.id}"/>
 				</c:url>
+				
 				<tr>
 					<td>
 						<div class="browse-name">
@@ -39,6 +42,7 @@
 			</c:forEach>
 		</table>
 	</div>
+	
 </div>
 
 <c:import url="/WEB-INF/jsp/footer.jsp" />

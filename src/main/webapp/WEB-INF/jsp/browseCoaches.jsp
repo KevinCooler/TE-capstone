@@ -3,10 +3,12 @@
 <c:import url="/WEB-INF/jsp/header.jsp" />
 
 <div class="row">
+
 	<div class="col-sm-1"></div>
+	
 	<div class="col-sm-10">
 		<h1>Browse Coaches</h1>
-		<table class="table">
+		<table id="coaches-table" class="table">
 			<c:forEach var="coach" items="${coaches}">
 				<c:url var="coachURL" value="/coach">
 					<c:param name="coachId" value="${coach.id}"/>
@@ -46,10 +48,10 @@
 				</tr>
 			</c:forEach>
 		</table>
-		
 	</div>
+	
 	<div class="col-sm-1"></div>
+	
 </div>
 
 <c:import url="/WEB-INF/jsp/footer.jsp" />
-

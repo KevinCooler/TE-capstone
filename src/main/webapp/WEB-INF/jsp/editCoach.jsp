@@ -6,22 +6,29 @@
 <c:url var="contactURL" value="/contact">
 	<c:param name="coachId" value="${coach.id}"></c:param>
 </c:url>
-
-
+<!-- --------------------------------------------------------------- -->
+<!-- Coach Edit Header -->
 <div class="row">
+
 	<div class="col-sm-2"></div>
-	<div class="col-sm-8">
+	
+	<div id="coach-edit-profile" class="col-sm-8">
 		<h2 class="underline">Edit Coaching Profile</h2>
 	</div>
+	
 	<div class="col-sm-2"></div>
+	
 </div>
+<!-- End Coach Edit Header -->
 
 <hr>
-
-<!-- Profile Pic Upload -->
+<!-- --------------------------------------------------------------- -->
+<!-- Coach Profile Pic Upload -->
 <div class="row">
+
 	<div class="col-sm-2"></div>
-	<div class="col-sm-4 current-pic">
+	
+	<div id="coach-current-pic" class="col-sm-4 current-pic">
 		<div>
 			<c:url var="profilePicture" value="/image/coach${coach.id}"/>
 			<c:url var="emptyProfilePicture" value="/img/empty_profile"/>
@@ -32,14 +39,15 @@
 			<b class="underline">Current Profile</b>
 		</div>
 		<div>
-			<form method="POST" id="delete-pic" action ="${picDeleteLink}">
+			<form method="POST" id="coach-delete-pic" action ="${picDeleteLink}">
 				<input type="hidden" name="coachId" value=<c:out value="${coach.id}"/>>
 				<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 				<input type="submit" class="btn btn-primary" value="Delete Picture">
 			</form>
 		</div>
 	</div>
-	<div class="col-sm-4">
+	
+	<div id="coach-upload-pic" class="col-sm-4">
 		<c:if test="${currentUser.id == coach.id}">
 			<c:url var="picUploadLink" value="/uploadProfilePic">
 				<c:param name="coachId" value="${coach.id}"/>
@@ -47,23 +55,29 @@
 			</c:url>
 			<form method="POST" id="upload-pic" action="${picUploadLink}" 
 				enctype="multipart/form-data">
-				<!-- <input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/> -->
 				<h4>Upload Profile Picture - <br>
 				(Size must be under 1MB)</h4>
-				<input type="file" name="file"><br>
+				<input type="file" name="file" accept=".jpg, .gif, .png"><br>
 				<input type="submit" class="btn btn-primary" value="Submit">
 			</form>
 			<span class="error">${errorMessage}</span>
 		</c:if>
 	</div>
+	
 	<div class="col-sm-2"></div>
+	
 </div>
-<!-- Profile Pic Upload -->
+<!-- End Coach Profile Pic Upload -->
+
 	<br>
 	<hr>
+<!-- --------------------------------------------------------------- -->	
+<!-- Coach Details Edit -->
 <div class="row">
+
 	<div class="col-sm-2"></div>
-	<div class="col-sm-8">
+	
+	<div id="coach-edit" class="col-sm-8">
 		<c:url var="formAction" value="/editCoach" />
 		<form method="POST" id="submit-edits" action="${formAction}">
 		<input type="hidden" name="coachId" value=<c:out value="${coach.id}"/>>
@@ -101,14 +115,20 @@
 			</div>
 		</form>
 	</div>
+	
 	<div class="col-sm-2"></div>
+	
 </div>
-
+<!-- End Coach Details Edit -->
+<!-- --------------------------------------------------------------- -->
 <hr>
 
 <div class="row">
+
 	<div class="col-sm-2"></div>
-	<div class="col-sm-4">
+<!-- --------------------------------------------------------------- -->
+<!-- Coach Availability Edit -->
+	<div id="coach-avail-edit" class="col-sm-4">
 		<h3>Availability</h3>
 		<div>
 		<table id="avail-table">
@@ -139,7 +159,10 @@
 			</table>
 		</div>
 	</div>
-	<div class="col-sm-4">
+<!-- End Coach Availability Edit -->
+<!-- --------------------------------------------------------------- -->
+<!-- Coach Availability Add -->
+	<div id="coach-avail-add" class="col-sm-4">
 		<h3>Add Time Slot</h3>
 		<c:url var="addAvailURL" value="/addAvailability">
 			<c:param name="coachId" value="${coach.id}"/>
@@ -201,7 +224,10 @@
 			<button type="submit" class="btn btn-primary btn-block">Add Availability</button>
 		</form>
 	</div>
+<!-- End Coach Availability Add -->
+<!-- --------------------------------------------------------------- -->
 	<div class="col-sm-2"></div>
+	
 </div>
 
 <c:import url="/WEB-INF/jsp/footer.jsp" />

@@ -6,7 +6,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.techelevator.model.JDBCDAOs.JDBCClientDAO;
 import com.techelevator.model.JDBCDAOs.JDBCCoachDAO;
 import com.techelevator.model.Objects.Coach;
 
@@ -17,12 +16,10 @@ public class JDBCCoachDAOIntegrationTest extends DAOIntegrationTest{
 	private long coachIdTwo;
 	private long coachIdThree;
 	private TestingUtilities util;
-	private JDBCClientDAO clientDAO;
 	
 	@Before
 	public void setup() {
 		coachDao = new JDBCCoachDAO(super.getDataSource());
-		clientDAO = new JDBCClientDAO(super.getDataSource());
 		util = new TestingUtilities(super.getDataSource());
 		coachIdOne = util.newUser("test1");
 		coachDao.addCoach("John", "Doe", coachIdOne);
