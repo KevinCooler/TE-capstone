@@ -16,5 +16,6 @@ public interface ClientDAO {
 	void updateAboutMe(String aboutMe, long id);
 	void updateIsLookingForCoach(boolean isLookingForCoach, long clientId);
 	void assignCoach(long clientId, Long coachId);
+	void unassignCoachById(long coachId);
 	void updateCompleted(boolean completed, long clientId);
 }

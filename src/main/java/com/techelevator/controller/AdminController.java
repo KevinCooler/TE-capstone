@@ -73,10 +73,7 @@ public class AdminController {
 	@RequestMapping(path="/deleteCoach", method=RequestMethod.GET)
 	public String doDeleteCoach(@RequestParam long coachId, HttpSession session, RedirectAttributes redirect) {
 		if(authorizer.isNotAdmin((User) session.getAttribute("currentUser"))) return "redirect:/";
-		if(coachDAO.hasPairedClients(coachId)) {
-			redirect.addFlashAttribute("hasPairedClients",  "Oops! This coach cannot be deleted since they are still paired with a client.");
-			return "redirect:/admin";
-		}
+		
 		messageDAO.removeMessagesByUserId(coachId);
 		coachDAO.removeCoach(coachId);
 		userDAO.deleteUserByUserId(coachId);

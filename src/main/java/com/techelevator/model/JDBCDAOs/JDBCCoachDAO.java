@@ -17,6 +17,7 @@ import com.techelevator.model.Objects.Coach;
 public class JDBCCoachDAO implements CoachDAO{
 	
 	private JdbcTemplate temp;
+	private JDBCClientDAO clientDao;
 	private JDBCAvailabilityDAO availDao;
 	private JDBCReviewDAO reviewDao;
 	
@@ -25,6 +26,7 @@ public class JDBCCoachDAO implements CoachDAO{
 		this.temp = new JdbcTemplate(dataSource);
 		this.availDao = new JDBCAvailabilityDAO(dataSource);
 		this.reviewDao = new JDBCReviewDAO(dataSource);
+		this.clientDao = new JDBCClientDAO(dataSource);
 	}
 
 	@Override
@@ -76,6 +78,7 @@ public class JDBCCoachDAO implements CoachDAO{
 
 	@Override
 	public void removeCoach(long id) {
+		clientDao.unassignCoachById(id);
 		availDao.removeAvailabilityByCoachId(id);
 		reviewDao.removeReviewsByCoachId(id);
 		
@@ -104,19 +107,4 @@ public class JDBCCoachDAO implements CoachDAO{
 		
 		temp.update(sqlStatement, aboutMe, id);
 	}
-
-	@Override
-	public boolean hasPairedClients(long id) {
-		String sqlSelectPairedClients = "select * from clients where paired_with = ?";
-		SqlRowSet result = temp.queryForRowSet(sqlSelectPairedClients, id);
-		return result.next();
-	}
-	
-	
-	
-	
-	
-	
-	
-	
 }

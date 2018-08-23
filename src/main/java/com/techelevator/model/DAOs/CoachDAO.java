@@ -19,6 +19,4 @@ public interface CoachDAO {
 	void updateLocation(String city, String state, long id);
 	
 	void updateAboutMe(String aboutMe, long id);
-	
-	public boolean hasPairedClients(long id);
 }

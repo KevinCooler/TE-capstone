@@ -125,11 +125,19 @@ public class JDBCClientDAO implements ClientDAO {
 		
 		temp.update(sqlStatement, coachId, clientId);
 	}
+	
+	@Override
+	public void unassignCoachById(long coachId) {
+		String sqlStatement = "UPDATE clients SET paired_with = null "
+				+ "WHERE paired_with = ?;";
+		
+		temp.update(sqlStatement, coachId);
+	}	
 
 	@Override
 	public void updateCompleted(boolean completed, long clientId) {
 		String sqlStatement = "UPDATE clients SET completed = ? WHERE client_id = ?;";
 		
 		temp.update(sqlStatement, completed, clientId);
-	}	
+	}
 }

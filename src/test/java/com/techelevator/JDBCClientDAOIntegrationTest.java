@@ -1,5 +1,7 @@
 package com.techelevator;
 
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -140,5 +142,23 @@ public class JDBCClientDAOIntegrationTest extends DAOIntegrationTest{
 		clientDAO.updateCompleted(true, clientIdOne);
 		client = clientDAO.getClientById(clientIdOne);
 		Assert.assertTrue(client.isCompleted());
+	}
+	
+	@Test
+	public void testUnassigningCoachesById() {
+		long coachId = util.newCoach("Test", "Coach");
+		clientIdTwo = util.newClient("Jane", "Test");
+		clientIdThree = util.newClient("Joey", "Test");
+		
+		clientDAO.assignCoach(clientIdOne, coachId);
+		clientDAO.assignCoach(clientIdTwo, coachId);
+		clientDAO.assignCoach(clientIdThree, coachId);
+		
+		List<Client> list = clientDAO.getClientsByCoach(coachId);
+		Assert.assertEquals(3, list.size());
+		
+		clientDAO.unassignCoachById(coachId);
+		list = clientDAO.getClientsByCoach(coachId);
+		Assert.assertEquals(0, list.size());
 	}
 }
