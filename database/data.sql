@@ -125,19 +125,83 @@ insert into coach_reviews (coach_id, client_id, rating, create_date, review_text
 insert into coach_reviews (coach_id, client_id, rating, create_date, review_text) values (14, 1, 2, NOW(), 
 'Before coaching, I was living my life on auto-pilot. While it was easy and safe, I always had a nagging feeling that I could do more...be more. Through my work with Dean, Ive learned how to make intentional choices and have developed a newfound confidence that allows me to present my best self to the world.');
 
+INSERT INTO feedback (client_id, module, detail) VALUES (1, 1, 'Insert module 1 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (1, 2, 'Insert module 2 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (1, 3, 'Insert module 3 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (1, 4, 'Insert module 4 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (1, 5, 'Insert module 5 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (1, 6, 'Insert module 6 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (1, 7, 'Insert module 7 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (1, 8, 'Insert module 8 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (1, 9, 'Insert module 9 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (1, 10, 'Insert module 10 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (1, 11, 'Insert module 11 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (1, 12, 'Insert module 12 feedback here!');
+
 insert into feedback (client_id, module, detail) values (2, 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Convallis tellus id interdum velit laoreet id donec ultrices tincidunt. Dolor sit amet consectetur adipiscing elit ut. ');
 insert into feedback (client_id, module, detail) values (2, 2, 'Pharetra diam sit amet nisl suscipit adipiscing bibendum est. Sit amet volutpat consequat mauris nunc congue nisi vitae suscipit. Viverra aliquet eget sit amet tellus cras. Pellentesque habitant morbi tristique senectus et netus et malesuada fames. Odio pellentesque diam volutpat commodo sed egestas. Tincidunt dui ut ornare lectus. ');
 insert into feedback (client_id, module, detail) values (2, 3, 'Egestas quis ipsum suspendisse ultrices gravida dictum fusce ut placerat. ');
 insert into feedback (client_id, module, detail) values (2, 4, 'Accumsan tortor posuere ac ut consequat semper viverra nam. Aliquet enim tortor at auctor urna. Lectus urna duis convallis convallis tellus id interdum. Dolor purus non enim praesent elementum facilisis leo vel fringilla.');
 insert into feedback (client_id, module, detail) values (2, 5, 'Ultrices gravida dictum fusce ut. Aliquam vestibulum morbi blandit cursus.');
+INSERT INTO feedback (client_id, module, detail) VALUES (2, 6, 'Insert module 6 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (2, 7, 'Insert module 7 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (2, 8, 'Insert module 8 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (2, 9, 'Insert module 9 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (2, 10, 'Insert module 10 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (2, 11, 'Insert module 11 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (2, 12, 'Insert module 12 feedback here!');
 
 insert into feedback (client_id, module, detail) values (3, 1, 'Scelerisque purus semper eget duis at. Erat pellentesque adipiscing commodo elit at imperdiet. Sed velit dignissim sodales ut eu sem integer vitae. Lacus luctus accumsan tortor posuere ac ut consequat. Nunc mi ipsum faucibus vitae aliquet nec. Fringilla urna porttitor rhoncus dolor purus non. Feugiat scelerisque varius morbi enim nunc faucibus a pellentesque sit. Enim nec dui nunc mattis enim ut tellus elementum.');
 insert into feedback (client_id, module, detail) values (3, 3, 'Euismod lacinia at quis risus sed vulputate odio ut enim. A lacus vestibulum sed arcu. At varius vel pharetra vel turpis nunc eget lorem. Convallis tellus id interdum velit.');
 insert into feedback (client_id, module, detail) values (3, 4, 'Fermentum leo vel orci porta non.');
 insert into feedback (client_id, module, detail) values (3, 9, 'Et netus et malesuada fames ac turpis egestas. Viverra accumsan in nisl nisi scelerisque eu. Faucibus pulvinar elementum integer enim neque volutpat ac tincidunt vitae. Sodales ut eu sem integer vitae justo eget.');
+INSERT INTO feedback (client_id, module, detail) VALUES (3, 2, 'Insert module 2 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (3, 5, 'Insert module 5 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (3, 6, 'Insert module 6 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (3, 7, 'Insert module 7 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (3, 8, 'Insert module 8 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (3, 10, 'Insert module 10 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (3, 11, 'Insert module 11 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (3, 12, 'Insert module 12 feedback here!');
 
 insert into feedback (client_id, module, detail) values (4, 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Convallis tellus id interdum velit laoreet id donec ultrices tincidunt. Dolor sit amet consectetur adipiscing elit ut. ');
 insert into feedback (client_id, module, detail) values (4, 2, 'Pharetra diam sit amet nisl suscipit adipiscing bibendum est. Sit amet volutpat consequat mauris nunc congue nisi vitae suscipit. Viverra aliquet eget sit amet tellus cras. Pellentesque habitant morbi tristique senectus et netus et malesuada fames. Odio pellentesque diam volutpat commodo sed egestas. Tincidunt dui ut ornare lectus. ');
+INSERT INTO feedback (client_id, module, detail) VALUES (4, 3, 'Insert module 3 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (4, 4, 'Insert module 4 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (4, 5, 'Insert module 5 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (4, 6, 'Insert module 6 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (4, 7, 'Insert module 7 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (4, 8, 'Insert module 8 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (4, 9, 'Insert module 9 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (4, 10, 'Insert module 10 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (4, 11, 'Insert module 11 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (4, 12, 'Insert module 12 feedback here!');
+
+INSERT INTO feedback (client_id, module, detail) VALUES (5, 1, 'Insert module 1 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (5, 2, 'Insert module 2 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (5, 3, 'Insert module 3 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (5, 4, 'Insert module 4 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (5, 5, 'Insert module 5 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (5, 6, 'Insert module 6 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (5, 7, 'Insert module 7 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (5, 8, 'Insert module 8 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (5, 9, 'Insert module 9 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (5, 10, 'Insert module 10 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (5, 11, 'Insert module 11 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (5, 12, 'Insert module 12 feedback here!');
+
+INSERT INTO feedback (client_id, module, detail) VALUES (6, 1, 'Insert module 1 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (6, 2, 'Insert module 2 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (6, 3, 'Insert module 3 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (6, 4, 'Insert module 4 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (6, 5, 'Insert module 5 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (6, 6, 'Insert module 6 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (6, 7, 'Insert module 7 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (6, 8, 'Insert module 8 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (6, 9, 'Insert module 9 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (6, 10, 'Insert module 10 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (6, 11, 'Insert module 11 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (6, 12, 'Insert module 12 feedback here!');
 
 insert into feedback (client_id, module, detail) values (7, 1, 'Egestas quis ipsum suspendisse ultrices gravida dictum fusce ut placerat. ');
 insert into feedback (client_id, module, detail) values (7, 2, 'Accumsan tortor posuere ac ut consequat semper viverra nam. Aliquet enim tortor at auctor urna. Lectus urna duis convallis convallis tellus id interdum. Dolor purus non enim praesent elementum facilisis leo vel fringilla.');
@@ -147,6 +211,10 @@ insert into feedback (client_id, module, detail) values (7, 7, 'Euismod lacinia 
 insert into feedback (client_id, module, detail) values (7, 8, 'Fermentum leo vel orci porta non.');
 insert into feedback (client_id, module, detail) values (7, 9, 'Et netus et malesuada fames ac turpis egestas. Viverra accumsan in nisl nisi scelerisque eu. Faucibus pulvinar elementum integer enim neque volutpat ac tincidunt vitae. Sodales ut eu sem integer vitae justo eget.');
 insert into feedback (client_id, module, detail) values (7, 10, 'Et netus et malesuada fames ac turpis egestas. Viverra accumsan in nisl nisi scelerisque eu. Faucibus pulvinar elementum integer enim neque volutpat ac tincidunt vitae. Sodales ut eu sem integer vitae justo eget.');
+INSERT INTO feedback (client_id, module, detail) VALUES (7, 5, 'Insert module 5 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (7, 6, 'Insert module 6 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (7, 11, 'Insert module 11 feedback here!');
+INSERT INTO feedback (client_id, module, detail) VALUES (7, 12, 'Insert module 12 feedback here!');
 
 insert into feedback (client_id, module, detail) values (8, 1, 'Cursus risus at ultrices mi tempus imperdiet. Etiam dignissim diam quis enim. ');
 insert into feedback (client_id, module, detail) values (8, 2, 'PLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Convallis tellus id interdum velit laoreet id donec ultrices tincidunt.');

@@ -30,18 +30,6 @@ public class JDBCCoachDAOIntegrationTest extends DAOIntegrationTest{
 	}
 	
 	@Test
-	public void returns_true_when_coach_has_client() {
-		long clientId = util.newClient("client",  "paried");
-		clientDAO.assignCoach(clientId, coachIdOne);
-		Assert.assertTrue(coachDao.hasPairedClients(coachIdOne));
-	}
-	
-	@Test
-	public void returns_false_when_coach_does_not_have_client() {
-		Assert.assertFalse(coachDao.hasPairedClients(coachIdOne));
-	}
-	
-	@Test
 	public void testCoachAddition() {
 		Coach coach = coachDao.getCoachById(coachIdOne);
 		Assert.assertEquals("John", coach.getFirstName());
