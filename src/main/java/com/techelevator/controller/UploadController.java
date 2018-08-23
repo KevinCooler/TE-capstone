@@ -62,12 +62,16 @@ public class UploadController {
 	
 	@RequestMapping(path="/deleteProfilePic", method=RequestMethod.POST)
 	public String deletePicture(@RequestParam long coachId, 
-			RedirectAttributes redirect) {
-		String imagePath = getServerContextPath() + File.separator + "coach" + coachId;
-		File image = new File(imagePath);
+			RedirectAttributes redirect, HttpSession session) {
+		User user = (User)session.getAttribute("currentUser");
 		
-		if(image.exists())
-			image.delete();
+		if(user.getId() == coachId || user.getRole().equals("admin")) {
+			String imagePath = getServerContextPath() + File.separator + "coach" + coachId;
+			File image = new File(imagePath);
+			
+			if(image.exists())
+				image.delete();
+		}
 		
 		redirect.addFlashAttribute("coachId", coachId);
 		
