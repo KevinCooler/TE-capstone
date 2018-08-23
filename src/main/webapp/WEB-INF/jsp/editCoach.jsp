@@ -47,10 +47,9 @@
 			</c:url>
 			<form method="POST" id="upload-pic" action="${picUploadLink}" 
 				enctype="multipart/form-data">
-				<!-- <input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/> -->
 				<h4>Upload Profile Picture - <br>
 				(Size must be under 1MB)</h4>
-				<input type="file" name="file"><br>
+				<input type="file" name="file" accept=".jpg, .gif, .png"><br>
 				<input type="submit" class="btn btn-primary" value="Submit">
 			</form>
 			<span class="error">${errorMessage}</span>
