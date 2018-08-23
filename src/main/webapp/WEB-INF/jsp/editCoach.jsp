@@ -11,7 +11,7 @@
 <div class="row">
 	<div class="col-sm-2"></div>
 	<div class="col-sm-8">
-		<h2><u>Edit Coaching Profile</u></h2>
+		<h2 class="underline">Edit Coaching Profile</h2>
 	</div>
 	<div class="col-sm-2"></div>
 </div>
@@ -26,13 +26,13 @@
 			<c:url var="profilePicture" value="/image/coach${coach.id}"/>
 			<c:url var="emptyProfilePicture" value="/img/empty_profile"/>
 			<img class="coach-image hidden-xs img profilePicture" 
-				src="${profilePicture}" alt="empty profile picture"/>
+				id="profile-pic" src="${profilePicture}" alt="empty profile picture"/>
 			<c:url var="picDeleteLink" value="/deleteProfilePic"/>
 			<br>
-			<b><u>Current Profile</u></b>
+			<b class="underline">Current Profile</b>
 		</div>
 		<div>
-			<form method="POST" action ="${picDeleteLink}">
+			<form method="POST" id="delete-pic" action ="${picDeleteLink}">
 				<input type="hidden" name="coachId" value=<c:out value="${coach.id}"/>>
 				<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 				<input type="submit" class="btn btn-primary" value="Delete Picture">
@@ -40,19 +40,21 @@
 		</div>
 	</div>
 	<div class="col-sm-4">
-		<c:url var="formAction" value="/editCoach" />
-		<c:url var="picUploadLink" value="/uploadProfilePic">
-			<c:param name="coachId" value="${coach.id}"/>
-			<c:param name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
-		</c:url>
-		<form method="POST" action="${picUploadLink}" enctype="multipart/form-data">
-			<!-- <input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/> -->
-			<h4>Upload Profile Picture - <br>
-			(Size must be under 1MB)</h4>
-			<input type="file" name="file"><br>
-			<input type="submit" class="btn btn-primary" value="Submit">
-		</form>
-		<span class="error">${errorMessage}</span>
+		<c:if test="${currentUser.id == coach.id}">
+			<c:url var="picUploadLink" value="/uploadProfilePic">
+				<c:param name="coachId" value="${coach.id}"/>
+				<c:param name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
+			</c:url>
+			<form method="POST" id="upload-pic" action="${picUploadLink}" 
+				enctype="multipart/form-data">
+				<!-- <input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/> -->
+				<h4>Upload Profile Picture - <br>
+				(Size must be under 1MB)</h4>
+				<input type="file" name="file"><br>
+				<input type="submit" class="btn btn-primary" value="Submit">
+			</form>
+			<span class="error">${errorMessage}</span>
+		</c:if>
 	</div>
 	<div class="col-sm-2"></div>
 </div>
@@ -62,7 +64,8 @@
 <div class="row">
 	<div class="col-sm-2"></div>
 	<div class="col-sm-8">
-		<form method="POST" action="${formAction}">
+		<c:url var="formAction" value="/editCoach" />
+		<form method="POST" id="submit-edits" action="${formAction}">
 		<input type="hidden" name="coachId" value=<c:out value="${coach.id}"/>>
 		<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 			<div class="row">
@@ -108,7 +111,7 @@
 	<div class="col-sm-4">
 		<h3>Availability</h3>
 		<div>
-		<table>
+		<table id="avail-table">
 			<c:forEach var="avail" items="${coach.available}">
 				
 				<c:url var="deleteAvailURL" value="/deleteAvailability">
@@ -141,7 +144,7 @@
 		<c:url var="addAvailURL" value="/addAvailability">
 			<c:param name="coachId" value="${coach.id}"/>
 		</c:url>
-		<form method="POST" action="${addAvailURL}">
+		<form method="POST" id="submit-new-avail" action="${addAvailURL}">
 		<input type="hidden" name="CSRF_TOKEN" value="${CSRF_TOKEN}"/>
 			<div class="form-group">
 				<label for="day">Day: </label>
